@@ -55,10 +55,10 @@ p.s. This style only uses up to 4th level header
 ### Custom Font
 
 Normal:
-![](.Image/2023-01-11-15-40-15.png)
+![](.Image/2023-01-11-16-50-41.png)
 
-Bold:
-![](.Image/2023-01-11-15-40-54.png)
+Bold (red text):
+![](.Image/2023-01-11-16-52-20.png)
 
 #### Definition
 Bold is usually enough for 'everything' that needs attention, but I've added a "special bold" to mark 'concepts' that appear first time in context, which is useful for documentation and notes.
