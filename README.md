@@ -11,6 +11,8 @@ p.s. I'm not good at english writing.
 
 p.s. I'm not a front-end related worker, I just made this style out of interest. Pull requests is welcome.
 
+p.s. This repository will update occasionally, and the pic may not be updated on time.
+
 
 
 ## Install
@@ -180,7 +182,6 @@ effect:
 ## Other Information
 
 - I personally use Chinese 90% of the time, so this style may look prettier in Chinese documents
-- This repository will update occasionally
 
 ### Suggestion
 - Take more notes (including students and office workers)
