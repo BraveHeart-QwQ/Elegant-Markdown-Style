@@ -85,7 +85,7 @@ usage:
 <div align=center class=img><img src="PathToImage" style="zoom:100%"></br></div>
 ```
 
->- If you think it's troublesome to enter these string, you can use the VSCode's Snippets to make template. But I recommend using [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly
+If you think it's troublesome to enter these string, you can use the VSCode's Snippets to make template. But I recommend using [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly
 
 #### Image Name
 
@@ -97,7 +97,7 @@ usage:
 ```
 
 effect:
-![](.Image/2023-01-11-16-06-40.)div>
+![](.Image/2023-01-11-16-06-40.)
 
 ### Custom Code Block
 
