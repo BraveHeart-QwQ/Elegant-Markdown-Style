@@ -130,7 +130,7 @@ Warning! Warning!
 </li></ul></div>
 ```
 
-Note that there is an **empty line** here. If the content contains any special Markdown content (such as bold text: \*\*abc\*\*), then this line must be empty to display normally. On the other hand, if you are not using any special content, then this empty line is not necessary.
+Note that there is an **empty line** here. If the content contains any Markdown's feature (such as bold text: \*\*abc\*\*), then you must have an empty line above content to display normally. On the other hand, if your content not using any Markdown's feature (HTML tag is ok), then this empty line is not necessary.
 
 effect:
 ![](.Image/2023-01-11-16-17-38.png)
