@@ -97,7 +97,7 @@ usage:
 ```
 
 effect:
-![](.Image/2023-01-11-16-06-40.)
+![](.Image/2023-01-11-16-06-40.png)
 
 ### Custom Code Block
 
