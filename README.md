@@ -104,7 +104,7 @@ effect:
 The code style is basically copy-pasted from [Google Protocol Buffers Doc](https://developers.google.com/protocol-buffers), but I made some modifications.
 
 effect:
-![](.Image/2023-01-11-16-07-40.)div>
+![](.Image/2023-01-11-16-07-40.png)
 
 ### Custom Block Quote
 
