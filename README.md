@@ -11,20 +11,20 @@ p.s. I'm not good at english writing.
 
 p.s. I'm not a front-end related worker, I just made this style out of interest. Pull requests is welcome.
 
-p.s. This repository will update occasionally, and the pic may not be updated on time.
+p.s. This repository will update occasionally, and the pic below may not be updated in time.
 
 
 
 ## Install
 
 ### Install Fonts
-- Raleway
-- Noto Sans Symbols2 (not required on macOS)
-- Roboto Serif
-- Kaiti SC
-- Cascadia Code
-- Bungee Shade
-- Monaco
+- Raleway (Header1; Header2)
+- Noto Sans (Body)
+- Noto Sans Symbols2 (Marker of Header2 and Header 3; not required on macOS)
+- Roboto Serif (Header3)
+- Times New Roman (Image-Name)
+- Cascadia Code (Code)
+- Bungee Shade (Left Marker of Blockquote and Warning-Block)
 
 Some fonts may be pre-installed on your system, go to the Fonts folder (Windows) or Font Book.app (macOS) to check.
 
@@ -63,7 +63,7 @@ Bold (red text):
 ![](.Image/2023-01-11-16-52-20.png)
 
 #### Definition
-Bold is usually enough for 'everything' that needs attention, but I've added a "special bold" to mark 'concepts' that appear first time in context, which is useful for documentation and notes.
+Bold effect is usually enough for text which need attention, but I've added a "Special Bold" to mark "concepts" that appear first time in context, which is useful for documentation and notes.
 
 usage:
 ```markdown
