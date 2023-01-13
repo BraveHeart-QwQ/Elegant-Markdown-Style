@@ -160,7 +160,7 @@ body[for="html-export"] {
         height: auto;
         letter-spacing: normal;
         line-height: 24px;
-        margin: 36px 0px -6px 0px !important;
+        margin: 32px 0px -6px 0px !important;
         text-overflow: ellipsis;
         width: auto;
         word-spacing: normal;
@@ -189,40 +189,61 @@ body[for="html-export"] {
 
     table {
         display: table;
-        margin-top: 16px;
+        margin: -24px 0px 0px 0px;
         table-layout: auto;
         border-collapse: collapse;
         font-size: 14px;
         width: 100% !important;
-        min-height: 36px;
     }
 
     thead {
         width: 100% !important;
-        border-left: 1px solid rgb(210, 215, 223);
-        border-right: 1px solid rgb(210, 215, 223);
-        height: 36px !important;
-    }
-
-    tbody {
-        width: 100% !important;
-        border-left: 1px solid rgb(210, 215, 223);
-        border-right: 1px solid rgb(210, 215, 223);
-    }
-
-    th {
-        border-left: none;
-        border-right: none;
+        border: 1px solid #00000000 !important;
+        height: 40px;
+        font-size: 16px;
         text-align: left;
     }
 
+    tbody {
+        border: 1px solid rgb(210, 215, 223) !important;
+    }
+
+    th,
     td {
+        border-top: none;
         border-left: none;
         border-right: none;
+    }
+
+    thead th {
+        color: #00000000 !important;
+    }
+
+    tbody td {
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
 
     table tr td:first-child {
         width: 33% !important;
+    }
+
+    htable {
+        table {
+            margin-top: 16px;
+        }
+
+        thead {
+            border: 1px solid rgb(210, 215, 223) !important;
+        }
+
+        tbody {
+            border: 1px solid rgb(210, 215, 223) !important;
+        }
+
+        thead th {
+            color: rgb(23, 23, 23) !important;
+        }
     }
 
     u {
@@ -291,7 +312,7 @@ body[for="html-export"] {
     }
 
     fig {
-        font-family: 'Kaiti SC';
+        font-family: 'Times New Roman', 'Kaiti SC';
         font-size: 17px !important;
         font-weight: 900;
     }

@@ -76,8 +76,18 @@ effect:
 ### Custom Table
 The table of this style is inspired by MSDN. This table has a fixed maximum width and can cover the entire page horizontally, and the width of the first column always be 33% of current page.
 
+**By default, the first row (header) is hidden**. In my experience, headers are mostly redundant. If you want to use headers, add the `<htable></htable>` tag:
+```markdown
+<htable>
+
+| head1    | head2    |
+|----------|----------|
+| content1 | content2 |
+</htable>
+```
+
 effect:
-![](.Image/2023-01-11-15-49-29.png)
+![](.Image/2023-01-13-17-22-37.png)
 
 ### Image Style
 The image is centered and the size can be controlled (I insert the picture by HTML code)
