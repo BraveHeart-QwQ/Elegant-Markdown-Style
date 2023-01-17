@@ -80,21 +80,23 @@ The table of this style is inspired by MSDN. This table has a fixed maximum widt
 ```markdown
 <htable>
 
-| head1    | head2    |
-|----------|----------|
-| content1 | content2 |
+head1    | head2
+---------|----------
+content1 | content2
 </htable>
 ```
 
 effect:
 ![](.Image/2023-01-13-17-22-37.png)
 
+I also added symmetric tables, since symmetric two-column tables are quite common. Use `<dtable>` and `<dhtable>` to use the no-head and has-head versions respectively.
+
 ### Image Style
 The image is centered and the size can be controlled (I insert the picture by HTML code)
 
 usage:
 ```markdown
-<div align=center class=img><img src="PathToImage" style="zoom:100%"></br></div>
+<div align=center class=img><img src="PathToImage" style="zoom:100%"><br></div>
 ```
 
 If you think it's troublesome to enter these string, you can use the VSCode's Snippets to make template. But I recommend using [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly
@@ -105,7 +107,7 @@ Add a name under the picture.
 
 usage:
 ```markdown
-<div align=center class=img><img src="./.Image/flower.jpeg" style="zoom:100%"></br>flower</div>
+<div align=center class=img><img src="./.Image/flower.jpeg" style="zoom:100%"><br>flower</div>
 ```
 
 effect:
@@ -208,10 +210,10 @@ effect:
 
 
 
-</br>
-</br>
-</br>
-</br>
-</br>
-</br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 ---End---
