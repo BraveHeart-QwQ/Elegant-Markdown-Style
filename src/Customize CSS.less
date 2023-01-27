@@ -69,7 +69,7 @@ body[for="html-export"] {
         text-align: center;
         vertical-align: middle;
         width: auto;
-        word-spacing: normal;
+        // word-spacing: 2px;
         z-index: 0 !important;
     }
 
@@ -114,7 +114,7 @@ body[for="html-export"] {
         color: rgb(23, 23, 23);
         // display: inline;
         // font-family: 'Monaco', 'PingFang SC', 'Microsoft Yahei' !important;
-        font-family: 'Roboto Serif', 'PingFang SC', 'Microsoft Yahei' !important;
+        font-family: 'Roboto Serif', 'Roboto Serif 20pt', 'PingFang SC', 'Microsoft Yahei' !important;
         font-size: 20px;
         font-stretch: normal;
         font-style: normal;
@@ -125,7 +125,7 @@ body[for="html-export"] {
         margin: 80px 0px -4px 0px !important;
         text-overflow: ellipsis;
         width: auto;
-        word-spacing: normal;
+        // word-spacing: normal;
         z-index: 1;
     }
 
@@ -318,6 +318,12 @@ body[for="html-export"] {
         text-align: left;
     }
 
+    li br {
+        display: block !important;
+        line-height: 16px !important;
+        height: 16px !important;
+    }
+
     details ul,
     details ol,
     li ol,
@@ -346,16 +352,17 @@ body[for="html-export"] {
 
     fig {
         font-family: 'Times New Roman', 'Kaiti SC';
-        font-size: 17px !important;
+        font-size: 14px !important;
         font-weight: 900;
     }
 
     fig:before {
         content: "Fig. ";
+        word-spacing: 8px;
     }
 
     .katex {
-        font-size: 20px;
+        font-size: 16px;
     }
 
     span[class="katex"],
