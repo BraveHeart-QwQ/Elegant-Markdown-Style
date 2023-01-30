@@ -24,7 +24,7 @@ p.s. This repository will update occasionally, and the pic below may not be upda
 - Roboto Serif (Header3)
 - Times New Roman (Image-Name)
 - Cascadia Code (Code)
-- Bungee Shade (Left Marker of Blockquote and Warning-Block)
+- Vintama Shadow (Left Marker of Blockquote)
 
 Some fonts may be pre-installed on your system, go to the Fonts folder (Windows) or Font Book.app (macOS) to check.
 
@@ -120,34 +120,41 @@ The code style is basically copy-pasted from [Google Protocol Buffers Doc](https
 effect:
 ![](.Image/2023-01-11-16-07-40.png)
 
-### Custom Block Quote
+### Custom BlockQuote
 
+**Normal BlockQuote**
 usage:
 ```markdown
->- Text...
+> Text...
 ```
-
-Note that **NOT** `>` at the beginning, but `>-`. This is done to add a marker at the beginning (actually a list marker). This style is very common.
-
-effect:
-![](.Image/2023-01-11-16-14-10.png)
-
-### Warning Block
-
+**Warning Block**
 Just a variant of Block Quote for warning content.
 
 usage:
 ```markdown
-<div class=warning><ul><li>
+<warning>
 
 Warning! Warning!
-</li></ul></div>
+</warning>
 ```
 
 Note that there is an **empty line** here. If the content contains any Markdown's feature (such as bold text: \*\*abc\*\*), then you must have an empty line above content to display normally. On the other hand, if your content not using any Markdown's feature (HTML tag is ok), then this empty line is not necessary.
 
-effect:
-![](.Image/2023-01-11-16-17-38.png)
+**Quote Block for Reference**
+usage:
+```
+<ref>
+
+Quote...
+
+[Source Name](Source URL)
+</ref>
+```
+
+Effect:
+![](.Image/2023-01-30-14-44-39.png)
+
+
 
 ### Fold Block
 

@@ -486,151 +486,89 @@ body[for="html-export"] {
         tab-size: 4 !important;
     }
 
+    ref {
+        display: block;
+        font-size: 14px;
+        font-style: italic;
+        padding: 0 0 0 0;
+        margin: 48px 40px 48px 52px;
+        border-left: none;
+        background-color: rgba(0, 0, 0, 0);
+        color: inherit;
+        // border: solid 1px red;
+    }
+
+    ref::before {
+        content: "\"";
+        color: rgba(44, 44, 44, 0.6);
+        position: absolute;
+        left: 50px;
+        margin-top: 7px;
+        font-size: 50px;
+        font-family: 'Vintama Shadow';
+        font-style: normal;
+        // z-index: -1;
+        // border: solid 1px red;
+    }
+
+    ref a {
+        display: block;
+        border: none;
+        text-align: right;
+    }
+
+    ref a::before {
+        content: "-- ";
+    }
+
+    warning {
+        display: block;
+        font-size: 14px;
+        font-style: italic;
+        padding: 0 0 0 0;
+        margin: 48px 40px 48px 52px;
+        border-left: none;
+        background-color: rgba(0, 0, 0, 0);
+        color: inherit;
+        // border: solid 1px red;
+    }
+
+    warning::before {
+        content: "!";
+        color: rgba(255, 98, 98, 0.6);
+        position: absolute;
+        left: 54px;
+        margin-top: 7px;
+        font-size: 50px;
+        font-family: 'Vintama Shadow';
+        font-style: normal;
+        // z-index: -1;
+        // border: solid 1px red;
+    }
+
     blockquote {
-        background-attachment: scroll;
-        background-clip: border-box;
-        background-color: rgb(227, 240, 254);
-        background-image: none;
-        background-origin: padding-box;
-        background-position-x: 0%;
-        background-position-y: 0%;
-        background-size: auto;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-        border-left: none;
-        box-shadow: 0px 4px 12px 0px rgba(66, 102, 128, 0.5);
-        box-sizing: border-box;
-        color: rgb(14, 100, 157);
         display: block;
         font-size: 14px;
-        font-stretch: normal;
-        font-style: normal;
-        font-variant-caps: normal;
-        font-weight: normal;
-        margin-block-end: 16px;
-        margin-block-start: 16px;
-        margin-bottom: 16px;
-        margin-inline-end: -40px;
-        margin-inline-start: -40px;
-        margin: 24px 60px 32px 60px;
-        padding: 16px 32px 16px 32px;
-        word-spacing: 4px;
-    }
-
-    blockquote p {
-        display: inline;
-        margin-bottom: 0px;
-        word-spacing: normal;
-        word-spacing: 4px;
-    }
-
-    .SpacingLi .warning ul {
-        margin-top: 0px;
-    }
-
-    blockquote ul strong,
-    blockquote p strong {
-        font-weight: 800 !important;
-        color: rgb(207, 59, 13);
-        // font-size: 18px;
-        // font-family: 'Paprika', 'Yuppy SC', ' Microsoft Yahei';
-        word-spacing: normal;
-    }
-
-    blockquote li,
-    blockquote li p {
-        margin-top: 0;
-        color: rgb(14, 100, 157);
-    }
-
-    blockquote ul li::marker {
-        font-weight: 900;
-        // line-height: 22px;
-        font-size: 20px;
-        font-family: "Bungee Shade";
-        content: "\"  ";
-    }
-
-    blockquote li li::marker {
-        font-weight: unset;
-        font-size: unset;
-        font-family: unset;
-        content: unset;
-    }
-
-    .warning {
-        background-attachment: scroll;
-        background-clip: border-box;
-        background-color: rgb(254, 239, 227);
-        background-image: none;
-        background-origin: padding-box;
-        background-position-x: 0%;
-        background-position-y: 0%;
-        background-size: auto;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
+        font-style: italic;
+        padding: 0 0 0 0;
+        margin: 48px 40px 48px 52px;
         border-left: none;
-        box-shadow: 0px 4px 12px 0px rgba(162, 123, 87, 0.5);
-        box-sizing: border-box;
-        color: rgb(175, 64, 30);
-        display: block;
-        font-size: 14px;
-        font-stretch: normal;
+        background-color: rgba(0, 0, 0, 0);
+        color: inherit;
+        // border: solid 1px red;
+    }
+
+    blockquote::before {
+        content: "@";
+        color: rgba(98, 174, 255, 0.6);
+        position: absolute;
+        left: 40px;
+        margin-top: 7px;
+        font-size: 50px;
+        font-family: 'Vintama Shadow';
         font-style: normal;
-        font-variant-caps: normal;
-        font-weight: normal;
-        margin-block-end: 16px;
-        margin-block-start: 16px;
-        margin-bottom: 16px;
-        margin-inline-end: -40px;
-        margin-inline-start: -40px;
-        margin: 24px 60px 32px 60px;
-        padding: 16px 32px 16px 32px;
-        word-spacing: 4px;
-    }
-
-    .warning p {
-        margin: 0px !important;
-        color: rgb(175, 64, 30);
-    }
-
-    .warning ul strong,
-    .warning strong,
-    .warning p strong {
-        font-weight: 900 !important;
-        // color: rgb(123, 29, 0);
-        color: rgb(207, 59, 13);
-        word-spacing: normal;
-    }
-
-    .SpacingLi .warning ul,
-    .warning ul {
-        margin-top: 0px;
-    }
-
-    .warning li,
-    .warning li p {
-        margin-top: 0;
-        color: rgb(175, 64, 30);
-    }
-
-    .warning ul li::marker {
-        font-weight: 900;
-        // line-height: 22px;
-        font-size: 20px;
-        font-family: "Bungee Shade";
-        content: "!  ";
-    }
-
-    .warning li li::marker {
-        font-weight: unset;
-        font-size: unset;
-        font-family: unset;
-        content: unset;
+        z-index: -1;
+        // border: solid 1px red;
     }
 
     details {
@@ -696,60 +634,8 @@ body[for="html-export"] {
         border-color: #000000 !important;
     }
 
-    @media print {
-        font-size: 16px;
-    }
-
-    .math {
-        background-attachment: scroll;
-        background-clip: border-box;
-        background-color: rgb(245, 245, 245);
-        background-image: none;
-        background-origin: padding-box;
-        background-position-x: 0%;
-        background-position-y: 0%;
-        background-size: auto;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-        border-left: none;
-        box-sizing: border-box;
-        display: block;
-        font-size: 16px;
-        font-stretch: normal;
-        font-style: normal;
-        font-variant-caps: normal;
-        font-weight: normal;
-        margin-block-end: 16px;
-        margin-block-start: 16px;
-        margin-bottom: 16px;
-        margin-inline-end: -40px;
-        margin-inline-start: -40px;
-        margin-left: -40px;
-        margin-right: -40px;
-        margin-top: 8px;
-        margin-bottom: 0px;
-        padding-bottom: 16px;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 16px;
-        word-spacing: normal;
-    }
-
-    .math ol,
-    .math ul {
-        margin: 0px 0px 0px 0px;
-    }
-
-    .math p {
-        margin: 0 0 0 0 !important;
-    }
-
-    .compressList {
-        li {
-            margin: 0 0 0 0;
-        }
+    compressList li {
+        margin: 0 0 0 0;
     }
 
     horizontalScrollable {
@@ -758,9 +644,5 @@ body[for="html-export"] {
 
     horizontalScrollable::-webkit-scrollbar {
         display: none;
-    }
-
-    .UnSpacingList li {
-        margin: 0 0 0 0;
     }
 }
