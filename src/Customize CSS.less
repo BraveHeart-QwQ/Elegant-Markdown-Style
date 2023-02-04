@@ -26,13 +26,6 @@ body[for="html-export"] {
     // color: rgb(23, 23, 23);
     color: rgb(23, 23, 23);
     display: block;
-    // font-family: 'Martel', 'PingFang SC', 'Microsoft Yahei';
-    // font-family: 'Kite One', ' PingFang SC', ' Microsoft Yahei'; // 斜体书写风大字英文
-    // font-family: 'Mali', 'PingFang SC', 'Microsoft Yahei'; // 还可以的圆体手写风，有点小
-    // font-family: 'Spinnaker', 'PingFang SC', 'Microsoft Yahei';
-    // font-family: 'Paprika', 'PingFang SC', 'Microsoft Yahei';
-    // font-family: 'Varela', 'PingFang SC', 'Microsoft Yahei';
-    // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-family: 'Noto Sans', 'PingFang SC', 'Microsoft Yahei';
     font-size: 16px;
     font-stretch: normal;
@@ -56,7 +49,12 @@ body[for="html-export"] {
         color: rgb(32, 32, 36);
         // display: inline;
         font-family: 'Raleway' !important;
-        font-size: 38px;
+        // font-family: 'Donegale One' !important;
+        // font-family: 'Emilys andy' !important;
+        // font-family: 'Fredericka the Great' !important;
+        // font-family: 'Goudy Bookletter 1911' !important;
+        // font-family: 'Headland One' !important;
+        font-size: 42px;
         font-stretch: normal;
         font-weight: 400;
         height: auto;
@@ -77,6 +75,11 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: #000000;
         font-family: 'Raleway' !important;
+        // font-family: 'Donegale One' !important;
+        // font-family: 'Emilys Candy' !important;
+        // font-family: 'Fredericka the Great' !important;
+        // font-family: 'Goudy Bookletter 1911' !important;
+        // font-family: 'Headland One' !important;
         font-size: 28px;
         font-stretch: normal;
         font-weight: 400;
@@ -112,8 +115,6 @@ body[for="html-export"] {
         border-right: 0px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        // display: inline;
-        // font-family: 'Monaco', 'PingFang SC', 'Microsoft Yahei' !important;
         font-family: 'Roboto Serif', 'Roboto Serif 20pt', 'PingFang SC', 'Microsoft Yahei' !important;
         font-size: 20px;
         font-stretch: normal;
@@ -122,7 +123,7 @@ body[for="html-export"] {
         font-weight: 400;
         height: auto;
         letter-spacing: normal;
-        margin: 80px 0px -4px 0px !important;
+        margin: 80px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
         // word-spacing: normal;
@@ -145,8 +146,8 @@ body[for="html-export"] {
         border-style: solid;
         border-width: 0;
         border-top: 0px;
-        border-left: 0px;
         border-right: 0px;
+        border-left: solid 4px rgb(200, 200, 200);
         box-sizing: border-box;
         color: rgb(23, 23, 23);
         // display: inline;
@@ -160,7 +161,8 @@ body[for="html-export"] {
         height: auto;
         letter-spacing: normal;
         line-height: 24px;
-        margin: 32px 0px -6px 0px !important;
+        padding-left: 8px;
+        margin: 48px 0px 0px -12px !important;
         text-overflow: ellipsis;
         width: auto;
         word-spacing: normal;
@@ -305,8 +307,14 @@ body[for="html-export"] {
 
     ol,
     ul {
-        margin-top: 12px;
+        // padding-left: 48px;
+        margin-top: 16px;
         margin-bottom: 0px;
+    }
+
+    ol li::marker {
+        font-family: 'Lora';
+        font-size: 17px;
     }
 
     li {
@@ -324,13 +332,6 @@ body[for="html-export"] {
         height: 16px !important;
     }
 
-    details ul,
-    details ol,
-    li ol,
-    li ul {
-        margin: 0px 0px 0px 0px;
-    }
-
     td {
         word-break: break-all;
         word-wrap: break-word;
@@ -346,7 +347,7 @@ body[for="html-export"] {
     .img {
         margin: 16px 0px 0px 0px;
         font-family: 'Times New Roman', 'Kaiti SC';
-        font-size: 17px !important;
+        font-size: 14px !important;
         font-weight: 900;
     }
 
@@ -380,15 +381,6 @@ body[for="html-export"] {
 
     span[class="mord cjk_fallback"]:after {
         content: " ";
-    }
-
-    li blockquote,
-    li .warning,
-    li pre[data-role="codeBlock"],
-    li .math {
-        // padding-left: 32px !important;
-        padding: 16px 32px 16px 32px !important;
-        margin: 16px 0px 24px 0px !important;
     }
 
     code {
@@ -488,10 +480,10 @@ body[for="html-export"] {
 
     ref {
         display: block;
-        font-size: 14px;
+        font-size: 15px;
         font-style: italic;
         padding: 0 0 0 0;
-        margin: 48px 40px 48px 52px;
+        margin: 48px 54px 48px 54px;
         border-left: none;
         background-color: rgba(0, 0, 0, 0);
         color: inherit;
@@ -523,13 +515,14 @@ body[for="html-export"] {
 
     warning {
         display: block;
-        font-size: 14px;
-        font-style: italic;
+        font-size: 15px;
+        // font-style: italic;
         padding: 0 0 0 0;
-        margin: 48px 40px 48px 52px;
+        margin: 48px 54px 48px 54px;
         border-left: none;
         background-color: rgba(0, 0, 0, 0);
         color: inherit;
+        // color: rgb(142, 16, 16)
         // border: solid 1px red;
     }
 
@@ -548,22 +541,23 @@ body[for="html-export"] {
 
     blockquote {
         display: block;
-        font-size: 14px;
-        font-style: italic;
+        font-size: 15px;
+        // font-style: italic;
         padding: 0 0 0 0;
-        margin: 48px 40px 48px 52px;
+        margin: 48px 54px 48px 54px;
         border-left: none;
         background-color: rgba(0, 0, 0, 0);
         color: inherit;
+        // color: rgb(17, 81, 108)
         // border: solid 1px red;
     }
 
     blockquote::before {
-        content: "@";
+        content: "(";
         color: rgba(98, 174, 255, 0.6);
         position: absolute;
-        left: 40px;
-        margin-top: 7px;
+        left: 44px;
+        margin-top: 6px;
         font-size: 50px;
         font-family: 'Vintama Shadow';
         font-style: normal;
@@ -574,7 +568,7 @@ body[for="html-export"] {
     details {
         background-color: rgb(247, 248, 250);
         border-style: solid;
-        border-radius: 3mm;
+        // border-radius: 3mm;
         border-width: 0.4mm;
         border-color: rgb(210, 215, 222);
         box-sizing: border-box;
