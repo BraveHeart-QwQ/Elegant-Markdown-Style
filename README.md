@@ -34,7 +34,8 @@ Please make sure you have installed Markdown-Preview-Enhanced Plugin, how to ins
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 - Enter "Customize CSS" and select the first option, it would open a file called `style.less`
 - Delete **everything** in the `style.less`
-- Copy **everything** from [my custom style](src/Thin-Style.less), and paste into `style.less`
+- Copy **everything** from [thin-style](src/Thin-Style.less) (or [black-style](src/Black-Style.less))
+- Paste into `style.less`
 - Save file
 
 
