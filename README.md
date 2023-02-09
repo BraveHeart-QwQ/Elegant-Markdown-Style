@@ -7,10 +7,6 @@ The inspiration for the style comes mainly from the following websites:
 - [MSDN Doc](https://learn.microsoft.com/en-us/dotnet/api/system?view=net-7.0)
 - [LearnOpenGL CN](https://learnopengl-cn.github.io/)
 
-p.s. I'm not good at english writing.
-
-p.s. I'm not a front-end related worker, I just made this style out of interest. Pull requests is welcome.
-
 p.s. This repository will update occasionally, and the pic below may not be updated in time.
 
 
@@ -18,183 +14,104 @@ p.s. This repository will update occasionally, and the pic below may not be upda
 ## Install
 
 ### Install Fonts
-- Raleway (Header1; Header2)
-- Noto Sans (Body)
-- Noto Sans Symbols2 (Marker of Header2 and Header 3; not required on macOS)
-- Roboto Serif (Header3)
-- Times New Roman (Image-Name)
-- Cascadia Code (Code)
+- LXGW WenKai
+- LXGW WenKai Screen
+- Raleway
+- Noto Sans
+- Noto Sans Symbols2
+- Times New Roman
+- Cascadia Code
 - Vintama Shadow (Left Marker of Blockquote)
-
-Some fonts may be pre-installed on your system, go to the Fonts folder (Windows) or Font Book.app (macOS) to check.
 
 These fonts may be found on Github or [Google Fonts](https://fonts.google.com/).
 
+Some fonts may be pre-installed on your system, go to the Fonts folder (Windows) or Font Book.app (macOS) to check.
+
 ### Install Style
-Please make sure you have installed VSCode and Markdown Preview Enhanced, how to install these things will not be explained here.
+Please make sure you have installed Markdown-Preview-Enhanced Plugin, how to install will not be explained here.
 
 - Open VSCode
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 - Enter "Customize CSS" and select the first option, it would open a file called `style.less`
 - Delete **everything** in the `style.less`
-- Copy **everything** from [my custom style](src/Customize%20CSS.less), and paste into `style.less`
+- Copy **everything** from [my custom style](src/Thin-Style.less), and paste into `style.less`
 - Save file
 
 
 
-## Feature
+## Effect
 
-p.s. The pictures shown below are screenshots from my macbook
+The pictures shown below are screenshots from [sample.md](sample/sample.md) rendering on my macbook. Only the effect is shown here, how they are written can refer to the source code.
 
-p.s. I downloaded README.md from [Neovim for VSCode](https://github.com/vscode-neovim/vscode-neovim/blob/master/README.md) as presentation text (because this doc use a lot Markdown's features). You can directly compare Github style and my style (picture below).
+### Header
 
-### Custom Header
+p.s. This style only use up to four levels of headings
 
-p.s. This style only uses up to 4th level header
+**Header1**:
+![](.Image/Snipaste_2023-02-09_20-15-45.png)
 
-![](.Image/2023-01-11-16-36-33.png)
+**Header2**:
+![](.Image/Snipaste_2023-02-09_20-15-54.png)
 
-### Custom Font
+**Header3**:
+![](.Image/Snipaste_2023-02-09_20-16-00.png)
 
-Normal:
-![](.Image/2023-01-11-16-50-41.png)
+**Header4**:
+![](.Image/Snipaste_2023-02-09_20-16-07.png)
 
-Bold (red text):
-![](.Image/2023-01-11-16-52-20.png)
+### Paragraph
+![](.Image/Snipaste_2023-02-09_20-17-13.png)
 
-#### Definition
-Bold effect is usually enough for text which need attention, but I've added a "Special Bold" to mark "concepts" that appear first time in context, which is useful for documentation and notes.
+Red word is **bold** text. Green word is concept which appear in context first time, and the following content always be definition of the concept.
 
-usage:
-```markdown
-<def>Earth</def> is the third planet from the Sun and the only place in the universe known to harbor life.
-```
+### Table
+![](.Image/Snipaste_2023-02-09_20-20-28.png)
+![](.Image/Snipaste_2023-02-09_20-20-43.png)
 
-effect:
-![](.Image/2023-01-11-15-46-49.png)
-
-### Custom Table
-The table of this style is inspired by MSDN. This table has a fixed maximum width and can cover the entire page horizontally, and the width of the first column always be 33% of current page.
-
-**By default, the first row (header) is hidden**. In my experience, headers are mostly redundant. If you want to use headers, add the `<htable></htable>` tag:
-```markdown
-<htable>
-
-head1    | head2
----------|----------
-content1 | content2
-</htable>
-```
-
-effect:
-![](.Image/2023-01-13-17-22-37.png)
+**By default, the first row (header) is hidden**. In my experience, headers are mostly redundant. If you want to use headers, add the `<htable></htable>`.
 
 I also added symmetric tables, since symmetric two-column tables are quite common. Use `<dtable>` and `<dhtable>` to use the no-head and has-head versions respectively.
 
-### Image Style
-The image is centered and the size can be controlled (I insert the picture by HTML code)
+### Image
+![](.Image/Snipaste_2023-02-09_20-19-57.png)
+
+The image is centered and the size can be controlled (I insert the picture by HTML code).
 
 usage:
 ```markdown
 <div align=center class=img><img src="PathToImage" style="zoom:100%"><br></div>
 ```
 
-If you think it's troublesome to enter these string, you can use the VSCode's Snippets to make template. But I recommend using [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly
+If you think it's troublesome to enter these string, you can use the VSCode's Snippets to make template. But I recommend using [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly.
 
-#### Image Name
-
-Add a name under the picture.
-
-usage:
-```markdown
-<div align=center class=img><img src="./.Image/flower.jpeg" style="zoom:100%"><br>flower</div>
-```
-
-effect:
-![](.Image/2023-01-11-16-06-40.png)
-
-### Custom Code Block
+### Code
+![](.Image/Snipaste_2023-02-09_20-20-36.png)
 
 The code style is basically copy-pasted from [Google Protocol Buffers Doc](https://developers.google.com/protocol-buffers), but I made some modifications.
 
-effect:
-![](.Image/2023-01-11-16-07-40.png)
+### BlockQuote
+**note**:
+![](.Image/Snipaste_2023-02-09_20-20-14.png)
 
-### Custom BlockQuote
+**warning**:
+![](.Image/Snipaste_2023-02-09_20-20-21.png)
 
-**Normal BlockQuote**
-usage:
-```markdown
-> Text...
-```
-**Warning Block**
-Just a variant of Block Quote for warning content.
-
-usage:
-```markdown
-<warning>
-
-Warning! Warning!
-</warning>
-```
-
-Note that there is an **empty line** here. If the content contains any Markdown's feature (such as bold text: \*\*abc\*\*), then you must have an empty line above content to display normally. On the other hand, if your content not using any Markdown's feature (HTML tag is ok), then this empty line is not necessary.
-
-**Quote Block for Reference**
-usage:
-```
-<ref>
-
-Quote...
-
-[Source Name](Source URL)
-</ref>
-```
-
-Effect:
-![](.Image/2023-01-30-14-44-39.png)
-
-
+**ref**:
+![](.Image/2023-02-09-20-31-42.png)
 
 ### Fold Block
+**close**:
+![](.Image/Snipaste_2023-02-09_20-20-50.png)
 
-The `details` tag from HTML.
+**open**:
+![](.Image/Snipaste_2023-02-09_20-20-57.png)
 
-usage:
-```markdown
-<details><summary>Title</summary>
-
-Content
-</details>
-```
-
-example:
-```markdown
-<details><summary>Copy this into init.vim</summary>
-
-" Sample keybindings. Note these override default keybindings mentioned above.
-nnoremap <C-w>> <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
-xnoremap <C-w>> <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
-nnoremap <C-w>+ <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
-xnoremap <C-w>+ <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
-nnoremap <C-w>< <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
-xnoremap <C-w>< <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
-nnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
-xnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
-</details>
-```
-
-effect:
-![](.Image/2023-01-11-16-27-17.png)
-
-![](.Image/2023-01-11-16-27-33.png)
 
 ### Other
-
 - Page width is fixed to 936px
 - The horizontal margin is fixed at 40px
 - Shadow of the page
-- Find yourself :D
+- There are still some unexplained features, you can find out by looking at the CSS :D
 
 
 
