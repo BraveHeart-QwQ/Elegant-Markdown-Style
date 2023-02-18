@@ -38,6 +38,8 @@ Please make sure you have installed Markdown-Preview-Enhanced Plugin, how to ins
 - Paste into `style.less`
 - Save file
 
+> black-style will not be maintained frequently
+
 
 
 ## Effect
