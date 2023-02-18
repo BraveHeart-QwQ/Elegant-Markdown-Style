@@ -27,6 +27,7 @@ body[for="html-export"] {
     color: rgb(23, 23, 23);
     display: block;
     // font-family: 'Noto Sans', ' PingFang SC', ' Microsoft Yahei';
+    // font-family: 'LXGW WenKai';
     font-family: 'LXGW WenKai';
     font-size: 17px;
     font-stretch: normal;
@@ -62,19 +63,19 @@ body[for="html-export"] {
         text-align: center;
         vertical-align: middle;
         width: auto;
-        // word-spacing: 2px;
+        word-spacing: 4px;
         z-index: 0 !important;
     }
 
     h2 {
         display: list-item;
-        font-family: 'LXGW WenKai' !important;
+        font-family: 'LXGW WenKai';
         font-size: 26px;
         // font-stretch: normal;
         font-weight: 400;
         // height: auto;
         // letter-spacing: normal;
-        margin: 80px 0px 32px 0px;
+        margin: 100px 0px 32px 0px;
         // overflow-x: hidden;
         // overflow-y: hidden;
         text-overflow: ellipsis;
@@ -104,7 +105,7 @@ body[for="html-export"] {
         font-weight: 400;
         height: auto;
         letter-spacing: normal;
-        margin: 56px 0px 0px 0px !important;
+        margin: 64px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
         // word-spacing: normal;
@@ -112,7 +113,8 @@ body[for="html-export"] {
 
     h3:before {
         font-family: "Noto Sans Symbols2", " PingFang SC" !important;
-        color: rgba(0, 0, 0, 0.1);
+        // color: rgba(0, 0, 0, 0.13);
+        color: rgb(222, 222, 222);
         line-height: 0px;
         position: absolute;
         right: 35px;
@@ -149,17 +151,16 @@ body[for="html-export"] {
         word-spacing: normal;
     }
 
-    h5 {
-        color: red;
-    }
-
+    h5,
     h6 {
         color: red;
     }
 
     h1 a,
     h2 a,
-    h3 a {
+    h3 a,
+    h4 a {
+        border: none;
         font-size: 18px;
     }
 
@@ -181,7 +182,10 @@ body[for="html-export"] {
         margin: 0px 0px 0px 0px;
         table-layout: auto;
         border-collapse: collapse;
-        font-size: 16px;
+        font-size: 15px;
+        // font-size: 14px;
+        // font-family: 'Noto Sans', ' PingFang SC', ' Microsoft Yahei';
+        // height: 120%;
         width: 100% !important;
     }
 
@@ -206,6 +210,7 @@ body[for="html-export"] {
     }
 
     thead th {
+        background-color: #00000000 !important;
         color: #00000000 !important;
     }
 
@@ -216,6 +221,7 @@ body[for="html-export"] {
 
     table tr td:first-child {
         width: 33% !important;
+        word-break: break-all;
     }
 
     htable {
@@ -241,6 +247,16 @@ body[for="html-export"] {
     dtable {
         table tr td:first-child {
             width: 50% !important;
+        }
+    }
+
+    ttable {
+        table tr td {
+            width: 33%;
+        }
+
+        table tr td:first-child {
+            width: 33% !important;
         }
     }
 
@@ -274,7 +290,7 @@ body[for="html-export"] {
 
     strong {
         // color: rgb(207, 59, 13);
-        // font-family: 'LXGW WenKai Screen';
+        font-family: 'LXGW WenKai Screen';
         color: #bf360c;
         font-weight: 600;
     }
@@ -348,16 +364,17 @@ body[for="html-export"] {
 
     fig:before {
         content: "Fig. ";
-        word-spacing: 8px;
+        word-spacing: 6px;
     }
 
     .katex {
         font-size: 16px;
+        font-family: KaTeX_Main, 'LXGW WenKai';
     }
 
     span[class="katex"],
     span[class="katex-display"] {
-        margin: 8px 0px 0px 0px !important;
+        margin: 16px 0px 16px 0px !important;
     }
 
     span[class="mord cjk_fallback"] {
@@ -404,16 +421,13 @@ body[for="html-export"] {
         tab-size: 4 !important;
         unicode-bidi: isolate;
         width: auto;
-        word-break: keep-all;
-        word-wrap: break-word;
-        word-spacing: normal;
-    }
-
-    td code {
         word-break: break-all;
+        word-wrap: break-word;
+        // word-spacing: normal;
     }
 
-    pre[data-role="codeBlock"] {
+    pre[data-role="codeBlock"],
+    pre[class="language-text"] {
         background-clip: border-box;
         background-origin: padding-box;
         background-position-x: 0%;
@@ -459,7 +473,39 @@ body[for="html-export"] {
         word-spacing: normal;
     }
 
-    pre[data-role="codeBlock"] code {
+    pre[data-role="codeBlock"],
+    pre[class="language-text"] {
+        color: #383A42;
+
+        .keyword {
+            color: #A626A4;
+        }
+
+        .namespace,
+        .class-name {
+            color: #C18401;
+        }
+
+        .function {
+            color: #4078F2;
+        }
+
+        .boolean,
+        .number {
+            color: #A76300;
+        }
+
+        .string {
+            color: #50A14F;
+        }
+
+        .operator {
+            color: #383A42;
+        }
+    }
+
+    pre[data-role="codeBlock"] code,
+    pre[class="language-text"] code {
         border-width: 0;
         background-color: rgba(0, 0, 0, 0);
         font-family: "Cascadia Code" !important;
@@ -468,7 +514,8 @@ body[for="html-export"] {
         tab-size: 4 !important;
     }
 
-    li pre[data-role="codeBlock"] {
+    li pre[data-role="codeBlock"],
+    li pre[class="language-text"] {
         padding-left: 24px;
         padding-right: 24px;
         margin-left: 0px;
@@ -510,20 +557,22 @@ body[for="html-export"] {
         content: "-- ";
     }
 
+    blockquote,
     warning {
+        border: none;
         display: block;
         font-size: 16px;
-        background-color: #feefe3;
-        border: 1px solid #feefe3;
-        // border: 1px solid #ffcea6;
-        // border-radius: 0.375rem;
         padding: 4px 16px 20px 40px;
         margin: 32px 0px 32px 0px;
-        color: #bf360c;
+
+        p {
+            display: list-item;
+        }
     }
 
-    warning p {
-        display: list-item;
+    warning {
+        background-color: #feefe3;
+        color: #bf360c;
     }
 
     warning p::marker {
@@ -535,34 +584,22 @@ body[for="html-export"] {
     }
 
     blockquote {
-        display: block;
-        font-size: 16px;
         background-color: rgb(225, 245, 254);
-        border: 1px solid rgb(225, 245, 254);
-        // border: 1px solid rgb(169, 228, 255);
-        // border-radius: 0.375rem;
-        padding: 4px 16px 20px 40px;
-        // padding: 8px 40px 24px 40px;
-        margin: 32px 0px 32px 0px;
         color: #01579b;
-    }
-
-    blockquote p {
-        display: list-item;
     }
 
     blockquote p::marker {
         content: "★ ";
         font-size: 16px;
-        word-spacing: 6px;
+        word-spacing: 4px;
     }
 
     details {
         background-color: rgb(247, 248, 250);
-        border-style: solid;
-        // border-radius: 3mm;
-        border-width: 0.4mm;
         border-color: rgb(210, 215, 222);
+        border-style: solid;
+        border-width: 0.4mm;
+        // border-radius: 3mm;
         box-sizing: border-box;
         color: black;
         margin: 16px 0px 0px 0px;
@@ -611,7 +648,8 @@ body[for="html-export"] {
         content: "";
     }
 
-    details pre[data-role="codeBlock"] {
+    details pre[data-role="codeBlock"],
+    details pre[class="language-text"] {
         margin: 16px -16px 16px -16px !important;
         padding-left: 16px;
         padding-right: 16px;
