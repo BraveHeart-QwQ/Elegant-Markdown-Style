@@ -23,11 +23,8 @@ body[for="html-export"] {
     border-top-width: 0px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     box-sizing: border-box;
-    // color: rgb(23, 23, 23);
     color: rgb(23, 23, 23);
     display: block;
-    // font-family: 'Noto Sans', ' PingFang SC', ' Microsoft Yahei';
-    // font-family: 'LXGW WenKai Screen';
     font-family: 'LXGW WenKai Screen';
     font-size: 17px;
     font-stretch: normal;
@@ -46,7 +43,11 @@ body[for="html-export"] {
         padding-bottom: 0px !important;
     }
 
+    counter-reset: fig_num;
+
     h1 {
+        counter-reset: header_two;
+
         box-sizing: border-box;
         color: rgb(32, 32, 36);
         font-family: 'Martel' !important;
@@ -68,16 +69,13 @@ body[for="html-export"] {
     }
 
     h2 {
-        display: list-item;
+        counter-reset: header_three;
+
+        display: block;
         font-family: 'LXGW WenKai Screen';
         font-size: 26px;
-        // font-stretch: normal;
         font-weight: 400;
-        // height: auto;
-        // letter-spacing: normal;
         margin: 100px 0px 32px 0px;
-        // overflow-x: hidden;
-        // overflow-y: hidden;
         text-overflow: ellipsis;
         // text-align: center;
         width: auto;
@@ -87,7 +85,15 @@ body[for="html-export"] {
         list-style-position: inside;
     }
 
+    h2:before {
+        counter-increment: header_two;
+        content: counter(header_two) ".";
+        margin-right: 14px;
+    }
+
     h3 {
+        counter-reset: header_four;
+
         border-style: solid;
         // border-width: 0.04cm;
         border-width: 0.1rem;
@@ -96,7 +102,6 @@ body[for="html-export"] {
         border-right: 0px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        // font-family: 'Roboto Serif', 'Roboto Serif 20pt', 'PingFang SC', 'Microsoft Yahei' !important;
         font-family: 'LXGW WenKai Screen';
         font-size: 22px;
         font-stretch: normal;
@@ -105,13 +110,19 @@ body[for="html-export"] {
         font-weight: 400;
         height: auto;
         letter-spacing: normal;
-        margin: 64px 0px 0px 0px !important;
+        margin: 72px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
         // word-spacing: normal;
     }
 
-    h3:before {
+    // h3:before {
+    //   counter-increment: header_three;
+    //   content: counter(header_two) "." counter(header_three);
+    //   margin-right: 12px;
+    // }
+
+    h3:after {
         font-family: "Noto Sans Symbols2", " PingFang SC" !important;
         // color: rgba(0, 0, 0, 0.13);
         color: rgb(222, 222, 222);
@@ -132,9 +143,6 @@ body[for="html-export"] {
         border-left: solid 4px rgb(200, 200, 200);
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        // display: inline;
-        // font-family: "Monaco", "PingFang SC", "Microsoft Yahei" !important;
-        // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 17px;
         font-stretch: normal;
         font-style: normal;
@@ -145,11 +153,17 @@ body[for="html-export"] {
         letter-spacing: normal;
         // line-height: 24px;
         padding-left: 8px;
-        margin: 40px 0px 0px -12px !important;
+        margin: 32px 0px 0px -12px !important;
         text-overflow: ellipsis;
         width: auto;
         word-spacing: normal;
     }
+
+    // h4:before {
+    //   counter-increment: header_four;
+    //   content: counter(header_two) "." counter(header_three) "." counter(header_four);
+    //   margin-right: 10px;
+    // }
 
     h5,
     h6 {
@@ -187,6 +201,14 @@ body[for="html-export"] {
         // font-family: 'Noto Sans', ' PingFang SC', ' Microsoft Yahei';
         // height: 120%;
         width: 100% !important;
+
+        .katex {
+            font-size: 17px;
+        }
+
+        span[class="mord cjk_fallback"] {
+            font-size: 15px;
+        }
     }
 
     thead {
@@ -235,6 +257,14 @@ body[for="html-export"] {
             height: 40px;
             font-size: 16px;
             border: 1px solid rgb(210, 215, 223) !important;
+
+            .katex {
+                font-size: 18px;
+            }
+
+            span[class="mord cjk_fallback"] {
+                font-size: 16px;
+            }
         }
 
         tbody {
@@ -271,6 +301,14 @@ body[for="html-export"] {
             height: 40px;
             font-size: 16px;
             border: 1px solid rgb(210, 215, 223) !important;
+
+            .katex {
+                font-size: 18px;
+            }
+
+            span[class="mord cjk_fallback"] {
+                font-size: 16px;
+            }
         }
 
         tbody {
@@ -300,7 +338,6 @@ body[for="html-export"] {
     def {
         color: rgb(57, 135, 33);
         font-family: 'LXGW WenKai Screen';
-        // color: #4078F2;
         font-weight: 600;
     }
 
@@ -346,50 +383,38 @@ body[for="html-export"] {
     }
 
     img {
-        // border-radius: 18px;
-        // box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
         margin: 0px 0px 0px 0px;
         word-spacing: normal;
     }
 
     .img {
-        margin: 16px 0px 0px 0px;
+        margin: 32px 0px 32px 0px;
         font-family: 'Times New Roman', 'Kaiti SC';
         font-size: 14px !important;
-        font-weight: 900;
     }
 
     fig {
         font-family: 'Times New Roman', 'Kaiti SC';
         font-size: 14px !important;
         font-weight: 900;
+
+        .katex {
+            font-size: 16px;
+        }
+
+        span[class="mord cjk_fallback"] {
+            font-family: 'Times New Roman', 'Kaiti SC';
+            font-weight: 900;
+            font-size: 14px;
+        }
     }
 
     fig:before {
-        content: "Fig. ";
-        word-spacing: 6px;
-    }
-
-    .katex {
-        font-size: 16px;
-        font-family: KaTeX_Main, 'LXGW WenKai Screen';
-    }
-
-    span[class="katex"],
-    span[class="katex-display"] {
-        margin: 16px 0px 16px 0px !important;
-    }
-
-    span[class="mord cjk_fallback"] {
-        font-size: 16px;
-    }
-
-    span[class="mord cjk_fallback"]:before {
-        content: " ";
-    }
-
-    span[class="mord cjk_fallback"]:after {
-        content: " ";
+        counter-increment: fig_num;
+        content: "Fig " counter(header_two) "." counter(fig_num);
+        word-spacing: 2px !important;
+        margin-right: 16px;
+        // font-weight: 900;
     }
 
     code {
@@ -527,7 +552,7 @@ body[for="html-export"] {
 
     ref {
         display: block;
-        font-size: 16px;
+        // font-size: 16px;
         font-style: italic;
         padding: 0 0 0 0;
         margin: 32px 56px 32px 56px;
@@ -563,6 +588,7 @@ body[for="html-export"] {
     blockquote,
     warning {
         border: none;
+        border-radius: 10px;
         display: block;
         font-size: 16px;
         padding: 4px 16px 20px 40px;
@@ -570,6 +596,14 @@ body[for="html-export"] {
 
         p {
             display: list-item;
+        }
+
+        .katex {
+            font-size: 18px;
+        }
+
+        span[class="mord cjk_fallback"] {
+            font-size: 16px;
         }
     }
 
@@ -663,6 +697,27 @@ body[for="html-export"] {
     details[open] div[class="img"] img {
         border-width: 1px !important;
         border-color: #000000 !important;
+    }
+
+    .katex {
+        font-size: 19px;
+        font-family: KaTeX_Main, 'LXGW WenKai';
+    }
+
+    span[class="katex-display"] {
+        margin: 16px 0px 0px 0px !important;
+    }
+
+    span[class="mord cjk_fallback"] {
+        font-size: 17px;
+    }
+
+    span[class="mord cjk_fallback"]:before {
+        content: " ";
+    }
+
+    span[class="mord cjk_fallback"]:after {
+        content: " ";
     }
 
     compressList li {
