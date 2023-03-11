@@ -110,7 +110,7 @@ body[for="html-export"] {
         font-weight: 400;
         height: auto;
         letter-spacing: normal;
-        margin: 72px 0px 0px 0px !important;
+        margin: 64px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
         // word-spacing: normal;
@@ -148,7 +148,7 @@ body[for="html-export"] {
         font-style: normal;
         font-family: 'LXGW WenKai Screen';
         font-variant-caps: normal;
-        font-weight: 600;
+        font-weight: bolder;
         height: auto;
         letter-spacing: normal;
         // line-height: 24px;
@@ -216,6 +216,7 @@ body[for="html-export"] {
         border: 1px solid #00000000 !important;
         height: 16px;
         font-size: 1px;
+        font-family: 'LXGW WenKai Screen';
         line-height: 1px;
         text-align: left;
     }
@@ -229,8 +230,18 @@ body[for="html-export"] {
         border-top: none;
         border-left: none;
         border-right: none;
-        // border: none;
         border-width: 0.08rem;
+    }
+
+    td {
+        word-break: normal;
+        word-wrap: break-word;
+
+        // margin-top: 8px;
+
+        .img {
+            margin: 8px 0px 8px 0px;
+        }
     }
 
     thead th {
@@ -332,13 +343,13 @@ body[for="html-export"] {
         // color: rgb(207, 59, 13);
         font-family: 'LXGW WenKai Screen';
         color: #bf360c;
-        font-weight: 600;
+        font-weight: bold;
     }
 
     def {
         color: rgb(57, 135, 33);
         font-family: 'LXGW WenKai Screen';
-        font-weight: 600;
+        font-weight: bold;
     }
 
     mark {
@@ -369,17 +380,20 @@ body[for="html-export"] {
         font-weight: normal;
         margin: 16px 0px 0px 0px;
         text-align: left;
-    }
 
-    li br {
-        display: block !important;
-        line-height: 16px !important;
-        height: 16px !important;
-    }
+        br {
+            display: block !important;
+            line-height: 16px !important;
+            height: 16px !important;
+        }
 
-    td {
-        word-break: normal;
-        word-wrap: break-word;
+        blockquote {
+            margin-top: 16px;
+        }
+
+        .warning {
+            margin-top: 16px;
+        }
     }
 
     img {
@@ -388,9 +402,8 @@ body[for="html-export"] {
     }
 
     .img {
-        margin: 32px 0px 32px 0px;
+        margin: 24px 0px 24px 0px;
         font-family: 'Times New Roman', 'Kaiti SC';
-        font-size: 14px !important;
     }
 
     fig {
@@ -405,7 +418,7 @@ body[for="html-export"] {
         span[class="mord cjk_fallback"] {
             font-family: 'Times New Roman', 'Kaiti SC';
             font-weight: 900;
-            font-size: 14px;
+            font-size: 15px;
         }
     }
 
@@ -413,7 +426,7 @@ body[for="html-export"] {
         counter-increment: fig_num;
         content: "Fig " counter(header_two) "." counter(fig_num);
         word-spacing: 2px !important;
-        margin-right: 16px;
+        margin-right: 8px;
         // font-weight: 900;
     }
 
@@ -586,13 +599,13 @@ body[for="html-export"] {
     }
 
     blockquote,
-    warning {
+    .warning {
         border: none;
         border-radius: 10px;
         display: block;
         font-size: 16px;
         padding: 4px 16px 20px 40px;
-        margin: 32px 0px 32px 0px;
+        margin: 24px 0px 24px 0px;
 
         p {
             display: list-item;
@@ -607,12 +620,16 @@ body[for="html-export"] {
         }
     }
 
-    warning {
+    .warning {
         background-color: #feefe3;
         color: #bf360c;
+
+        strong {
+            font-family: 'LXGW WenKai Screen';
+        }
     }
 
-    warning p::marker {
+    .warning p::marker {
         content: "! ";
         font-family: 'Rammetto One';
         font-weight: 900;
