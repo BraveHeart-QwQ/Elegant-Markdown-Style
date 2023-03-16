@@ -73,7 +73,7 @@ body[for="html-export"] {
 
         display: block;
         font-family: 'LXGW WenKai';
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 400;
         margin: 100px 0px 32px 0px;
         text-overflow: ellipsis;
@@ -103,14 +103,14 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: rgb(23, 23, 23);
         font-family: 'LXGW WenKai';
-        font-size: 22px;
+        font-size: 23px;
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
-        font-weight: 400;
+        font-weight: normal;
         height: auto;
         letter-spacing: normal;
-        margin: 64px 0px 0px 0px !important;
+        margin: 72px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
         // word-spacing: normal;
@@ -140,7 +140,7 @@ body[for="html-export"] {
         border-width: 0;
         border-top: 0px;
         border-right: 0px;
-        border-left: solid 4px rgb(200, 200, 200);
+        border-left: solid 4px rgb(214, 214, 214);
         box-sizing: border-box;
         color: rgb(23, 23, 23);
         font-size: 17px;
@@ -191,15 +191,17 @@ body[for="html-export"] {
         width: 0;
     }
 
+    hr {
+        // margin: 24px 0px;
+        height: 3px;
+    }
+
     table {
         display: table;
-        margin: 0px 0px 0px 0px;
+        margin: 16px 0px 0px 0px;
         table-layout: auto;
         border-collapse: collapse;
         font-size: 15px;
-        // font-size: 14px;
-        // font-family: 'Noto Sans', ' PingFang SC', ' Microsoft Yahei';
-        // height: 120%;
         width: 100% !important;
 
         .katex {
@@ -209,64 +211,54 @@ body[for="html-export"] {
         span[class="mord cjk_fallback"] {
             font-size: 15px;
         }
-    }
 
-    thead {
-        width: 100% !important;
-        border: 1px solid #00000000 !important;
-        height: 16px;
-        font-size: 1px;
-        font-family: 'LXGW WenKai Screen';
-        line-height: 1px;
-        text-align: left;
-    }
+        thead {
+            display: none;
+            border: 1px solid rgb(210, 215, 223) !important;
 
-    tbody {
-        border: 1px solid rgb(210, 215, 223) !important;
-    }
-
-    th,
-    td {
-        border-top: none;
-        border-left: none;
-        border-right: none;
-    }
-
-    td {
-        word-break: normal;
-        word-wrap: break-word;
-
-        // margin-top: 8px;
-
-        .img {
-            margin: 8px 0px 8px 0px;
+            th {
+                border-top: none;
+                border-left: none;
+                border-right: none;
+            }
         }
-    }
 
-    thead th {
-        background-color: #00000000 !important;
-        color: #00000000 !important;
-    }
+        tbody {
+            border: 1px solid rgb(210, 215, 223) !important;
 
-    tbody td {
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
+            td {
+                // border-color: red;
+                border-top: none;
+                border-left: none;
+                border-right: none;
 
-    table tr td:first-child {
-        width: 33% !important;
-        word-break: break-all;
+                padding-top: 8px;
+                padding-bottom: 8px;
+
+                word-break: normal;
+                word-wrap: break-word;
+
+                .img {
+                    margin: 8px 0px 8px 0px;
+                }
+            }
+
+            tr td:first-child {
+                width: 33% !important;
+                word-break: break-all;
+            }
+        }
     }
 
     htable {
-        table {
-            margin-top: 16px;
-        }
-
         thead {
+            display: table-row-group;
+            width: 100% !important;
             height: 40px;
+            text-align: left;
             font-size: 16px;
-            border: 1px solid rgb(210, 215, 223) !important;
+            font-family: 'PingFang SC', 'Microsoft YaHei';
+            font-weight: bolder;
 
             .katex {
                 font-size: 18px;
@@ -275,14 +267,6 @@ body[for="html-export"] {
             span[class="mord cjk_fallback"] {
                 font-size: 16px;
             }
-        }
-
-        tbody {
-            border: 1px solid rgb(210, 215, 223) !important;
-        }
-
-        thead th {
-            color: rgb(23, 23, 23) !important;
         }
     }
 
@@ -302,38 +286,6 @@ body[for="html-export"] {
         }
     }
 
-    dhtable {
-        table {
-            margin-top: 16px;
-        }
-
-        thead {
-            height: 40px;
-            font-size: 16px;
-            border: 1px solid rgb(210, 215, 223) !important;
-
-            .katex {
-                font-size: 18px;
-            }
-
-            span[class="mord cjk_fallback"] {
-                font-size: 16px;
-            }
-        }
-
-        tbody {
-            border: 1px solid rgb(210, 215, 223) !important;
-        }
-
-        thead th {
-            color: rgb(23, 23, 23) !important;
-        }
-
-        table tr td:first-child {
-            width: 50% !important;
-        }
-    }
-
     u {
         text-underline-offset: 2px;
     }
@@ -346,6 +298,7 @@ body[for="html-export"] {
     }
 
     def {
+        // color: #4078F2;
         color: rgb(57, 135, 33);
         font-family: 'LXGW WenKai';
         font-weight: bold;
@@ -353,7 +306,12 @@ body[for="html-export"] {
 
     mark {
         color: rgb(255, 255, 255);
-        background-color: rgb(47, 47, 47);
+        // background-color: rgb(43, 43, 43);
+
+        border-bottom-left-radius: 4px;
+        border-top-right-radius: 4px;
+        // background-color: #29adff;
+        background-color: rgb(56, 175, 255);
     }
 
     a {
@@ -425,7 +383,7 @@ body[for="html-export"] {
         counter-increment: fig_num;
         content: "Fig " counter(header_two) "." counter(fig_num);
         word-spacing: 2px !important;
-        margin-right: 8px;
+        margin-right: 10px;
         // font-weight: 900;
     }
 
