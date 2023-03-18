@@ -229,9 +229,14 @@ body[for="html-export"] {
         }
 
         tbody {
-            border: 0.07rem solid rgb(210, 215, 223) !important;
-            border-right-width: 0.1rem !important;
-            border-bottom-width: 0.1rem !important;
+            border-style: solid;
+            border-color: rgb(210, 215, 223);
+            border-top-width: 0.07rem;
+            border-left-width: 0.07rem;
+            border-right-width: 0.1rem;
+            border-bottom-width: 0.07rem;
+            // border-right-width: 0.1rem !important;
+            // border-bottom-width: 0.1rem !important;
             // border: 1px solid red !important;
 
             td {
@@ -239,7 +244,7 @@ body[for="html-export"] {
                 border-top: none;
                 border-left: none;
                 border-right: none;
-                border-width: 0.07rem;
+                border-bottom-width: 0.07rem !important;
 
                 padding-top: 8px;
                 padding-bottom: 8px;
