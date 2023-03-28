@@ -25,7 +25,7 @@ body[for="html-export"] {
     box-sizing: border-box;
     color: rgb(23, 23, 23);
     display: block;
-    font-family: 'LXGW WenKai Screen';
+    font-family: 'LXGW WenKai Screen'; // Windows
     font-size: 17px;
     font-stretch: normal;
     font-style: normal;
@@ -77,7 +77,7 @@ body[for="html-export"] {
 
         display: block;
         // font-family: 'LXGW WenKai Screen';
-        font-family: 'Maitree', 'LXGW WenKai Screen';
+        font-family: 'Maitree', 'LXGW WenKai Screen'; // Windows
         font-size: 28px;
         font-weight: 400;
         margin: 100px 0px 32px 0px;
@@ -107,7 +107,7 @@ body[for="html-export"] {
         border-right: 0px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-family: 'Amethysta', 'LXGW WenKai';
+        font-family: 'Amethysta', 'LXGW WenKai Screen'; // Windows
         font-size: 22px;
         font-stretch: normal;
         font-style: normal;
@@ -128,7 +128,7 @@ body[for="html-export"] {
     // }
 
     h3:after {
-        font-family: "Noto Sans Symbols2", " PingFang SC" !important;
+        font-family: "Noto Sans Symbols2" !important;
         // color: rgba(0, 0, 0, 0.13);
         color: rgb(222, 222, 222);
         line-height: 0px;
@@ -150,9 +150,9 @@ body[for="html-export"] {
         font-size: 17px;
         font-stretch: normal;
         font-style: normal;
-        font-family: 'LXGW WenKai Screen';
+        font-family: 'LXGW WenKai Screen'; // Windows
         font-variant-caps: normal;
-        font-weight: bolder;
+        font-weight: bold;
         height: auto;
         letter-spacing: normal;
         // line-height: 24px;
@@ -219,7 +219,7 @@ body[for="html-export"] {
 
         thead {
             display: none;
-            border: 1px solid rgb(210, 215, 223) !important;
+            border: 0.07rem solid rgb(210, 215, 223) !important;
 
             th {
                 border-top: none;
@@ -229,13 +229,22 @@ body[for="html-export"] {
         }
 
         tbody {
-            border: 1px solid rgb(210, 215, 223) !important;
+            border-style: solid;
+            border-color: rgb(210, 215, 223);
+            border-top-width: 0.07rem;
+            border-left-width: 0.07rem;
+            border-right-width: 0.1rem;
+            border-bottom-width: 0.07rem;
+            // border-right-width: 0.1rem !important;
+            // border-bottom-width: 0.1rem !important;
+            // border: 1px solid red !important;
 
             td {
                 // border-color: red;
                 border-top: none;
                 border-left: none;
                 border-right: none;
+                border-bottom-width: 0.07rem !important;
 
                 padding-top: 8px;
                 padding-bottom: 8px;
@@ -297,15 +306,15 @@ body[for="html-export"] {
 
     strong {
         // color: rgb(207, 59, 13);
-        font-family: 'LXGW WenKai Screen';
+        font-family: 'LXGW WenKai Screen'; // Windows
         color: #bf360c;
-        font-weight: bold;
+        font-weight: 600;
     }
 
     def {
         color: rgb(57, 135, 33);
-        font-family: 'LXGW WenKai Screen';
-        font-weight: bold;
+        font-family: 'LXGW WenKai Screen'; // Windows
+        font-weight: 600;
     }
 
     mark {
@@ -576,7 +585,7 @@ body[for="html-export"] {
         color: #bf360c;
 
         strong {
-            font-family: 'LXGW WenKai Screen';
+            font-family: 'LXGW WenKai Screen'; // Windows
         }
     }
 
@@ -619,7 +628,7 @@ body[for="html-export"] {
     details summary {
         // font-family: "Cascadia Code", "PingFang SC", "Microsoft Yahei" !important;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: normal; // Windows
         margin: 0 0 0 0px;
         padding: 0 0 0 0px;
         word-spacing: normal;
@@ -645,7 +654,7 @@ body[for="html-export"] {
     details summary:after {
         content: " ... (Click to Open)";
         font-size: 16px;
-        font-weight: 600;
+        font-weight: normal; // Windows
         // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         // font-size: 16px;
         // font-weight: 400;
@@ -671,7 +680,7 @@ body[for="html-export"] {
 
     .katex {
         font-size: 19px;
-        font-family: KaTeX_Main, 'LXGW WenKai';
+        font-family: KaTeX_Main, 'LXGW WenKai Screen'; // Windows
     }
 
     span[class="katex-display"] {
