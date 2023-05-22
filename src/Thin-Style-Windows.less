@@ -5,6 +5,7 @@ body[for="html-export"] {
 .markdown-preview {
     --default-font: Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif, 'PingFang SC', 'Microsoft YaHei';
     --normal-font: 'LXGW WenKai Screen';
+    --code-font: 'Cascadia Code';
 
     background-color: rgb(255, 255, 255);
     border-bottom-color: rgb(23, 23, 23);
@@ -141,7 +142,7 @@ body[for="html-export"] {
         border-left: solid 4px rgb(214, 214, 214);
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-size: 16px;
+        font-size: 18px;
         font-stretch: normal;
         font-style: normal;
         font-family: var(--default-font);
@@ -149,11 +150,12 @@ body[for="html-export"] {
         font-weight: bold;
         height: auto;
         letter-spacing: normal;
-        padding: 0px 0px 0px 8px !important;
-        margin: 32px 0px 0px -12px !important;
+        padding: 0px 0px 0px 12px !important;
+        // margin: 32px 0px 0px -12px !important;
+        margin: 32px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
-        word-spacing: normal;
+        word-spacing: 4px;
     }
 
     h5,
@@ -404,7 +406,7 @@ body[for="html-export"] {
         color: rgb(23, 23, 23);
         // direction: ltr;
         display: inline;
-        font-family: 'Cascadia Code' !important;
+        font-family: var(--code-font) !important;
         // font-family: 'Fira Code' !important;
         font-size: 14px !important;
         font-stretch: normal;
@@ -578,6 +580,7 @@ body[for="html-export"] {
 
     .warning {
         background-color: #feefe3;
+        border-color: #bf360ca6;
         color: #bf360c;
     }
 
@@ -591,6 +594,7 @@ body[for="html-export"] {
 
     blockquote {
         background-color: rgb(225, 245, 254);
+        border-color: #01589b9f;
         color: #01579b;
     }
 
@@ -601,71 +605,60 @@ body[for="html-export"] {
     }
 
     details {
-        background-color: rgb(247, 248, 250);
-        border-color: rgb(210, 215, 222);
-        border-style: solid;
-        border-width: 0.4mm;
-        box-sizing: border-box;
-        color: black;
         margin: 16px 0px 0px 0px;
-        // padding: 12px 16px 12px 16px;
-        padding: 20px 16px 20px 16px;
-        overflow: auto;
-        word-wrap: break-word;
-        word-break: break-all;
-        word-spacing: normal;
-    }
-
-    details summary {
-        // font-family: "Cascadia Code", "PingFang SC", "Microsoft Yahei" !important;
-        font-size: 16px;
-        font-weight: normal;
         font-family: var(--default-font);
-        margin: 0 0 0 0px;
-        padding: 0 0 0 0px;
-        word-spacing: normal;
+
+        summary {
+            // color: #A626A4;
+            color: #A626A4;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        summary::marker {
+            font-family: var(--code-font);
+            font-size: 16px;
+            content: "[+] ";
+        }
+
+        summary:after {
+            content: " ... (Click to Open)";
+        }
+
+        details {
+            padding: 0px 16px 0px 40px;
+        }
     }
 
-    details[open] summary {
-        // margin-bottom: 12px;
-        margin-bottom: 20px;
-    }
+    details[open] {
+        summary {
+            margin: 0 0 0 0 !important;
+            padding: 0 0 0 0 !important;
+        }
 
-    details summary::marker {
-        font-family: "PingFang SC", "Microsoft Yahei";
-        word-spacing: 9px;
-        content: "📌 ";
-    }
+        summary::marker {
+            content: "[-] ";
+        }
 
-    details[open] summary::marker {
-        font-family: "PingFang SC", "Microsoft Yahei";
-        word-spacing: 9px;
-        content: "📍 ";
-    }
+        summary:after {
+            content: none;
+        }
 
-    details summary:after {
-        content: " ... (Click to Open)";
-        font-size: 16px;
-        font-weight: normal;
-        // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+        details summary::marker {
+            content: "[+] ";
+        }
 
-    details[open] summary:after {
-        content: "";
-    }
+        details[open] summary::marker {
+            content: "[-] ";
+        }
 
-    details pre[data-role="codeBlock"],
-    details pre[class="language-text"] {
-        margin: 16px -16px 16px -16px !important;
-        padding-left: 16px;
-        padding-right: 16px;
-        border-top: 0.4mm solid rgb(210, 215, 223);
-        border-bottom: 0.4mm solid rgb(210, 215, 223);
-    }
+        details[open] details summary::marker {
+            content: "[+] ";
+        }
 
-    details[open] div[class="img"] img {
-        border-width: 1px !important;
-        border-color: #000000 !important;
+        details[open] details[open] summary::marker {
+            content: "[-] ";
+        }
     }
 
     .katex {

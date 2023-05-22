@@ -142,7 +142,7 @@ body[for="html-export"] {
         border-left: solid 4px rgb(214, 214, 214);
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-size: 16px;
+        font-size: 18px;
         font-stretch: normal;
         font-style: normal;
         font-family: var(--default-font);
@@ -150,11 +150,12 @@ body[for="html-export"] {
         font-weight: bold;
         height: auto;
         letter-spacing: normal;
-        padding: 0px 0px 0px 8px !important;
-        margin: 32px 0px 0px -12px !important;
+        padding: 0px 0px 0px 12px !important;
+        // margin: 32px 0px 0px -12px !important;
+        margin: 32px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
-        word-spacing: normal;
+        word-spacing: 4px;
     }
 
     h5,
@@ -586,7 +587,7 @@ body[for="html-export"] {
         font-family: 'Noto Sans';
         font-weight: bolder;
         font-size: 18px;
-        word-spacing: 5px;
+        word-spacing: 6px;
     }
 
     blockquote {
@@ -598,7 +599,7 @@ body[for="html-export"] {
     blockquote p::marker {
         content: "★ ";
         font-size: 16px;
-        word-spacing: 4px;
+        word-spacing: 5px;
     }
 
     details {
@@ -606,6 +607,7 @@ body[for="html-export"] {
         font-family: var(--default-font);
 
         summary {
+            // color: #A626A4;
             color: #A626A4;
             font-weight: bold;
             font-size: 16px;
@@ -628,7 +630,7 @@ body[for="html-export"] {
 
     details[open] {
         summary {
-            margin: 0 0 -8px 0 !important;
+            margin: 0 0 0 0 !important;
             padding: 0 0 0 0 !important;
         }
 
