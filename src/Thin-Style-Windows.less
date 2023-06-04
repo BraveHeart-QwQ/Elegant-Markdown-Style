@@ -80,8 +80,6 @@ body[for="html-export"] {
         counter-reset: header_three;
 
         display: block;
-        // font-family: 'Maitree', var(--normal-font);
-        // font-size: 28px;
         font-family: 'Fleur De Leah', var(--normal-font);
         font-size: 52px;
         font-weight: normal;
@@ -110,8 +108,9 @@ body[for="html-export"] {
         border-right: 0px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-family: 'Amethysta', var(--normal-font);
-        font-size: 23px;
+        // font-family: 'Amethysta', var(--normal-font);
+        font-family: var(--default-font);
+        font-size: 24px;
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
@@ -174,6 +173,16 @@ body[for="html-export"] {
     h3 a,
     h4 a {
         font-size: 18px;
+    }
+
+    a {
+        color: rgb(26, 115, 232) !important;
+        line-height: auto;
+        // color: #0084d0 !important;
+    }
+
+    a:hover {
+        border-bottom: 0.1rem solid;
     }
 
     p {
@@ -337,15 +346,6 @@ body[for="html-export"] {
         border-bottom-left-radius: 4px;
         border-top-right-radius: 4px;
         background-color: rgb(56, 175, 255);
-    }
-
-    a {
-        color: rgb(26, 115, 232) !important;
-        // color: #0084d0 !important;
-    }
-
-    a:hover {
-        border-bottom: 0.1rem solid;
     }
 
     ul {
@@ -573,16 +573,19 @@ body[for="html-export"] {
         content: "-- ";
     }
 
+    --blockquote-margin-empty: 30%;
+    --blockquote-margin-indent: -40;
+
+    --blockquote-margin-middle: calc((--blockquote-margin-empty + --blockquote-margin-indent) / 2);
+
     blockquote,
     .warning {
-        // border-width: 0.04cm 0.04cm 0.04cm 0.04cm;
-        border-width: 0 0 0 10px;
         border-style: solid;
-        // border-radius: 10px;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
-        padding: 4px 16px 20px 29px;
-        margin: 24px 0px 24px 0px;
+        padding: 4px 30px 20px 30px;
+        margin-top: 24px;
+        margin-bottom: 24px;
 
         p {
             display: block;
@@ -600,6 +603,20 @@ body[for="html-export"] {
         strong {
             font-size: calc((var(--blockquote-fontsize) - 1) * 1px) !important;
         }
+    }
+
+    .warning:nth-of-type(odd),
+    blockquote:nth-of-type(odd) {
+        border-width: 0 0 0 10px;
+        margin-left: -40px;
+        margin-right: 30%;
+    }
+
+    .warning:nth-of-type(even),
+    blockquote:nth-of-type(even) {
+        border-width: 0px 10px 0px 0px;
+        margin-left: 30%;
+        margin-right: -40px;
     }
 
     .warning {
