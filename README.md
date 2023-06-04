@@ -16,12 +16,11 @@ p.s. This repository will update occasionally, and the pic below may not be upda
 ### Install Fonts
 - LXGW WenKai
 - LXGW WenKai Screen
-- Raleway
-- Noto Sans
+- Love Light
+- Fleur De Leah
 - Noto Sans Symbols2
 - Times New Roman
 - Cascadia Code
-- Vintama Shadow (Left Marker of Blockquote)
 
 These fonts may be found on Github or [Google Fonts](https://fonts.google.com/).
 
