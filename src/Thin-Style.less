@@ -1,25 +1,27 @@
 // TODO 重做 Detail 样式，并增加动画
 // TODO 重做 Ref
+
 body[for="html-export"] {
     background-color: rgb(231, 233, 236) !important;
 }
 
 .markdown-preview {
+    --system-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-        --normal-font-family: 'Segoe UI', 'LXGW WenKai';
-        --code-font-family: 'Cascadia Code';
-        --fig-font-family: 'Times New Roman', 'Kaiti SC';
-        --h1-font-family: 'Love Light', 'LXGW WenKai';
-        // --h2-font-family: 'Mea Culpa', 'LXGW WenKai';
-        --h2-font-family: 'LXGW WenKai';
-        --special-symbol-font-family: 'Noto Sans Symbols2';
-    
-        --p-fontsize: 18;
-        --table-fontsize: 16;
-        --fig-fontsize: 16;
-        --blockquote-fontsize: 17;
-    
-        --resource-dir: 'E:\\Pictures\\Markdown'; // set it yourself
+    --normal-font-family: 'Segoe UI', 'LXGW WenKai';
+    --code-font-family: 'Cascadia Code';
+    --fig-font-family: 'Times New Roman', 'Kaiti SC';
+    --h1-font-family: 'Fredericka the Great', 'Kaiti SC';
+    --h2-font-family: 'LXGW WenKai Mono';
+    --h3-font-family: 'LXGW WenKai Mono';
+    --special-symbol-font-family: 'Noto Sans Symbols2';
+
+    --p-fontsize: 18;
+    --table-fontsize: 16;
+    --fig-fontsize: 16;
+    --blockquote-fontsize: 17;
+
+    --resource-dir: 'E:\\Pictures\\Markdown'; // set it yourself
 
     background-color: rgb(255, 255, 255);
     border-bottom-color: rgb(23, 23, 23);
@@ -44,7 +46,7 @@ body[for="html-export"] {
     color: rgb(23, 23, 23);
     display: block;
     font-family: var(--normal-font-family);
-        font-size: calc(var(--p-fontsize) * 1px);
+    font-size: calc(var(--p-fontsize) * 1px);
     font-stretch: normal;
     font-style: normal;
     font-variant-caps: normal;
@@ -69,13 +71,13 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
-            font-size: 64px;
-            font-weight: lighter;
+        font-size: 60px;
+        font-weight: 200;
         height: auto;
         line-height: normal;
         letter-spacing: normal;
-        margin: 100px 0px 0px 0px;
-            padding: 0 0 0 0;
+        margin: 100px 0px 40px 0px;
+        padding: 0 0 0 0;
         overflow-x: hidden;
         overflow-y: hidden;
         // text-overflow: ellipsis;
@@ -88,12 +90,11 @@ body[for="html-export"] {
 
     h2 {
         counter-reset: header_three;
-
         display: block;
-        font-family: var(--h2-font-family);
-            font-size: 35px;
-            font-weight: 200;
-            margin: 130px 0px 48px 0px;
+        font-family: 'LXGW WenKai Mono';
+        font-size: 34px;
+        font-weight: 300;
+        margin: 130px 0px 48px 0px;
         text-overflow: ellipsis;
         text-align: center;
         width: auto;
@@ -102,14 +103,24 @@ body[for="html-export"] {
         list-style-position: inside;
     }
 
-        h2:nth-of-type(1) {
-            margin-top: 100px;
-        }
-    h2:before {
-        counter-increment: header_two;
-        content: counter(header_two) ".";
-        margin-right: 10px;
+    h2:nth-of-type(1) {
+        margin-top: 100px;
     }
+
+    // h2:before {
+    //     counter-increment: header_two;
+    //     // content: counter(header_two) ".";
+    //     margin-right: 10px;
+    // }
+
+    h2:before {
+        content: "「";
+    }
+
+    h2:after {
+        content: "」";
+    }
+
 
     h3 {
         counter-reset: header_four;
@@ -121,7 +132,7 @@ body[for="html-export"] {
         border-right: 0px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-family: var(--default-font-family);
+        font-family: 'LXGW WenKai Mono';
         font-size: 22px;
         font-stretch: normal;
         font-style: normal;
@@ -153,7 +164,8 @@ body[for="html-export"] {
         border-right: none;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-size: calc((var(--p-fontsize) + 1) * 1px);
+        // font-size: calc(var(--p-fontsize) * 1px);
+        font-size: calc((var(--p-fontsize) - 1) * 1px);
         font-stretch: normal;
         font-style: normal;
         font-family: var(--default-font-family);
@@ -176,19 +188,20 @@ body[for="html-export"] {
     h1 a,
     h2 a,
     h3 a,
-        h4 a {
+    h4 a {
         font-size: 18px;
     }
 
-        a {
-            color: rgb(26, 115, 232) !important;
-            // color: #0084d0 !important;
-            border-bottom: none;
-        }
-    
-        a:hover {
-            text-decoration: underline;
-        }
+    a {
+        color: rgb(26, 115, 232) !important;
+        // color: #0084d0 !important;
+        border-bottom: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
     p {
         margin: 16px 0px 0px 0px !important;
         padding: 0 0 0 0 !important;
@@ -208,30 +221,30 @@ body[for="html-export"] {
     }
 
     table {
-
         display: table;
         margin: 16px 0px 0px 0px;
         table-layout: auto;
         border-collapse: collapse;
         border-color: rgb(210, 210, 210) !important;
-            font-family: var(--default-font-family);
-            font-size: calc(var(--table-fontsize) * 1px);
+        font-family: var(--default-font-family);
+        font-size: calc(var(--table-fontsize) * 1px);
         width: 100% !important;
 
         strong,
-            def {
-                font-size: calc(var(--table-fontsize) * 1px);
-            }
+        def {
+            font-size: calc(var(--table-fontsize) * 1px);
+        }
+
         .katex {
             font-size: calc((var(--table-fontsize) + 2) * 1px);
         }
 
         span[class="mord cjk_fallback"] {
             font-size: calc(var(--table-fontsize) * 1px);
-            }
-            
-            code {
-                font-size: calc((var(--table-fontsize) - 2) * 1px) !important;
+        }
+
+        code {
+            font-size: calc((var(--table-fontsize) - 2) * 1px) !important;
         }
 
         thead {
@@ -256,7 +269,7 @@ body[for="html-export"] {
                 border-color: rgb(210, 215, 223);
 
                 padding-top: 11px;
-                    padding-bottom: 11px;
+                padding-bottom: 11px;
 
                 word-break: normal;
                 word-wrap: break-word;
@@ -280,7 +293,7 @@ body[for="html-export"] {
             height: 40px;
             text-align: left;
             font-size: calc(var(--table-fontsize) * 1px);
-                font-family: var(--default-font-family);
+            font-family: var(--default-font-family);
             font-weight: bolder;
 
             .katex {
@@ -337,13 +350,15 @@ body[for="html-export"] {
     }
 
     strong {
+        // color: #c91010;
         color: #c93b10;
-            border-bottom: 0.12rem solid;
+        // color: #CA1243;
+        border-bottom: 0.12rem solid;
     }
 
     def {
         // color: rgb(57, 135, 33);
-            color: rgb(16, 135, 16);
+        color: rgb(16, 135, 16);
     }
 
     mark {
@@ -378,29 +393,29 @@ body[for="html-export"] {
             height: 16px !important;
         }
 
-                blockquote:nth-of-type(odd),
-                .warning:nth-of-type(odd) {
+        blockquote:nth-of-type(odd),
+        .warning:nth-of-type(odd) {
             margin-top: 16px;
             margin-bottom: 16px;
-                border-width: 10px 0 0 0 !important;
-                margin-left: 0 !important;
+            border-width: 10px 0 0 0 !important;
+            margin-left: 0 !important;
         }
 
-                blockquote:nth-of-type(even),
-                .warning:nth-of-type(even) {
+        blockquote:nth-of-type(even),
+        .warning:nth-of-type(even) {
             margin-top: 16px;
             margin-bottom: 16px;
-                border-width: 10px 0 0 0 !important;
-                margin-right: 0 !important;
+            border-width: 10px 0 0 0 !important;
+            margin-right: 0 !important;
         }
-        }
-    
-        ul li::marker {
-            font-size: calc((var(--p-fontsize) - 2) * 1px) !important;
-        }
-    
-        ol li::marker {
-            font-size: calc(var(--p-fontsize) * 1px) !important;
+    }
+
+    ul li::marker {
+        font-size: calc((var(--p-fontsize) - 3) * 1px) !important;
+    }
+
+    ol li::marker {
+        font-size: calc((var(--p-fontsize)) * 1px) !important;
     }
 
     img {
@@ -415,7 +430,7 @@ body[for="html-export"] {
 
     fig {
         font-family: var(--fig-font-family);
-            font-size: calc(var(--fig-fontsize) * 1px) !important;
+        font-size: calc(var(--fig-fontsize) * 1px) !important;
         font-weight: 900;
 
         .katex {
@@ -431,7 +446,8 @@ body[for="html-export"] {
 
     fig:before {
         counter-increment: fig_num;
-        content: "Fig " counter(header_two) "." counter(fig_num);
+        // content: "Fig " counter(header_two) "." counter(fig_num);
+        content: "Fig " counter(fig_num) ".";
         word-spacing: 2px !important;
         margin-right: 10px;
         // font-weight: 900;
@@ -445,7 +461,7 @@ body[for="html-export"] {
         // direction: ltr;
         display: inline;
         font-family: var(--code-font-family) !important;
-            font-size: calc((var(--p-fontsize) - 3) * 1px) !important;
+        font-size: calc((var(--p-fontsize) - 3) * 1px) !important;
         font-stretch: normal;
         font-weight: normal;
         height: auto;
@@ -596,10 +612,10 @@ body[for="html-export"] {
         border-style: solid;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
-            // font-family: var(--default-font-family);
-            padding: 4px 30px 20px 30px;
-            margin-top: 32px;
-            margin-bottom: 32px;
+        // font-family: var(--default-font-family);
+        padding: 4px 30px 20px 30px;
+        margin-top: 32px;
+        margin-bottom: 32px;
 
         p {
             display: block;
@@ -611,27 +627,28 @@ body[for="html-export"] {
 
         span[class="mord cjk_fallback"] {
             font-size: calc((var(--blockquote-fontsize) + 1) * 1px);
-            }
-            
-            def,
-            strong {
-                font-size: calc((var(--blockquote-fontsize) - 1) * 1px) !important;
-            }
-            }
-            
-            .warning:nth-of-type(odd),
-            blockquote:nth-of-type(odd) {
-                border-width: 0 0 0 10px;
-                margin-left: -40px;
-                margin-right: 30%;
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            }
-.warning:nth-of-type(even),
-blockquote:nth-of-type(even) {
-    border-width: 0px 10px 0px 0px;
-    margin-left: 30%;
-    margin-right: -40px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        def,
+        strong {
+            font-size: calc((var(--blockquote-fontsize) - 1) * 1px) !important;
+        }
+    }
+
+    .warning:nth-of-type(odd),
+    blockquote:nth-of-type(odd) {
+        border-width: 0 0 0 10px;
+        margin-left: -40px;
+        margin-right: 30%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .warning:nth-of-type(even),
+    blockquote:nth-of-type(even) {
+        border-width: 0px 10px 0px 0px;
+        margin-left: 30%;
+        margin-right: -40px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     .warning {
@@ -654,12 +671,12 @@ blockquote:nth-of-type(even) {
             color: #A626A4;
             font-weight: bold;
             font-size: calc(var(--p-fontsize) * 1px);
-                font-family: var(--default-font-family);
+            font-family: var(--default-font-family);
         }
 
         summary::marker {
             font-family: var(--code-font-family);
-                font-size: calc(var(--p-fontsize) * 1px);
+            font-size: calc(var(--p-fontsize) * 1px);
             content: "[+] ";
         }
 
@@ -705,7 +722,7 @@ blockquote:nth-of-type(even) {
 
     .katex {
         font-size: calc((var(--p-fontsize) + 2) * 1px);
-            font-family: KaTeX_Main, var(--normal-font-family);
+        font-family: KaTeX_Main, var(--normal-font-family);
     }
 
     span[class="katex-display"] {
