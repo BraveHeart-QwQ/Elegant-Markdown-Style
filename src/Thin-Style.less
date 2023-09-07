@@ -81,7 +81,6 @@ body[for="html-export"] {
         padding: 0 0 0 0;
         overflow-x: hidden;
         overflow-y: hidden;
-        // text-overflow: ellipsis;
         text-align: center;
         vertical-align: middle;
         width: auto;
@@ -92,7 +91,7 @@ body[for="html-export"] {
     h2 {
         counter-reset: header_three;
         display: block;
-        font-family: 'LXGW WenKai Mono';
+        font-family: var(--h2-font-family);
         font-size: 34px;
         font-weight: 300;
         margin: 130px 0px 48px 0px;
@@ -122,7 +121,6 @@ body[for="html-export"] {
         content: "」";
     }
 
-
     h3 {
         counter-reset: header_four;
 
@@ -133,7 +131,7 @@ body[for="html-export"] {
         border-right: 0px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-family: 'LXGW WenKai Mono';
+        font-family: var(--h3-font-family);
         font-size: 22px;
         font-stretch: normal;
         font-style: normal;
