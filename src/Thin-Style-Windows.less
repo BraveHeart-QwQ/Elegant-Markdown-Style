@@ -172,8 +172,8 @@ body[for="html-export"] {
         font-weight: bold;
         height: auto;
         letter-spacing: normal;
-        padding: 0px 0px 0px 0px !important;
-        margin: 32px 0px 0px 0px !important;
+        padding: 0px 0px 0px 0px;
+        margin: 32px 0px 0px 0px;
         text-overflow: ellipsis;
         width: auto;
         word-spacing: normal;
@@ -417,7 +417,7 @@ body[for="html-export"] {
             line-height: 16px !important;
             height: 16px !important;
         }
-        
+
         blockquote:nth-of-type(odd),
         .warning:nth-of-type(odd) {
             margin-top: 16px;
@@ -688,51 +688,6 @@ body[for="html-export"] {
         color: #01579b;
     }
 
-    details {
-        margin: 16px 0px 0px 0px;
-        font-family: var(--normal-font-family);
-
-        summary {
-            // color: #A626A4;
-            color: #9c7625;
-            font-weight: bold;
-            // font-size: calc((var(--p-fontsize) - 1) * 1px);
-            font-family: 'LXGW WenKai Mono';
-            margin-left: -20px;
-        }
-
-        summary::marker {
-            font-family: var(--code-font-family);
-            font-weight: normal;
-            font-size: calc((var(--p-fontsize) - 1) * 1px);
-            position: absolute !important;
-            content: "+ ";
-        }
-
-        summary:after {
-            content: " ...";
-        }
-
-        details {
-            padding: 0px 16px 0px 40px;
-        }
-    }
-
-    details[open] {
-        summary {
-            margin: - 0 0 -20px !important;
-            padding: 0 0 0 0 !important;
-        }
-
-        summary::marker {
-            content: "- ";
-        }
-
-        summary:after {
-            content: none;
-        }
-    }
-
     .katex {
         font-size: calc((var(--p-fontsize) + 2) * 1px);
         font-family: KaTeX_Main, var(--normal-font-family);
@@ -760,5 +715,92 @@ body[for="html-export"] {
 
     .horizontalScrollable {
         overflow-x: auto;
+    }
+
+    summary {
+        width: fit-content;
+        font-weight: 600;
+        font-family: var(--system-font-family);
+        padding: 0px 70px 0px 70px;
+        position: absolute;
+        margin: -99px 0px 0px 0px;
+        text-align: center;
+        color: #ffffff;
+        cursor: pointer;
+        height: 55px;
+        background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+
+        // position
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+        background-size: 300% 100%;
+        border-radius: 50px;
+
+        // animate
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+
+    summary::marker {
+        content: none;
+    }
+
+    summary:focus {
+        outline: none;
+    }
+
+    summary:hover {
+        background-position: 100% 0;
+        moz-transition: all .1s ease-in-out;
+        -o-transition: all .1s ease-in-out;
+        -webkit-transition: all .1s ease-in-out;
+        transition: all .1s ease-in-out;
+
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    summary:active {
+        transform: translateY(3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    details {
+        margin: 90px 0px -50px 0px;
+        padding: 20px;
+
+        border: 4px solid transparent; // for test
+    }
+    
+    details > :nth-child(2) {
+        margin-top: 0px !important;
+    }
+
+    details[open] {
+        margin-bottom: 0px;
+        border: 4px solid transparent;
+        border-radius: 16px;
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        background-image: linear-gradient(to right, #ffffffff, #ffffffff), linear-gradient(45deg, #25aae1, #4481eb, #04befe, #3f86ed);
+        
+        summary {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        summary:active {
+            transform: translateY(3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    details[open] + * {
+        margin-top: 16px !important;
     }
 }
