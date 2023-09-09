@@ -723,7 +723,7 @@ body[for="html-export"] {
         font-family: var(--system-font-family);
         padding: 0px 70px 0px 70px;
         position: absolute;
-        margin: -99px 0px 0px 0px;
+        margin: -103px 0px 0px 0px;
         text-align: center;
         color: #ffffff;
         cursor: pointer;
@@ -771,8 +771,10 @@ body[for="html-export"] {
     }
     
     details {
+        // BUG 连续 details 有问题
+        // TODO 设法优化间距，不要依靠这些 hardcode 技巧
         margin: 90px 0px -50px 0px;
-        padding: 20px;
+        padding: 24px 40px 24px 40px;
 
         border: 4px solid transparent; // for test
     }
