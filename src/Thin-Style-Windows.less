@@ -1,5 +1,6 @@
 // TODO 重做 Detail 样式，并增加动画
 // TODO 重做 Ref
+// TODO Detail 展开后，在左边拉一条竖线下来（在 Summary 的减号下面，不要覆盖 Summary）
 
 body[for="html-export"] {
     background-color: rgb(231, 233, 236) !important;
@@ -120,6 +121,7 @@ body[for="html-export"] {
         content: "」";
     }
 
+
     h3 {
         counter-reset: header_four;
         border-style: solid;
@@ -177,7 +179,30 @@ body[for="html-export"] {
         word-spacing: normal;
     }
 
-    h5,
+    h5 {
+        border-style: solid;
+        border-top: none !important;
+        border-bottom: none !important;
+        border-right: none !important;
+        border-left-color: rgb(175, 207, 72);
+        border-left-width: 4px;
+        box-sizing: border-box;
+        color: rgb(23, 23, 23);
+        font-size: calc((var(--p-fontsize) - 1) * 1px);
+        font-stretch: normal;
+        font-style: normal;
+        font-family: var(--default-font-family);
+        font-variant-caps: normal;
+        font-weight: normal;
+        height: auto;
+        letter-spacing: normal;
+        padding: 0px 0px 0px 10px !important;
+        margin: 24px 0px 0px 0px !important;
+        text-overflow: ellipsis;
+        width: auto;
+        word-spacing: normal;
+    }
+
     h6 {
         color: red;
     }
@@ -353,7 +378,7 @@ body[for="html-export"] {
         // color: #c91010;
         color: #c93b10;
         // color: #CA1243;
-        border-bottom: 0.12rem solid;
+        // border-bottom: 0.12rem solid;
     }
 
     def {
@@ -668,20 +693,24 @@ body[for="html-export"] {
         font-family: var(--normal-font-family);
 
         summary {
-            color: #A626A4;
+            // color: #A626A4;
+            color: #9c7625;
             font-weight: bold;
-            font-size: calc(var(--p-fontsize) * 1px);
-            font-family: var(--default-font-family);
+            // font-size: calc((var(--p-fontsize) - 1) * 1px);
+            font-family: 'LXGW WenKai Mono';
+            margin-left: -20px;
         }
 
         summary::marker {
             font-family: var(--code-font-family);
-            font-size: calc(var(--p-fontsize) * 1px);
-            content: "[+] ";
+            font-weight: normal;
+            font-size: calc((var(--p-fontsize) - 1) * 1px);
+            position: absolute !important;
+            content: "+ ";
         }
 
         summary:after {
-            content: " ... (Click to Open)";
+            content: " ...";
         }
 
         details {
@@ -691,32 +720,16 @@ body[for="html-export"] {
 
     details[open] {
         summary {
-            margin: 0 0 0 0 !important;
+            margin: - 0 0 -20px !important;
             padding: 0 0 0 0 !important;
         }
 
         summary::marker {
-            content: "[-] ";
+            content: "- ";
         }
 
         summary:after {
             content: none;
-        }
-
-        details summary::marker {
-            content: "[+] ";
-        }
-
-        details[open] summary::marker {
-            content: "[-] ";
-        }
-
-        details[open] details summary::marker {
-            content: "[+] ";
-        }
-
-        details[open] details[open] summary::marker {
-            content: "[-] ";
         }
     }
 
@@ -726,7 +739,7 @@ body[for="html-export"] {
     }
 
     span[class="katex-display"] {
-        margin: 24px 0px 0px 0px !important;
+        margin: 20px 0px 0px 0px !important;
     }
 
     span[class="mord cjk_fallback"] {
