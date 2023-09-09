@@ -716,7 +716,7 @@ body[for="html-export"] {
     .horizontalScrollable {
         overflow-x: auto;
     }
-    
+
     details {
         margin: 100px 0px 0px 0px;
         padding: 8px;
@@ -725,14 +725,14 @@ body[for="html-export"] {
         border-color: black;
         border-width: 2px;
         border-style: solid;
-        
+
         p:first-of-type {
             margin-top: 0px !important;
         }
     }
-    
+
     .summary-button {
-        width: 200px;
+        width: 200px; // TODO 宽度自动适应
         font-weight: 600;
         position: absolute;
         margin-top: -100px;
@@ -740,7 +740,7 @@ body[for="html-export"] {
         color: #ffffff;
         cursor: pointer;
         height: 55px;
-        
+
         // position
         display: flex;
         align-items: center;
@@ -749,7 +749,7 @@ body[for="html-export"] {
         border: none;
         background-size: 300% 100%;
         border-radius: 50px;
-        
+
         // animate
         moz-transition: all .4s ease-in-out;
         -o-transition: all .4s ease-in-out;
@@ -761,89 +761,27 @@ body[for="html-export"] {
         content: none;
     }
 
-    .summary-button:hover {
-        background-position: 100% 0;
-        moz-transition: all .4s ease-in-out;
-        -o-transition: all .4s ease-in-out;
-        -webkit-transition: all .4s ease-in-out;
-        transition: all .4s ease-in-out;
-    }
-
     .summary-button:focus {
         outline: none;
     }
 
-    .summary-button.color-1 {
-        background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
-        box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
-    }
-    .summary-button.color-2 {
-        background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);
-        box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
-    }
-    .summary-button.color-3 {
-        background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
-        box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
-    }
-    .summary-button.color-4 {
-        background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
-        box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
-    }
-    .summary-button.color-5 {
-        background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
-        box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
-    }
-    .summary-button.color-6 {
-        background-image: linear-gradient(to right, #009245, #FCEE21, #00A8C5, #D9E021);
-        box-shadow: 0 4px 15px 0 rgba(83, 176, 57, 0.75);
-    }
-    .summary-button.color-7 {
-        background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
-        box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
-    }
-    .summary-button.color-8 {
-        background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
-        box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
-    }
-    .summary-button.color-9 {
-        background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
-        box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
-    }
-    .summary-button.color-10 {
-            background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
-        box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
-    }
-    .summary-button.color-11 {
-           background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
-    }
-    
-    .btn:link,
-    .btn:visited {
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 15px 40px;
-        display: inline-block;
-        border-radius: 100px;
-        transition: all .2s;
-        position: absolute;
-    }
-    
-    .btn:hover {
+    .summary-button:hover {
+        background-position: 100% 0;
+        moz-transition: all .1s ease-in-out;
+        -o-transition: all .1s ease-in-out;
+        -webkit-transition: all .1s ease-in-out;
+        transition: all .1s ease-in-out;
+
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
-    
-    .btn:active {
-        transform: translateY(-1px);
+
+    .summary-button:active {
+        transform: translateY(3px);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
-    
-    .btn-white {
-        background-color: #fff;
-        color: #777;
-    }
-    
-    .btn::after {
+
+    .summary-button::after {
         content: "";
         display: inline-block;
         height: 100%;
@@ -855,30 +793,9 @@ body[for="html-export"] {
         z-index: -1;
         transition: all .4s;
     }
-    
-    .btn-white::after {
-        background-color: #fff;
-    }
-    
-    .btn:hover::after {
-        transform: scaleX(1.4) scaleY(1.6);
-        opacity: 0;
-    }
-    
-    .btn-animated {
-        animation: moveInBottom 5s ease-out;
-        animation-fill-mode: backwards;
-    }
-    
-    @keyframes moveInBottom {
-        0% {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-    
-        100% {
-            opacity: 1;
-            transform: translateY(0px);
-        }
+
+    .summary-button.color-9 {
+        background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+        // box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
     }
 }
