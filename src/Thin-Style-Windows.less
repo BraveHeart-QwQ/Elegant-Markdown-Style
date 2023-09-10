@@ -1,6 +1,4 @@
-// TODO 重做 Detail 样式，并增加动画
-// TODO 重做 Ref
-// TODO Detail 展开后，在左边拉一条竖线下来（在 Summary 的减号下面，不要覆盖 Summary）
+// TODO re-design ref, blockquote and warning block
 
 body[for="html-export"] {
     background-color: rgb(231, 233, 236) !important;
@@ -716,6 +714,7 @@ body[for="html-export"] {
 
     .horizontalScrollable {
         overflow-x: auto;
+        overflow-y: hidden !important; // NOTE Don't know why here may lead to vertical-scroll arise in some case (e.g. latex block)
     }
 
     summary {
@@ -772,8 +771,8 @@ body[for="html-export"] {
     }
     
     details {
-        // BUG 连续 details 有问题
-        // TODO 设法优化间距，不要依靠这些 hardcode 技巧
+        // BUG consecutive details block
+        // TODO optimize margin by modify mpe plugin, not these bad hardcode trick
         margin: 90px 0px -50px 0px;
         padding: 24px 40px 24px 40px;
 
