@@ -7,18 +7,19 @@ body[for="html-export"] {
 .markdown-preview {
     --system-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    --normal-font-family: 'Segoe UI', 'LXGW WenKai Screen';
+    --normal-font-family: 'Segoe UI';
     --code-font-family: 'Cascadia Code';
     --fig-font-family: 'Times New Roman', 'Kaiti SC';
-    --h1-font-family: 'Fredericka the Great', 'Kaiti SC';
-    --h2-font-family: 'LXGW WenKai Mono';
-    --h3-font-family: 'LXGW WenKai Mono';
+    // --h1-font-family: 'Fredericka the Great', 'Kaiti SC';
+    --h1-font-family: 'Bad Script';
+    --h2-font-family: 'Verdana';
+    --h3-font-family: 'Verdana';
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
-    --p-fontsize: 19;
+    --p-fontsize: 17;
     --table-fontsize: 17;
     --fig-fontsize: 14;
-    --blockquote-fontsize: 18;
+    --blockquote-fontsize: 16;
 
     --resource-dir: 'E:\\Pictures\\Markdown'; // set it yourself
 
@@ -71,7 +72,7 @@ body[for="html-export"] {
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
         font-size: 60px;
-        font-weight: 200;
+        font-weight: normal;
         height: auto;
         line-height: normal;
         letter-spacing: normal;
@@ -90,8 +91,8 @@ body[for="html-export"] {
         counter-reset: header_three;
         display: block;
         font-family: var(--h2-font-family);
-        font-size: 34px;
-        font-weight: 300;
+        font-size: 35px;
+        font-weight: bold;
         margin: 130px 0px 48px 0px;
         text-overflow: ellipsis;
         text-align: center;
@@ -112,13 +113,14 @@ body[for="html-export"] {
     // }
 
     h2:before {
-        content: "「";
+        // content: "「";
+        content: none;
     }
 
     h2:after {
-        content: "」";
+        // content: "」";
+        content: none;
     }
-
 
     h3 {
         counter-reset: header_four;
@@ -130,11 +132,11 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: rgb(23, 23, 23);
         font-family: var(--h3-font-family);
-        font-size: 22px;
+        font-size: 21px;
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
-        font-weight: bold;
+        font-weight: normal;
         height: auto;
         letter-spacing: normal;
         margin: 72px 0px 0px 0px !important;
@@ -163,7 +165,7 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: rgb(23, 23, 23);
         // font-size: calc(var(--p-fontsize) * 1px);
-        font-size: calc((var(--p-fontsize) - 1) * 1px);
+        font-size: calc((var(--p-fontsize)) * 1px);
         font-stretch: normal;
         font-style: normal;
         font-family: var(--default-font-family);
@@ -178,6 +180,16 @@ body[for="html-export"] {
         word-spacing: normal;
     }
 
+    h4:before {
+        content: "- ";
+        word-spacing: 3px;
+    }
+
+    h4:after {
+        content: " -";
+        word-spacing: 3px;
+    }
+
     h5 {
         border-style: solid;
         border-top: none !important;
@@ -187,7 +199,7 @@ body[for="html-export"] {
         border-left-width: 4px;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-size: calc((var(--p-fontsize) - 1) * 1px);
+        font-size: calc((var(--p-fontsize)) * 1px);
         font-stretch: normal;
         font-style: normal;
         font-family: var(--default-font-family);
@@ -378,7 +390,7 @@ body[for="html-export"] {
     def {
         font-family: var(--default-font-family);
         font-weight: bold;
-        font-size: calc((var(--p-fontsize) - 1) * 1px);
+        font-size: calc((var(--p-fontsize)) * 1px);
     }
 
     strong {
@@ -443,7 +455,7 @@ body[for="html-export"] {
     }
 
     ul li::marker {
-        font-size: calc((var(--p-fontsize) - 3) * 1px) !important;
+        font-size: calc((var(--p-fontsize) - 1) * 1px) !important;
     }
 
     ol li::marker {
@@ -493,7 +505,7 @@ body[for="html-export"] {
         // direction: ltr;
         display: inline;
         font-family: var(--code-font-family) !important;
-        font-size: calc((var(--p-fontsize) - 3) * 1px) !important;
+        font-size: calc((var(--p-fontsize) - 1) * 1px) !important;
         font-stretch: normal;
         font-weight: normal;
         height: auto;
@@ -594,7 +606,7 @@ body[for="html-export"] {
         background-color: rgba(0, 0, 0, 0);
         font-family: var(--code-font-family) !important;
         font-weight: 400;
-        font-size: calc((var(--p-fontsize) - 3) * 1px) !important;
+        font-size: calc((var(--p-fontsize) - 1) * 1px) !important;
         tab-size: 4 !important;
     }
 
