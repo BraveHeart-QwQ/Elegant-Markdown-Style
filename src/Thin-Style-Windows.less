@@ -9,7 +9,7 @@ body[for="html-export"] {
     --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     --normal-font-family: 'Segoe UI';
     --code-font-family: 'Cascadia Code';
-    --fig-font-family: 'Times New Roman', 'Kaiti SC';
+    --fig-font-family: 'Cascadia Code';
     --h1-font-family: 'Bad Script';
     --h2-font-family: 'Verdana';
     --h3-font-family: 'Verdana';
@@ -87,12 +87,14 @@ body[for="html-export"] {
     }
 
     h2 {
-        counter-reset: header_three;
+        // counter-reset: header_three;
+        counter-reset: fig_num;
+        counter-increment: header_two;
         display: block;
         font-family: var(--h2-font-family);
         font-size: 35px;
         font-weight: bold;
-        margin: 130px 0px 48px 0px;
+        margin: 120px 0px 58px 0px;
         text-overflow: ellipsis;
         text-align: center;
         width: auto;
@@ -143,19 +145,19 @@ body[for="html-export"] {
         width: auto;
     }
 
-    h3:after {
-        font-family: var(--special-symbol-font-family) !important;
-        // color: rgba(0, 0, 0, 0.13);
-        color: rgb(222, 222, 222);
-        line-height: 0px;
-        position: absolute;
-        right: 35px;
-        margin: 4px 0px 0px 0px;
-        font-size: 90px;
-        z-index: -1;
-        font-weight: normal;
-        content: "❦"
-    }
+    // h3:after {
+    //     font-family: var(--special-symbol-font-family) !important;
+    //     // color: rgba(0, 0, 0, 0.13);
+    //     color: rgb(222, 222, 222);
+    //     line-height: 0px;
+    //     position: absolute;
+    //     right: 35px;
+    //     margin: 4px 0px 0px 0px;
+    //     font-size: 90px;
+    //     z-index: -1;
+    //     font-weight: normal;
+    //     content: "❦"
+    // }
 
     h4 {
         border-top: none;
@@ -315,7 +317,7 @@ body[for="html-export"] {
             }
 
             tr td:first-child {
-                width: 33% !important;
+                width: 30%;
                 word-break: break-all;
             }
         }
@@ -343,7 +345,7 @@ body[for="html-export"] {
 
         tbody {
             tr td:first-child {
-                width: auto !important;
+                width: auto;
                 word-break: break-all;
             }
         }
@@ -351,7 +353,7 @@ body[for="html-export"] {
 
     dtable {
         table tr td:first-child {
-            width: 50% !important;
+            width: 50%;
         }
     }
 
@@ -362,6 +364,37 @@ body[for="html-export"] {
 
         table tr td:first-child {
             width: 33% !important;
+        }
+    }
+    
+    ctable {
+        thead {
+            border-width: 0.08rem !important;
+            display: table-row-group;
+            width: 100% !important;
+            height: 40px;
+            text-align: left;
+            font-size: calc(var(--table-fontsize) * 1px);
+            font-family: var(--default-font-family);
+
+            th {
+                font-weight: normal !important;
+            }
+
+            .katex {
+                font-size: calc((var(--table-fontsize) + 2) * 1px);
+            }
+
+            span[class="mord cjk_fallback"] {
+                font-size: calc(var(--table-fontsize) * 1px);
+            }
+        }
+
+        tbody {
+            tr td:first-child {
+                width: auto !important;
+                word-break: break-all;
+            }
         }
     }
 
@@ -489,9 +522,9 @@ body[for="html-export"] {
 
     fig:before {
         counter-increment: fig_num;
-        // content: "Fig " counter(header_two) "." counter(fig_num);
-        content: "Fig " counter(fig_num) ".";
-        word-spacing: 2px !important;
+        content: "Fig " counter(header_two) "-" counter(fig_num);
+        // content: "Fig " counter(fig_num) ".";
+        word-spacing: 0px !important;
         margin-right: 10px;
         // font-weight: 900;
     }
