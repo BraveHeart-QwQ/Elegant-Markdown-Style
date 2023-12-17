@@ -11,7 +11,7 @@ body[for="html-export"] {
     --code-font-family: 'Cascadia Code';
     --fig-font-family: 'Cascadia Code';
     --h1-font-family: 'Bad Script';
-    --h2-font-family: 'Verdana';
+    --h2-font-family: 'Segoe UI', 'Verdana';
     --h3-font-family: 'Verdana';
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
@@ -85,6 +85,14 @@ body[for="html-export"] {
         word-spacing: 4px;
         z-index: 0 !important;
     }
+    
+    // h1:before {
+    //     content: "\"";
+    // }
+    
+    // h1:after {
+    //     content: "\"";
+    // }
 
     h2 {
         // counter-reset: header_three;
@@ -93,7 +101,7 @@ body[for="html-export"] {
         display: block;
         font-family: var(--h2-font-family);
         font-size: 35px;
-        font-weight: bold;
+        font-weight: normal;
         margin: 120px 0px 58px 0px;
         text-overflow: ellipsis;
         text-align: center;
@@ -279,6 +287,8 @@ body[for="html-export"] {
 
         code {
             font-size: calc((var(--table-fontsize) - 2) * 1px) !important;
+            word-wrap: normal;
+            word-break: keep-all;
         }
 
         thead {
