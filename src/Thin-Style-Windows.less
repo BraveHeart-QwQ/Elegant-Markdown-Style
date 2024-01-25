@@ -10,9 +10,9 @@ body[for="html-export"] {
     --normal-font-family: 'Segoe UI';
     --code-font-family: 'Cascadia Code';
     --fig-font-family: 'Cascadia Code';
-    --h1-font-family: 'Bad Script';
-    --h2-font-family: 'Segoe UI', 'Verdana';
-    --h3-font-family: 'Verdana';
+    --h1-font-family: 'Futura';
+    --h2-font-family: 'Lobster Two';
+    --h3-font-family: 'Segoe UI';
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
     --p-fontsize: 17;
@@ -66,7 +66,6 @@ body[for="html-export"] {
 
     h1 {
         counter-reset: fig_num;
-
         box-sizing: border-box;
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
@@ -102,17 +101,18 @@ body[for="html-export"] {
         font-family: var(--h2-font-family);
         font-size: 35px;
         font-weight: normal;
-        margin: 120px 0px 58px 0px;
+        margin: 120px 0px 40px 0px;
         text-overflow: ellipsis;
-        text-align: center;
+        text-align: left;
         width: auto;
         word-spacing: 1px !important;
         list-style: decimal;
         list-style-position: inside;
+        line-height: 100%;
     }
 
     h2:nth-of-type(1) {
-        margin-top: 100px;
+        margin-top: 120px;
     }
 
     // h2:before {
@@ -133,22 +133,17 @@ body[for="html-export"] {
 
     h3 {
         counter-reset: header_four;
-        border-style: solid;
-        border-width: 0.1rem;
-        border-top: 0px;
-        border-left: 0px;
-        border-right: 0px;
-        box-sizing: border-box;
+        // box-sizing: border-box;
         color: rgb(23, 23, 23);
         font-family: var(--h3-font-family);
         font-size: 21px;
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
-        font-weight: normal;
+        font-weight: 500;
         height: auto;
         letter-spacing: normal;
-        margin: 72px 0px 0px 0px !important;
+        margin: 60px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
     }
@@ -532,8 +527,7 @@ body[for="html-export"] {
 
     fig:before {
         counter-increment: fig_num;
-        content: "Fig " counter(header_two) "-" counter(fig_num);
-        // content: "Fig " counter(fig_num) ".";
+        content: "Fig " counter(header_two) "-" counter(fig_num) ".";
         word-spacing: 0px !important;
         margin-right: 10px;
         // font-weight: 900;
@@ -752,6 +746,18 @@ body[for="html-export"] {
     .katex {
         font-size: calc((var(--p-fontsize) + 2) * 1px);
         font-family: KaTeX_Main, var(--normal-font-family);
+
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .base {
+        max-width: 100% !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        hyphens: auto !important;
     }
 
     span[class="katex-display"] {
