@@ -13,6 +13,7 @@ body[for="html-export"] {
     --h1-font-family: 'Futura';
     --h2-font-family: 'Lobster Two';
     --h3-font-family: 'Segoe UI';
+    --h4-font-family: 'Microsoft Yahei';
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
     --p-fontsize: 17;
@@ -115,12 +116,6 @@ body[for="html-export"] {
         margin-top: 120px;
     }
 
-    // h2:before {
-    //     counter-increment: header_two;
-    //     // content: counter(header_two) ".";
-    //     margin-right: 10px;
-    // }
-
     h2:before {
         content: none;
     }
@@ -170,7 +165,7 @@ body[for="html-export"] {
         font-size: calc((var(--p-fontsize)) * 1px);
         font-stretch: normal;
         font-style: normal;
-        font-family: var(--default-font-family);
+        font-family: var(--h4-font-family);
         font-variant-caps: normal;
         font-weight: bold;
         height: auto;
@@ -705,11 +700,6 @@ body[for="html-export"] {
 
         span[class="mord cjk_fallback"] {
             font-size: calc((var(--blockquote-fontsize) + 1) * 1px);
-        }
-
-        def,
-        strong {
-            font-size: calc((var(--blockquote-fontsize) - 1) * 1px) !important;
         }
     }
 
