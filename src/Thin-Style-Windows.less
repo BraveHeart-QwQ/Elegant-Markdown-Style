@@ -228,7 +228,20 @@ body[for="html-export"] {
 
     hr {
         // margin: 24px 0px;
-        height: 3px;
+        height: 1px;
+        border: 0;
+        padding-top: 1px;
+        background: linear-gradient(to right, transparent, #d0d0d5, transparent);
+    }
+
+    .hr-twill-colorful {
+        border: 0;
+        height: 1px;
+        padding: 3px;
+        background: linear-gradient(135deg, red, orange,green, blue, purple);
+        --mask-image: repeating-linear-gradient(135deg, #000 0px, #000 1px, transparent 1px, transparent 6px);
+        -webkit-mask-image: var(--mask-image);
+        mask-image: var(--mask-image);
     }
 
     table {
