@@ -10,9 +10,9 @@ body[for="html-export"] {
     --normal-font-family: 'Segoe UI';
     --code-font-family: 'Cascadia Code';
     --fig-font-family: 'Cascadia Code';
-    --h1-font-family: 'Futura';
-    --h2-font-family: 'Lobster Two';
-    --h3-font-family: 'Segoe UI';
+    --h1-font-family: 'Luna ITC';
+    --h2-font-family: 'LXGW WenKai';
+    --h3-font-family: 'LXGW WenKai Mono';
     --h4-font-family: 'Microsoft Yahei';
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
@@ -71,7 +71,7 @@ body[for="html-export"] {
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
         font-size: 60px;
-        font-weight: lighter;
+        font-weight: normal;
         height: auto;
         line-height: normal;
         letter-spacing: normal;
@@ -100,7 +100,7 @@ body[for="html-export"] {
         counter-increment: header_two;
         display: block;
         font-family: var(--h2-font-family);
-        font-size: 35px;
+        font-size: 34px;
         font-weight: normal;
         margin: 120px 0px 0px 0px;
         text-overflow: ellipsis;
@@ -129,31 +129,17 @@ body[for="html-export"] {
         // box-sizing: border-box;
         color: rgb(23, 23, 23);
         font-family: var(--h3-font-family);
-        font-size: 21px;
+        font-size: 22px;
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
-        font-weight: 500;
+        font-weight: bold;
         height: auto;
         letter-spacing: normal;
-        margin: 40px 0px 0px 0px !important;
+        margin: 44px 0px 0px 0px !important;
         text-overflow: ellipsis;
         width: auto;
     }
-
-    // h3:after {
-    //     font-family: var(--special-symbol-font-family) !important;
-    //     // color: rgba(0, 0, 0, 0.13);
-    //     color: rgb(222, 222, 222);
-    //     line-height: 0px;
-    //     position: absolute;
-    //     right: 35px;
-    //     margin: 4px 0px 0px 0px;
-    //     font-size: 90px;
-    //     z-index: -1;
-    //     font-weight: normal;
-    //     content: "❦"
-    // }
 
     h4 {
         border-top: none;
@@ -162,7 +148,7 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: rgb(23, 23, 23);
         // font-size: calc(var(--p-fontsize) * 1px);
-        font-size: calc((var(--p-fontsize)) * 1px);
+        font-size: calc(((var(--p-fontsize)) - 1) * 1px);
         font-stretch: normal;
         font-style: normal;
         font-family: var(--h4-font-family);
@@ -419,8 +405,8 @@ body[for="html-export"] {
     strong,
     def {
         font-family: var(--default-font-family);
-        font-weight: bold;
-        font-size: calc((var(--p-fontsize)) * 1px);
+        font-weight: 500;
+        // font-size: calc((var(--p-fontsize)) * 1px);
     }
 
     strong {
