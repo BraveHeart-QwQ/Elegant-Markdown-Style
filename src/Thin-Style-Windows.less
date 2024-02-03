@@ -10,10 +10,11 @@ body[for="html-export"] {
     --normal-font-family: 'Segoe UI';
     --code-font-family: 'Cascadia Code';
     --fig-font-family: 'Cascadia Code';
-    --h1-font-family: 'Luna ITC';
+    --h1-font-family: 'Luna ITC', 'FZZhengHeiS-R-GB';
     --h2-font-family: 'LXGW WenKai';
     --h3-font-family: 'LXGW WenKai Mono';
-    --h4-font-family: 'Microsoft Yahei';
+    --h4-font-family: 'Segoe UI';
+    // --h4-font-family: 'Microsoft Yahei';
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
     --p-fontsize: 17;
@@ -71,7 +72,7 @@ body[for="html-export"] {
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
         font-size: 60px;
-        font-weight: normal;
+        font-weight: 500;
         height: auto;
         line-height: normal;
         letter-spacing: normal;
@@ -85,14 +86,6 @@ body[for="html-export"] {
         word-spacing: 4px;
         z-index: 0 !important;
     }
-
-    // h1:before {
-    //     content: "\"";
-    // }
-
-    // h1:after {
-    //     content: "\"";
-    // }
 
     h2 {
         // counter-reset: header_three;
@@ -147,13 +140,13 @@ body[for="html-export"] {
         border-right: none;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        // font-size: calc(var(--p-fontsize) * 1px);
-        font-size: calc(((var(--p-fontsize)) - 1) * 1px);
+        font-size: calc(((var(--p-fontsize))) * 1px);
         font-stretch: normal;
         font-style: normal;
-        font-family: var(--h4-font-family);
+        // font-family: var(--h4-font-family);
+        font-family: var(--code-font-family);
         font-variant-caps: normal;
-        font-weight: bold;
+        font-weight: 500;
         height: auto;
         letter-spacing: normal;
         padding: 0px 0px 0px 0px;
@@ -164,13 +157,15 @@ body[for="html-export"] {
     }
 
     h4:before {
-        content: "[ ";
+        content: "/// ";
         word-spacing: 3px;
+        font-family: var(--normal-font-family);
     }
 
     h4:after {
-        content: " ]";
-        word-spacing: 3px;
+        content: " ///";
+        word-spacing: 1px;  // MPE plugin will add a space after the last word
+        font-family: var(--normal-font-family);
     }
 
     h5 {
