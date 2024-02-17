@@ -11,8 +11,8 @@ body[for="html-export"] {
     --code-font-family: 'Cascadia Code';
     --fig-font-family: 'Cascadia Code';
     --h1-font-family: 'Luna ITC', 'FZZhengHeiS-R-GB';
-    --h2-font-family: 'LXGW WenKai';
-    --h3-font-family: 'LXGW WenKai Mono';
+    --h2-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
+    --h3-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
     --h4-font-family: 'Segoe UI';
     // --h4-font-family: 'Microsoft Yahei';
     --special-symbol-font-family: 'Noto Sans Symbols2';
@@ -105,16 +105,17 @@ body[for="html-export"] {
         line-height: 100%;
     }
 
+    h2:after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 0.13rem;
+        margin-top: 10px;
+        background-color: #c50000;
+    }
+
     h2:nth-of-type(1) {
         margin-top: 120px;
-    }
-
-    h2:before {
-        content: none;
-    }
-
-    h2:after {
-        content: none;
     }
 
     h3 {
@@ -126,10 +127,10 @@ body[for="html-export"] {
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
-        font-weight: normal;
+        font-weight: 500;
         height: auto;
         letter-spacing: normal;
-        margin: 46px 0px 12px 0px !important;
+        margin: 50px 0px 12px 0px !important;
         text-overflow: ellipsis;
         width: auto;
     }
@@ -155,19 +156,7 @@ body[for="html-export"] {
         width: auto;
         word-spacing: normal;
     }
-
-    h4:before {
-        content: "[ ";
-        word-spacing: 0px;
-        font-family: var(--code-font-family);
-    }
-
-    h4:after {
-        content: " ]";
-        word-spacing: 0px; // MPE plugin will add a space after the last word
-        font-family: var(--code-font-family);
-    }
-
+    
     h5 {
         border-style: solid;
         border-top: none !important;
@@ -783,7 +772,7 @@ body[for="html-export"] {
 
         border: none;
         background-size: 300% 100%;
-        border-radius: 50px;
+        border-radius: 14px;
 
         // animate
         moz-transition: all .3s ease-in-out;
@@ -819,7 +808,7 @@ body[for="html-export"] {
     details {
         // BUG consecutive details block
         // TODO optimize margin by modify mpe plugin, not these bad hardcode trick
-        margin: 90px 0px -50px 0px;
+        margin: 90px 0px -60px 0px;
         padding: 24px 40px 24px 40px;
 
         border: 4px solid transparent; // for test
