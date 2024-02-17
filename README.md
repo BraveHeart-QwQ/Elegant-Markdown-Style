@@ -42,7 +42,7 @@ Screenshots are taken from my 24-inch 2K monitor, may look different on other de
 **Header2**:
 ![alt text](.Images/image-2.png)
 
-**Header3**:.
+**Header3**:
 ![alt text](.Images/image-3.png)
 
 **Header4**:
@@ -129,7 +129,6 @@ Effect:
 ![No Hover](.Images/image-11.png)
 ![Hovering](.Images/image-12.png)
 ![Unfold](.Images/image-13.png)
-
 
 ### Other
 - Page has fixed width

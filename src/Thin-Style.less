@@ -568,7 +568,7 @@ body[for="html-export"] {
         margin-bottom: 16px;
         margin-inline-end: -40px;
         margin-inline-start: -40px;
-        margin: 16px -40px 0px -40px;
+        margin: 16px -40px 0px -40px !important;
         padding: 21px 40px 21px 40px;
         tab-size: 4 !important;
         word-spacing: normal;
@@ -645,14 +645,14 @@ body[for="html-export"] {
         // z-index: -1;
     }
 
-    ref a {
+    ref refsrc a {
         display: block;
         border: none;
         margin-top: 16px;
         text-align: right;
     }
 
-    ref a::before {
+    ref refsrc a::before {
         content: "-- ";
         font-family: 'Cascadia Code';
     }
