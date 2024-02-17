@@ -9,126 +9,133 @@ The inspiration for the style comes mainly from the following websites:
 
 p.s. This repository will update occasionally, and the pic below may not be updated in time.
 
+p.s. As a developer (and user), I personally use notes mixed with Chinese and English, and use it under different resolutions and ppi. I personally think it performs well in most situations.
 
 
 ## Install
 
 ### Install Fonts
-- LXGW WenKai
-- LXGW WenKai Screen
-- Love Light
-- Fleur De Leah
-- Noto Sans Symbols2
-- Times New Roman
-- Cascadia Code
-
-These fonts may be found on Github or [Google Fonts](https://fonts.google.com/).
-
-Some fonts may be pre-installed on your system, go to the Fonts folder (Windows) or Font Book.app (macOS) to check.
+Search "font-family" in [Thin-Style.less](src/Thin-Style.less) and download it from the Internet by yourself. Some of these fonts may be found on Github or [Google Fonts](https://fonts.google.com/).
 
 ### Install Style
-Please make sure you have installed Markdown-Preview-Enhanced Plugin, how to install will not be explained here.
-
-- Open VSCode
-- <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+Please make sure you have installed **Markdown-Preview-Enhanced Plugin** on vscode. Then follow below steps:
+- <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on mac)
 - Enter "Customize CSS" and select the first option, it would open a file called `style.less`
-- Delete **everything** in the `style.less`
-- Copy **everything** from [thin-style](src/Thin-Style.less) (or [black-style](src/Black-Style.less))
+- Delete **everything** in `style.less`
+- Copy **everything** in [Thin-Style.less](src/Thin-Style.less) (or [Thin-Style-Windows.less](src/Thin-Style-Windows.less) on windows)
 - Paste into `style.less`
 - Save file
 
-> black-style will not be maintained frequently
 
 
+## Effect Display
 
-## Effect
+Screenshots are taken from my 24-inch 2K monitor, may look different on other device (4K HDR is recommended for the best experience). Content in screenshots are from [sample.md](sample/sample.md).
 
-The pictures shown below are screenshots from [sample.md](sample/sample.md) rendering on my macbook. Only the effect is shown here, how they are written can refer to the source code.
+![Overview](.Images/image.png)
 
-### Header
-
-p.s. This style only use up to four levels of headings
+### Header Element
 
 **Header1**:
-![](.Image/Snipaste_2023-02-09_20-15-45.png)
+![alt text](.Images/image-1.png)
 
 **Header2**:
-![](.Image/Snipaste_2023-02-09_20-15-54.png)
+![alt text](.Images/image-2.png)
 
-**Header3**:
-![](.Image/Snipaste_2023-02-09_20-16-00.png)
+**Header3**:.
+![alt text](.Images/image-3.png)
 
 **Header4**:
-![](.Image/Snipaste_2023-02-09_20-16-07.png)
+![alt text](.Images/image-4.png)
 
 ### Paragraph
-![](.Image/Snipaste_2023-02-09_20-17-13.png)
+![alt text](.Images/image-5.png)
 
-Red word is **bold** text. Green word is concept which appear in context first time, and the following content always be definition of the concept.
+#### Bold and Definition Tag
 
-### Table
-![](.Image/Snipaste_2023-02-09_20-20-28.png)
-![](.Image/Snipaste_2023-02-09_20-20-43.png)
-
-**By default, the first row (header) is hidden**. In my experience, headers are mostly redundant. If you want to use headers, add the `<htable></htable>`.
-
-I also added symmetric tables, since symmetric two-column tables are quite common. Use `<dtable>` and `<dhtable>` to use the no-head and has-head versions respectively.
-
-### Image
-![](.Image/Snipaste_2023-02-09_20-19-57.png)
-
-The image is centered and the size can be controlled (I insert the picture by HTML code).
-
-usage:
+Source:
 ```markdown
-<div align=center class=img><img src="PathToImage" style="zoom:100%"><br></div>
+<def>Markdown</def> was inspired by **pre-existing** conventions for marking up plain text in email and usenet posts, such as the earlier markup languages setext (c. 1992), Textile (c. 2002), and reStructuredText (c. 2002).
 ```
 
-If you think it's troublesome to enter these string, you can use the VSCode's Snippets to make template. But I recommend using [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly.
+Effect:
+![alt text](.Images/image-6.png)
+
+### Table
+
+Source:
+```markdown
+a                                 | b
+----------------------------------|-----------------
+WriteLine(String, Object, Object) | Writes the text representation of the specified objects, followed by the current line terminator, to the standard output stream using the specified format information.
+WriteLine(String)                 | Writes the specified string value, followed by the current line terminator, to the standard output stream.
+WriteLine(Char[], Int32, Int32)   | Writes the specified subarray of Unicode characters, followed by the current line terminator, to the standard output stream.
+WriteLine(String, Object[])       | Writes the text representation of the specified array of objects, followed by the current line terminator, to the standard output stream using the specified format information.
+```
+
+Effect:
+![alt text](.Images/image-7.png)
+
+**By default, the first row (header) is hidden**. In my experience, headers are mostly redundant. If you want to use headers, add the `<htable></htable>`. Additionally, there are other tags of Table, you may try to find out their effects.
+
+### Image
+
+Source:
+```markdown
+<div align=center class=img><img src=".Image/2023-02-09-19-39-47.png" style="zoom:10%"><br><fig>Nerium Oleander</fig></div>
+```
+
+Effect:
+![alt text](.Images/image-8.png)
+
+Indeed, it's troublesome to input these string, you can use the VSCode's Snippets to make template. Or use (which I recommend) [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview) plugin to paste pictures directly.
 
 ### Code
-![](.Image/Snipaste_2023-02-09_20-20-36.png)
+![alt text](.Images/image-9.png)
 
 The code style is basically copy-pasted from [Google Protocol Buffers Doc](https://developers.google.com/protocol-buffers), but I made some modifications.
 
 ### BlockQuote
-**note**:
-![](.Image/Snipaste_2023-02-09_20-20-14.png)
+Source:
+```markdown
+> Nerium oleander is the **only** species currently classified in the genus Nerium.
 
-**warning**:
-![](.Image/Snipaste_2023-02-09_20-20-21.png)
+<div class=warning>
 
-**ref**:
-![](.Image/2023-02-09-20-31-42.png)
+Nerium oleander is the **only** species currently classified in the genus Nerium.
+</div>
+```
+
+Effect:
+![alt text](.Images/image-10.png)
 
 ### Fold Block
-**close**:
-![](.Image/Snipaste_2023-02-09_20-20-50.png)
+Source:
+```markdown
+<details><summary>Example | Hello World Program</summary>
 
-**open**:
-![](.Image/Snipaste_2023-02-09_20-20-57.png)
+```csharp
+using System;
+
+public static void Main(string[] args)
+{
+    Console.WriteLine("Hello World!");
+}
+```
+</details>
+```
+
+Effect:
+![No Hover](.Images/image-11.png)
+![Hovering](.Images/image-12.png)
+![Unfold](.Images/image-13.png)
 
 
 ### Other
-- Page width is fixed to 936px
-- The horizontal margin is fixed at 40px
-- Shadow of the page
-- There are still some unexplained features, you can find out by looking at the CSS :D
+- Page has fixed width
+- Page has fixed horizontal margin
+- There are still some unexplained details, you can find out by look at the source :D
 
-
-
-## Other Information
-
-- I personally use Chinese 90% of the time, so this style may look prettier in Chinese documents
-
-### Suggestion
-- Take more notes (including students and office workers)
-- Use powerful screenshot software (such as: Snipaste)
-- Paste images by plugin (such as: [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image&ssr=false#overview))
-- Format table by plugin (such as: [Markdown Table Prettify](https://marketplace.visualstudio.com/items?itemName=darkriszty.markdown-table-prettify&ssr=false#overview))
-- Edit text by vim (such as: Neovim for vscode)
-- Use VSCode's Snippet to quickly enter template text
-- Try to edit the style to meet your own aesthetics
 
 
 

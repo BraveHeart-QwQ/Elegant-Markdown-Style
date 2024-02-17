@@ -572,7 +572,7 @@ body[for="html-export"] {
         margin-bottom: 16px;
         margin-inline-end: -40px;
         margin-inline-start: -40px;
-        margin: 16px -40px 0px -40px;
+        margin: 16px -40px 0px -40px !important;
         padding: 21px 40px 21px 40px;
         tab-size: 4 !important;
         word-spacing: normal;
@@ -837,11 +837,10 @@ body[for="html-export"] {
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
-        p {
-            margin: 16px 0px 0px 0px !important;
-            padding: 0 0 0 0 !important;
-            line-height: 160%;
-            display: block;
+        p,
+        pre[data-role="codeBlock"],
+        pre[class="language-text"] {
+            margin-top: 16px !important;
         }
     }
 

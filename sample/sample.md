@@ -30,9 +30,14 @@ GitHub had been using its own variant of Markdown since as early as 2009, adding
 
 <def>Nerium oleander</def> (/ˈnɪəriəm ... / NEER-ee-əm), most commonly known as oleander or nerium, is a shrub or small tree cultivated worldwide in temperate and subtropical areas as an ornamental and landscaping plant. It is the only species currently classified in the genus Nerium, belonging to subfamily Apocynoideae of the dogbane family Apocynaceae. It is so widely cultivated that no precise region of origin has been identified, though it is usually associated with the Mediterranean Basin.
 
-<div align=center class=img><img src=".Image/2023-02-09-19-39-47.png" style="zoom:10%"><br></div>
+<div align=center class=img><img src=".Image/2023-02-09-19-39-47.png" style="zoom:10%"><br><fig>Nerium Oleander</fig></div>
 
 > Nerium oleander is the **only** species currently classified in the genus Nerium.
+
+<div class=warning>
+
+Nerium oleander is the **only** species currently classified in the genus Nerium.
+</div>
 
 ### Toxicity
 Toxicity studies of animals administered oleander extract concluded that birds and rodents were observed to be relatively insensitive to oleander cardiac glycosides. Other mammals, however, such as dogs and humans, are relatively sensitive to the effects of cardiac glycosides and the clinical manifestations of "glycoside intoxication".
@@ -61,6 +66,7 @@ Version       | Release Date
 .NET 6        | 2021-11-08
 .NET 7        | 2022-11-08
 .NET 8        | 2023-11 (projected)
+
 </htable>
 
 ### Print "Hello World!"
