@@ -658,7 +658,7 @@ body[for="html-export"] {
 
     ref refsrc a::before {
         content: "-- ";
-        font-family: 'Cascadia Code';
+        font-family: var(--code-font-family);
     }
 
     blockquote,
@@ -666,7 +666,6 @@ body[for="html-export"] {
         border-style: solid;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
-        // font-family: var(--default-font-family);
         padding: 4px 30px 20px 30px;
         margin-top: 32px;
         margin-bottom: 32px;
