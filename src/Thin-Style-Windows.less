@@ -621,17 +621,17 @@ body[for="html-export"] {
 
     li pre[data-role="codeBlock"],
     li pre[class="language-text"] {
-        padding-left: 24px;
-        padding-right: 24px;
-        margin-left: 0px;
-        margin-right: 0px;
+        padding-left: 26px !important;
+        padding-right: 26px !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
     }
 
     ref {
         display: block;
         font-style: italic;
         padding: 0 0 0 0;
-        margin: 32px 56px 32px 56px;
+        margin: 42px 56px 16px 56px;
         border-left: none;
         background-color: rgba(0, 0, 0, 0);
         color: inherit;
@@ -649,16 +649,16 @@ body[for="html-export"] {
         // z-index: -1;
     }
 
-    ref a {
+    ref refsrc a {
         display: block;
         border: none;
         margin-top: 16px;
         text-align: right;
     }
 
-    ref a::before {
+    ref refsrc a::before {
         content: "-- ";
-        font-family: 'Cascadia Code';
+        font-family: var(--code-font-family);
     }
 
     blockquote,
@@ -666,7 +666,6 @@ body[for="html-export"] {
         border-style: solid;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
-        // font-family: var(--default-font-family);
         padding: 4px 30px 20px 30px;
         margin-top: 32px;
         margin-bottom: 32px;

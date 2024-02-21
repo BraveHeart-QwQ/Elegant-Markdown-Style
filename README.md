@@ -22,7 +22,7 @@ Please make sure you have installed **Markdown-Preview-Enhanced Plugin** on vsco
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on mac)
 - Enter "Customize CSS" and select the first option, it would open a file called `style.less`
 - Delete **everything** in `style.less`
-- Copy **everything** in [Thin-Style.less](src/Thin-Style.less) (or [Thin-Style-Windows.less](src/Thin-Style-Windows.less) on windows)
+- Copy **everything** in [Thin-Style-Windows.less](src/Thin-Style-Windows.less) (or [Thin-Style.less](src/Thin-Style.less) on macOS)
 - Paste into `style.less`
 - Save file
 
@@ -42,7 +42,7 @@ Screenshots are taken from my 24-inch 2K monitor, may look different on other de
 **Header2**:
 ![alt text](.Images/image-2.png)
 
-**Header3**:.
+**Header3**:
 ![alt text](.Images/image-3.png)
 
 **Header4**:
@@ -129,7 +129,6 @@ Effect:
 ![No Hover](.Images/image-11.png)
 ![Hovering](.Images/image-12.png)
 ![Unfold](.Images/image-13.png)
-
 
 ### Other
 - Page has fixed width
