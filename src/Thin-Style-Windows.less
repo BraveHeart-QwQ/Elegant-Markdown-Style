@@ -760,7 +760,7 @@ body[for="html-export"] {
         font-family: var(--system-font-family);
         padding: 0px 70px 0px 70px;
         position: absolute;
-        margin: -86px -40px 0px -40px;
+        margin: -97px -40px 0px -40px;
         text-align: center;
         color: #ffffff;
         cursor: pointer;
@@ -808,15 +808,17 @@ body[for="html-export"] {
     }
 
     details {
-        // BUG consecutive details block, optimize margin by modify mpe plugin, not these bad hardcode trick
-        margin: 100px 0px -58px 0px;
-        padding: 8px 40px 24px 40px;
-
-        border: 4px solid transparent; // for test
+        margin: 94px 0px -61px 0px;
+        padding: 24px 40px 24px 40px;
+        border: 4px solid transparent;
     }
 
-    details> :nth-child(2) {
+    details[open] :nth-child(2) { // Summary is the first
         margin-top: 0px !important;
+    }
+
+    details[open] :nth-last-child(1) {
+        margin-bottom: 0px !important;
     }
 
     details[open] {
@@ -836,15 +838,5 @@ body[for="html-export"] {
             transform: translateY(3px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-
-        p,
-        pre[data-role="codeBlock"],
-        pre[class="language-text"] {
-            margin-top: 16px !important;
-        }
-    }
-
-    details[open]+* {
-        margin-top: 16px !important;
     }
 }
