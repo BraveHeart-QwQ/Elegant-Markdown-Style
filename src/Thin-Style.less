@@ -262,7 +262,7 @@ body[for="html-export"] {
 
         thead {
             display: none;
-            border: 1px solid rgb(210, 215, 223) !important;
+            border: 1px solid rgb(210, 215, 223) !important;  // !mac
 
             th {
                 border-top: none;
@@ -272,14 +272,14 @@ body[for="html-export"] {
         }
 
         tbody {
-            border: 1px solid rgb(210, 215, 223) !important;
+            border: 1px solid rgb(210, 215, 223) !important;  // !mac
 
             td {
                 // border-color: red;
                 border-top: none;
                 border-left: none;
                 border-right: none;
-                border-color: rgb(210, 215, 223);
+                border-color: rgb(210, 215, 223);  // !mac
 
                 padding-top: 11px;
                 padding-bottom: 11px;
@@ -662,7 +662,7 @@ body[for="html-export"] {
         border-style: solid;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
-                padding: 4px 30px 20px 30px;
+                padding: 20px 30px 20px 30px;
         margin-top: 32px;
         margin-bottom: 32px;
 
@@ -676,6 +676,14 @@ body[for="html-export"] {
 
         span[class="mord cjk_fallback"] {
             font-size: calc((var(--blockquote-fontsize) + 1) * 1px);
+        }
+
+        :nth-child(1) {
+            margin-top: 0px !important;
+        }
+        
+        :nth-last-child(1) {
+            margin-bottom: 0px !important;
         }
     }
 
