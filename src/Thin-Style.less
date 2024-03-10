@@ -818,6 +818,10 @@ body[for="html-export"] {
 
     details[open] :nth-child(2) { // Summary is the first
         margin-top: 0px !important;
+
+        :nth-child(1) { // do one level recursion to fix few situation
+            margin-top: 0px !important;
+        }
     }
 
     details[open] :nth-last-child(1) {
