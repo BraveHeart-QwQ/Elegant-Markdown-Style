@@ -12,8 +12,9 @@ body[for="html-export"] {
     --fig-font-family: 'Cascadia Code';
     --h1-font-family: 'Luna ITC', 'FZZhengHeiS-R-GB';
     --h2-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
-    --h3-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
-    --h4-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
+    --h3-font-family: 'FZZhengHeiS-R-GB';
+    // --h4-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
+    --h4-font-family: var(--normal-font-family);
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
     --p-fontsize: 17;
@@ -140,7 +141,7 @@ body[for="html-export"] {
         border-right: none;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-size: calc(((var(--p-fontsize)) + 1) * 1px);
+        font-size: calc(((var(--p-fontsize))) * 1px);
         font-stretch: normal;
         font-style: normal;
         font-family: var(--h4-font-family);
@@ -153,6 +154,10 @@ body[for="html-export"] {
         text-overflow: ellipsis;
         width: auto;
         word-spacing: normal;
+    }
+    
+    h4:after {
+        content: "：";
     }
 
     h5 {
