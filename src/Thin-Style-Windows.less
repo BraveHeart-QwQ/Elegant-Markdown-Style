@@ -130,7 +130,7 @@ body[for="html-export"] {
         font-weight: 500;
         height: auto;
         letter-spacing: normal;
-        margin: 60px 0px 12px 0px !important;
+        margin: 80px 0px 12px 0px !important;
         text-overflow: ellipsis;
         width: auto;
     }
@@ -156,8 +156,10 @@ body[for="html-export"] {
         word-spacing: normal;
     }
     
-    h4:after {
-        content: "：";
+    h4:before {
+        content: "> ";
+        font-family: var(--code-font-family);
+        font-weight: bolder;
     }
 
     h5 {
@@ -703,15 +705,16 @@ body[for="html-export"] {
     blockquote:nth-of-type(odd) {
         border-width: 0px 0px 0px 0px;
         border-radius: 0px 10px 10px 0px;
+        padding-left: 40px;
         margin-left: -40px;
         margin-right: 33%;
     }
 
     .warning:nth-of-type(even),
     blockquote:nth-of-type(even) {
-        // border-width: 0px 10px 0px 0px;
         border-radius: 10px 0px 0px 10px;
         border-width: 0px 0px 0px 0px;
+        padding-left: 40px;
         margin-left: 33%;
         margin-right: -40px;
     }
