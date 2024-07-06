@@ -71,7 +71,7 @@ body[for="html-export"] {
         box-sizing: border-box;
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
-        font-size: 54px; // !mac
+        font-size: 52px; // !mac
         font-weight: lighter; // !mac
         height: auto;
         line-height: normal;
@@ -93,7 +93,7 @@ body[for="html-export"] {
         counter-increment: header_two;
         display: block;
         font-family: var(--h2-font-family);
-        font-size: 31px; // !mac
+        font-size: 30px; // !mac
         font-weight: normal; // !mac
         margin: 100px 0px 20px 0px;
         text-overflow: ellipsis;
@@ -669,6 +669,7 @@ border-radius: 10px 10px 10px 10px;
 
     blockquote,
     .warning {
+        border-width: 2px 2px 2px 2px;
         border-style: solid;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
@@ -699,32 +700,36 @@ border-radius: 10px 10px 10px 10px;
 
     .warning:nth-of-type(odd),
     blockquote:nth-of-type(odd) {
-        border-width: 0px 0px 0px 0px;
         border-radius: 0px 10px 10px 0px;
-        margin-left: -40px;
+        padding-left: 50px;
+        margin-left: -50px;
         margin-right: 33%;
     }
 
     .warning:nth-of-type(even),
     blockquote:nth-of-type(even) {
-        // border-width: 0px 10px 0px 0px;
         border-radius: 10px 0px 0px 10px;
-        border-width: 0px 0px 0px 0px;
+        padding-left: 40px;
+        padding-right: 50px;
         margin-left: 33%;
-        margin-right: -40px;
+        margin-right: -50px;
     }
 
     .warning {
-        box-shadow: rgba(91, 17, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-        background-color: #feefe3;
-        border-color: rgb(232, 171, 149);
+        box-shadow: rgba(103, 12, 26, 0.2) 4px 8px 4px -1px, rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+        background-color: rgba(254, 225, 229, 0.3);
+        border-color: rgb(232, 171, 149, 0.385);
         color: #bf360c;
+        
+        strong {
+            text-decoration: underline
+        }
     }
 
     blockquote {
-        box-shadow: rgba(0, 82, 105, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-        background-color: rgb(225, 245, 254);
-        border-color: rgb(148, 208, 235);
+        box-shadow: rgba(10, 49, 93, 0.2) 4px 8px 4px -1px, rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
+        background-color: rgba(225, 245, 254, 0.3);
+        border-color: rgba(28, 84, 148, 0.385);
         color: #01579b;
     }
 
