@@ -680,9 +680,11 @@ body[for="html-export"] {
         padding: 20px 30px 20px 30px;
         margin-top: 28px;
         margin-bottom: 34px;
+        z-index: 1 !important;
 
         p {
             display: block;
+            z-index: 3 !important;
         }
 
         .katex {
@@ -700,41 +702,104 @@ body[for="html-export"] {
         :nth-last-child(1) {
             margin-bottom: 0px !important;
         }
+
+        &:nth-of-type(odd) {
+            border-radius: 0px 10px 10px 0px;
+            padding-left: 50px;
+            margin-left: -50px;
+            margin-right: 33%;
+        }
+    
+        &:nth-of-type(even) {
+            border-radius: 10px 0px 0px 10px;
+            padding-left: 40px;
+            padding-right: 50px;
+            margin-left: 33%;
+            margin-right: -50px;
+        }
     }
 
-    .warning:nth-of-type(odd),
-    blockquote:nth-of-type(odd) {
-        border-radius: 0px 10px 10px 0px;
-        padding-left: 50px;
-        margin-left: -50px;
-        margin-right: 33%;
-    }
-
-    .warning:nth-of-type(even),
-    blockquote:nth-of-type(even) {
-        border-radius: 10px 0px 0px 10px;
-        padding-left: 40px;
-        padding-right: 50px;
-        margin-left: 33%;
-        margin-right: -50px;
-    }
 
     .warning {
+        color: rgb(191, 54, 12);
         box-shadow: rgba(103, 12, 26, 0.2) 4px 8px 4px -1px, rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
         background-color: rgba(254, 225, 229, 0.3);
         border-color: rgb(232, 171, 149, 0.385);
-        color: #bf360c;
+        opacity: 0.999999;
         
         strong {
             text-decoration: underline
         }
+
+        &:nth-of-type(odd) {
+            p:first-of-type {
+                &::before {
+                    content: "WARNING";
+                    font-size: 50px;
+                    font-family: 'Vintama Shadow';
+                    color: rgba(148, 28, 44, 0.08);
+                    left: calc(33% - 46px);
+                    margin-top: 7px;
+                    position: absolute;
+                    z-index: -1 !important;
+                }
+            }
+        }
+
+        &:nth-of-type(even) {
+            p:first-of-type {
+                &::before {
+                    content: "警告";
+                    font-size: 50px;
+                    font-family: 'Vintama Shadow';
+                    color: rgba(148, 28, 44, 0.08);
+                    right: 8px;
+                    margin-top: 5px;
+                    font-weight: bolder;
+                    position: absolute;
+                    z-index: -1 !important;
+                }
+            }
+        }
     }
 
     blockquote {
+        color: rgb(1, 87, 155);
         box-shadow: rgba(10, 49, 93, 0.2) 4px 8px 4px -1px, rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
         background-color: rgba(225, 245, 254, 0.3);
         border-color: rgba(28, 84, 148, 0.385);
-        color: #01579b;
+        opacity: 0.999999;
+
+        &:nth-of-type(odd) {
+            p:first-of-type {
+                &::before {
+                    content: "NOTE";
+                    font-size: 50px;
+                    font-family: 'Vintama Shadow';
+                    color: rgba(28, 84, 148, 0.08);
+                    left: 12px;
+                    margin-top: 7px;
+                    position: absolute;
+                    z-index: -1 !important;
+                }
+            }
+        }
+
+        &:nth-of-type(even) {
+            p:first-of-type {
+                &::before {
+                    content: "注記";
+                    font-size: 46px;
+                    font-family: 'Vintama Shadow';
+                    color: rgba(28, 84, 148, 0.08);
+                    left: calc(33% + 26px);
+                    margin-top: 5px;
+                    font-weight: bolder;
+                    position: absolute;
+                    z-index: -1 !important;
+                }
+            }
+        }
     }
 
     .katex {
