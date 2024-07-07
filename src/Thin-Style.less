@@ -1,5 +1,3 @@
-// TODO dynamic width of blockquote/warning block implemented by modifying js
-
 body[for="html-export"] {
     background-color: rgb(231, 233, 236) !important;
 }
@@ -12,9 +10,8 @@ body[for="html-export"] {
     --fig-font-family: 'Cascadia Code';
     --h1-font-family: 'Luna ITC', 'FZZhengHeiS-R-GB';
     --h2-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
-    --h3-font-family: 'FZZhengHeiS-R-GB';
-    // --h4-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
-    --h4-font-family: var(--normal-font-family);
+    --h3-font-family: var(--default-font-family);
+    --h4-font-family: var(--default-font-family);
     --special-symbol-font-family: 'Noto Sans Symbols2';
 
     --p-fontsize: 17;
@@ -65,15 +62,13 @@ body[for="html-export"] {
         padding-bottom: 0px !important;
     }
 
-    counter-reset: header_two;
-
     h1 {
-        counter-reset: fig_num;
+        counter-reset: header_two 0;
         box-sizing: border-box;
         color: rgb(32, 32, 36);
         font-family: var(--h1-font-family);
-        font-size: 52px; // !mac
-        font-weight: lighter; // !mac
+        font-size: 52px;
+        font-weight: 500;
         height: auto;
         line-height: normal;
         letter-spacing: normal;
@@ -89,65 +84,99 @@ body[for="html-export"] {
     }
 
     h2 {
-        // counter-reset: header_three;
-        counter-reset: fig_num;
+        counter-reset: header_three 0;
+        counter-reset: fig_num 0;
         counter-increment: header_two;
         display: block;
         font-family: var(--h2-font-family);
-        font-size: 30px; // !mac
-        font-weight: normal; // !mac
+        font-size: 30px;
+        font-weight: normal;
         margin: 100px 0px 20px 0px;
         text-overflow: ellipsis;
         text-align: left;
         width: auto;
         word-spacing: 1px !important;
+        white-space: nowrap;
         list-style: decimal;
         list-style-position: inside;
         line-height: 100%;
+        opacity: 0.999999;
+
+        &:nth-of-type(1) {
+            margin-top: 120px;
     }
 
-    h2:after {
+        &:before {
         content: "";
-        display: block;
-        width: 80px;
-        height: 0.13rem;
-        margin-top: 10px;
-        background-color: #c50000;
+            width: 32px;
+            position: absolute;
+            margin-top: 14px !important;
+            // margin-left: 6px;
+            left: 0px;
+            height: 8px;
+            background-image: linear-gradient(to right, rgb(23, 23, 23) 0%, rgb(23, 23, 23) 74%, transparent 0%);
+            background-size: 13px 2px;
+            background-repeat: repeat-x;
     }
 
-    h2:nth-of-type(1) {
-        margin-top: 120px;
+        &:after {
+            content: "";
+            width: 100%;
+            position: absolute;
+            margin-top: 14px !important;
+            margin-left: 8px;
+            height: 8px;
+            background-image: linear-gradient(to right, rgb(23, 23, 23) 0%, rgb(23, 23, 23) 74%, transparent 0%);
+            background-size: 13px 2px;
+            background-repeat: repeat-x;
+        }
     }
 
     h3 {
         counter-reset: header_four;
-        // box-sizing: border-box;
+        counter-increment: header_three;
         color: rgb(23, 23, 23);
         font-family: var(--h3-font-family);
-        font-size: 22px; // !mac
+        font-size: 24px;
         font-stretch: normal;
         font-style: normal;
         font-variant-caps: normal;
-        font-weight: 500; // !mac
+        font-weight: 500;
         height: auto;
         letter-spacing: normal;
         margin: 80px 0px 12px 0px !important;
         text-overflow: ellipsis;
         width: auto;
+        opacity: 0.999999;
+
+        &:before {
+            border-radius: 10px;
+            // background-color: rgb(206, 206, 206);
+            background-color: rgb(90, 120, 228);
+            content: counter(header_two) "." counter(header_three);
+            color: rgb(255, 255, 255);
+            padding: 0px 5px 2px 6px;
+            font-family: var(--normal-font-family) !important;
+            font-weight: bold;
+            margin-right: 12px;
+            position: relative;
+            z-index: -1;
+        }
     }
 
     h4 {
+        counter-increment: header_four;
         border-top: none;
         border-bottom: none;
         border-right: none;
         box-sizing: border-box;
         color: rgb(23, 23, 23);
-        font-size: calc(((var(--p-fontsize))) * 1px);
+        font-size: calc(((var(--p-fontsize) + 1)) * 1px);
         font-stretch: normal;
         font-style: normal;
         font-family: var(--h4-font-family);
         font-variant-caps: normal;
-        font-weight: 600; // !mac
+        font-weight: 600;
         height: auto;
         letter-spacing: normal;
         padding: 0px 0px 0px 0px;
@@ -155,14 +184,23 @@ body[for="html-export"] {
         text-overflow: ellipsis;
         width: auto;
         word-spacing: normal;
+        opacity: 0.999999;
+
+        &:before {
+            border-radius: 8px;
+            // background-color: rgb(206, 206, 206);
+            background-color: rgb(214, 85, 174);
+            content: counter(header_two) "." counter(header_three) "." counter(header_four);
+            color: rgb(255, 255, 255);
+            padding: 2px 4px 4px 4px;
+            font-family: var(--normal-font-family) !important;
+            font-weight: bold;
+            margin-right: 8px;
+            position: relative;
+            z-index: -1;
+        }
     }
     
-    h4:before {
-        content: "-> ";
-        font-family: var(--code-font-family);
-        font-weight: bolder;
-    }
-
     h5 {
         border-style: solid;
         border-top: none !important;
@@ -404,7 +442,7 @@ body[for="html-export"] {
     strong,
     def {
         font-family: var(--default-font-family);
-        font-weight: 500;
+        font-weight: 600;
     }
 
     strong {
@@ -715,7 +753,6 @@ border-radius: 10px 10px 10px 10px;
         margin-right: -50px;
         }
     }
-
 
     .warning {
         color: rgb(191, 54, 12);
