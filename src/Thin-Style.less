@@ -188,7 +188,7 @@ body[for="html-export"] {
             z-index: -1;
         }
     }
-    
+
     h5 {
         border-style: solid;
         border-top: none !important;
@@ -217,7 +217,7 @@ body[for="html-export"] {
         display: block;
         padding-left: 40px;
 
-    h6 {
+        h6 {
             color: rgb(23, 23, 23);
             display: list-item;
             list-style-type: disc;
@@ -258,7 +258,6 @@ body[for="html-export"] {
     }
 
     hr {
-        // margin: 24px 0px;
         height: 1px;
         border: 0;
         padding-top: 1px;
@@ -371,9 +370,9 @@ body[for="html-export"] {
     }
 
     .onetotwo-column {
+
         td:first-child,
-        th:first-child
-        {
+        th:first-child {
             width: 33% !important;
             word-break: break-all;
         }
@@ -499,7 +498,7 @@ body[for="html-export"] {
 
         blockquote:nth-of-type(odd),
         .warning:nth-of-type(odd) {
-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
             margin-top: 16px;
             margin-bottom: 16px;
             border-width: 0 0 0 0 !important;
@@ -508,7 +507,7 @@ border-radius: 10px 10px 10px 10px;
 
         blockquote:nth-of-type(even),
         .warning:nth-of-type(even) {
-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
             margin-top: 16px;
             margin-bottom: 16px;
             border-width: 0 0 0 0 !important;
@@ -530,6 +529,9 @@ border-radius: 10px 10px 10px 10px;
     }
 
     .img {
+        /* 防止 margin 塌陷 */
+        width: 100%;
+        display: inline-block;
         margin: 24px 0px 24px 0px;
         font-family: var(--fig-font-family);
     }
@@ -767,7 +769,7 @@ border-radius: 10px 10px 10px 10px;
         background-color: rgba(254, 225, 229, 0.3);
         border-color: rgb(232, 171, 149, 0.385);
         opacity: 0.999999;
-        
+
         strong {
             text-decoration: underline
         }
@@ -888,6 +890,7 @@ border-radius: 10px 10px 10px 10px;
     }
 
     summary {
+        cursor: pointer;
         width: fit-content;
         font-size: calc((var(--p-fontsize) - 2) * 1px);
         line-height: 100%;
@@ -899,7 +902,7 @@ border-radius: 10px 10px 10px 10px;
         font-family: 'Roboto', sans-serif;
         border-radius: 6px;
         border: none;
-      
+
         color: #fff;
         background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
         background-origin: border-box;
@@ -907,10 +910,16 @@ border-radius: 10px 10px 10px 10px;
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
+        transition: filter 0.1s ease, transform 0.1s ease;
     }
-    summary:focus {
-        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
-        outline: 0;
+
+    summary:hover {
+        filter: brightness(1.1);
+    }
+
+    summary:active {
+        filter: brightness(0.8);
+        // transform: translateY(1px);
     }
 
     details {
@@ -924,27 +933,30 @@ border-radius: 10px 10px 10px 10px;
         margin-top: 24px;
         margin-left: 8px;
         padding: 40px 40px 40px 40px;
-        display: block;
+        display: inline-block;
+        width: calc(100% - 100px);
         border: 2px rgb(63, 63, 63) solid;
         border-radius: 8px;
 
-        :nth-child(2) { /* summary 下的第一个元素 */
-        margin-top: 0px !important;
-
-        :nth-child(1) {
+        :nth-child(2) {
+            /* summary 下的第一个元素 */
             margin-top: 0px !important;
+
+            :nth-child(1) {
+                margin-top: 0px !important;
+            }
         }
-    }
+
         :nth-last-child(1) {
-        margin-bottom: 0px !important;
-    }
+            margin-bottom: 0px !important;
+        }
 
         summary {
             position: absolute;
             margin-top: -48px;
             margin-left: -48px;
         }
-        }
+    }
 
     summary::marker {
         content: none;
