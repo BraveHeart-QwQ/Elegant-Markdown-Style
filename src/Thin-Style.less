@@ -851,7 +851,11 @@ body[for="html-export"] {
     .katex-display {
         margin: 20px 0px 0px 0px !important;
         font-size: calc((var(--p-fontsize)) * 1px) !important;
-        overflow-x: auto !important;
+        overflow-x: hidden;
+
+        .katex {
+            overflow-x: scroll;
+        }
     }
 
     .katex {
