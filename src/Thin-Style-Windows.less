@@ -852,37 +852,48 @@ body[for="html-export"] {
         }
     }
 
-    .katex {
-        font-size: calc((var(--p-fontsize) + 2) * 1px);
-        font-family: KaTeX_Main, var(--normal-font-family);
-
-        max-width: 100%;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        hyphens: auto;
-    }
-
-    .base {
+    .katex-display {
+        margin: 20px 0px 0px 0px !important;
+        font-size: calc((var(--p-fontsize)) * 1px) !important;
         max-width: 100% !important;
         overflow-wrap: break-word !important;
         word-wrap: break-word !important;
         hyphens: auto !important;
     }
 
-    span[class="katex-display"] {
-        margin: 20px 0px 0px 0px !important;
-    }
+    .katex {
+        font-size: calc((var(--p-fontsize) - 1) * 1px);
+        // font-family: KaTeX_Main, var(--normal-font-family);
+        font-family: 'Fira Code', var(--normal-font-family);
+        font-weight: 400;
+        max-width: 100% !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        hyphens: auto !important;
 
-    span[class="mord cjk_fallback"] {
-        font-size: calc(var(--p-fontsize) * 1px);
-    }
+        .mord {
+            font-family: 'Fira Code', var(--normal-font-family);
+            font-weight: 400;
+            font-style: normal;
 
-    span[class="mord cjk_fallback"]:before {
-        content: " ";
-    }
+            .boldsymbol {
+                font-weight: 600;
+            }
+        }
 
-    span[class="mord cjk_fallback"]:after {
-        content: " ";
+        .mrel {
+            /* 特殊符号 */
+            font-family: KaTeX_Main, var(--normal-font-family);
+            font-size: 20px;
+        }
+
+        .cjk_fallback:before {
+            content: " ";
+        }
+
+        .cjk_fallback:after {
+            content: " ";
+        }
     }
 
     compressList li {
