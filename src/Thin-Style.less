@@ -854,6 +854,7 @@ body[for="html-export"] {
         padding-left: 28px;
         padding-right: 28px;
         overflow-x: hidden;
+        overflow-y: hidden;
 
         .katex {
             overflow-x: auto;
@@ -863,15 +864,14 @@ body[for="html-export"] {
 
     .katex {
         font-size: calc((var(--p-fontsize) - 1) * 1px);
-        // font-family: KaTeX_Main, var(--normal-font-family);
-        // font-family: 'Fira Code', var(--normal-font-family);
-        font-family: 'MyMath', KaTeX_Main;
+        // font-family: KaTeX_Main;
+        font-family: 'MyMath', KaTeX_Main, 'Noto Sans Symbols 2';
         font-weight: 400;
 
         .mbin,
         .mord {
-            // font-family: KaTeX_Main, var(--normal-font-family);
-            font-family: 'MyMath', KaTeX_Main;
+            // font-family: KaTeX_Main;
+            font-family: 'MyMath', KaTeX_Main, 'Noto Sans Symbols 2';
             font-weight: 400;
             font-style: normal;
 
@@ -881,7 +881,7 @@ body[for="html-export"] {
         }
 
         .mrel { /* 特殊符号 */
-            font-family: KaTeX_Main, var(--normal-font-family);
+            // font-family: KaTeX_Main;
             font-size: 20px;
         }
 
