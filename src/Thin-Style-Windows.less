@@ -868,11 +868,14 @@ body[for="html-export"] {
     .katex {
         font-size: calc((var(--p-fontsize) - 1) * 1px);
         // font-family: KaTeX_Main, var(--normal-font-family);
-        font-family: 'Fira Code', var(--normal-font-family);
+        // font-family: 'Fira Code', var(--normal-font-family);
+        font-family: 'MyMath', KaTeX_Main;
         font-weight: 400;
 
+        .mbin,
         .mord {
-            font-family: 'Fira Code', var(--normal-font-family);
+            // font-family: KaTeX_Main, var(--normal-font-family);
+            font-family: 'MyMath', KaTeX_Main;
             font-weight: 400;
             font-style: normal;
 
@@ -881,10 +884,13 @@ body[for="html-export"] {
             }
         }
 
-        .mrel {
-            /* 特殊符号 */
+        .mrel { /* 特殊符号 */
             font-family: KaTeX_Main, var(--normal-font-family);
             font-size: 20px;
+        }
+
+        .frac-line { /* 分数分隔线 */
+            border-bottom-width: 0.08em !important;
         }
 
         .cjk_fallback:before {
