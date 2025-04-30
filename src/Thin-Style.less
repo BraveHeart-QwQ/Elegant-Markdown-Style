@@ -13,11 +13,16 @@ body[for="html-export"] {
     --h3-font-family: 'Raleway', 'FZZhengHeiS-R-GB';
     --h4-font-family: var(--default-font-family);
     --special-symbol-font-family: 'Noto Sans Symbols2';
+    --math-default-font-family: KaTeX_Main, KaTeX_AMS, 'Times New Roman';
+    --math-large-font-family: KaTeX_Size2, KaTeX_Main, KaTeX_AMS, 'Times New Roman';
+    --math-font-family: 'CustomMath', var(--math-default-font-family);
+    // --math-font-family: 'LXGW WenKai Mono', var(--math-default-font-family);
 
     --p-fontsize: 17;
     --table-fontsize: 15;
     --fig-fontsize: 14;
     --blockquote-fontsize: 16;
+    --math-fontsize: 19;
 
     --resource-dir: 'E:\\Pictures\\Markdown'; // set it yourself
 
@@ -223,7 +228,7 @@ body[for="html-export"] {
             display: list-item;
             list-style-type: disc;
             list-style-position: outside;
-            margin-left: 0px;
+            margin: 16px 0px 0px 0px;
             font-weight: 400;
         }
 
@@ -484,6 +489,10 @@ body[for="html-export"] {
         padding-left: 40px;
         margin-top: 16px;
         margin-bottom: 0px;
+    }
+
+    ol {
+        list-style: decimal !important;
     }
 
     li {
@@ -864,26 +873,43 @@ body[for="html-export"] {
     }
 
     .katex {
-        font-size: calc((var(--p-fontsize) - 1) * 1px);
-        // font-family: KaTeX_Main;
-        font-family: 'MyMath', KaTeX_Main, 'Noto Sans Symbols 2';
-        font-weight: 400;
+        font-family: var(--math-font-family);
+        font-weight: 500;
+        font-size: calc(var(--math-fontsize) * 1px);
 
         .mbin,
+        .mathnormal,
         .mord {
-            // font-family: KaTeX_Main;
-            font-family: 'MyMath', KaTeX_Main, 'Noto Sans Symbols 2';
-            font-weight: 400;
+            font-family: var(--math-font-family);
+            font-weight: 500;
             font-style: normal;
 
             .boldsymbol {
-                font-weight: 600;
+                font-weight: bolder;
             }
         }
 
+        .mathrm,
+        .mop {
+            font-family: 'LXGW WenKai', var(--math-default-font-family);
+            font-weight: 500;
+
+            .mathnormal {
+                font-family: var(--math-font-family);
+                font-style: normal;
+            }
+        }
+
+        .large-op {
+            font-family: var(--math-large-font-family) !important;
+        }
+
+        .op-symbol,
+        .mop .op-symbol,
+        .mop .mrel
+        .mord .mrel,
         .mrel { /* 特殊符号 */
-            // font-family: KaTeX_Main;
-            font-size: 20px;
+            font-family: var(--math-default-font-family);
         }
 
         .frac-line { /* 分数分隔线 */
