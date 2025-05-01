@@ -90,7 +90,7 @@ body[for="html-export"] {
 
     h2 {
         border-bottom: 0.1rem solid rgb(200, 200, 200) !important;
-        counter-reset: header_three 0 fig_num 0;
+        counter-reset: header_three 0 fig_num 0 header_four 0;
         counter-increment: header_two;
         display: block;
         font-family: var(--h2-font-family);
@@ -891,13 +891,14 @@ body[for="html-export"] {
             .boldsymbol {
                 font-family: 'Fira Code', var(--math-default-font-family); /* !win 上要用加粗才看得清，boldsymbol 只能换个字体了 */
                 font-weight: 500; /* !win */
-            }
+                font-size: calc((var(--math-fontsize) - 2) * 1px); /* !win 这个会破坏加粗字体缩小的能力（比如位于指数的时候），但一般来说加粗字体很少缩小 */
+    }
         }
 
         .mathrm,
         .mop {
             font-family: 'LXGW WenKai', var(--math-default-font-family);
-            font-weight: 500;
+            font-weight: 600; /* !win */
 
             .mathnormal {
                 font-family: var(--math-font-family);
