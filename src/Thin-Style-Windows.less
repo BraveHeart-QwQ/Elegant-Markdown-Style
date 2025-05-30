@@ -1014,19 +1014,11 @@ body[for="html-export"] {
     details[open] {
         margin-top: 24px;
         margin-left: 8px;
-        padding: 40px 40px 40px 40px;
+        padding: 24px 40px 40px 40px;
         display: inline-block;
         width: calc(100% - 100px);
         border: 2px rgb(63, 63, 63) solid;
         border-radius: 8px;
-
-        :nth-child(2) { /* summary 下的第一个元素 */
-            margin-top: 0px !important;
-
-            :nth-child(1) {
-                margin-top: 0px !important;
-            }
-        }
 
         :nth-last-child(1) {
             margin-bottom: 0px !important;
@@ -1034,7 +1026,7 @@ body[for="html-export"] {
 
         summary {
             position: absolute;
-            margin-top: -48px;
+            margin-top: -32px;
             margin-left: -48px;
         }
     }
