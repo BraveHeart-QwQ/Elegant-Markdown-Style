@@ -375,6 +375,7 @@ body[for="html-export"] {
     }
 
     htable {
+        table-layout: fixed;
         thead {
             border-width: 0.08rem !important;
             display: table-row-group;
@@ -395,8 +396,8 @@ body[for="html-export"] {
         }
 
         tbody {
-            tr td:first-child {
-                width: auto;
+            tr td {
+                width: 50% !important;
                 word-break: break-all;
             }
         }
