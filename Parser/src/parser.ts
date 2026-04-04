@@ -105,7 +105,7 @@
     onDidParseMarkdown: async function (html: string): Promise<string> {
         class HtmlProcessor {
             private static readonly RE_IMG_CAPTION = /<img([^>]*)\simage-title="([^"]*)"([^>]*)>/g;
-            private static readonly RE_P_FIGURE = /<p>(<figure>(?:[\s\S]*?)<\/figure>)<\/p>/g;
+            private static readonly RE_P_FIGURE = /<p>(<div class=img>(?:[\s\S]*?)<\/div>)<\/p>/g;
             private static readonly RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
             private static readonly RE_BLOCKQUOTE_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)!\[([^\]]+)\](?:<br[\t ]*\/?>[ \t]*\n?)?/g;
             private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
@@ -122,10 +122,10 @@
             }
 
             private injectImageCaptions(html: string): string {
-                // 将带 image-title 的 <img> 包装为 <figure><figcaption>
+                // 将带 image-title 的 <img> 包装为 <div class=img><div>
                 HtmlProcessor.RE_IMG_CAPTION.lastIndex = 0;
                 html = html.replace(HtmlProcessor.RE_IMG_CAPTION, (_, before, title, after) => {
-                    return `<figure><img${before}${after}><figcaption>${title}</figcaption></figure>`;
+                    return `<div class=img><img${before}${after}><figcaption>${title}</figcaption></div>`;
                 });
                 // 解除 <p><figure>...</figure></p> 的多余包装
                 HtmlProcessor.RE_P_FIGURE.lastIndex = 0;
