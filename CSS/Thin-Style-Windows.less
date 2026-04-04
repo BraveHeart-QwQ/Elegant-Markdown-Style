@@ -263,7 +263,6 @@ body[for="html-export"] {
     }
 
     a {
-        font-family: var(--normal-font-family);
         color: rgb(26, 115, 232) !important;
         // color: #0084d0 !important;
         border-bottom: none;
@@ -329,7 +328,7 @@ body[for="html-export"] {
         code {
             font-size: calc((var(--table-fontsize) - 0) * 1px) !important;
             word-wrap: normal;
-            // word-break: keep-all;
+            word-break: break-all;
         }
 
         thead {
@@ -375,7 +374,6 @@ body[for="html-export"] {
     }
 
     htable {
-        table-layout: fixed;
         thead {
             border-width: 0.08rem !important;
             display: table-row-group;
@@ -396,8 +394,8 @@ body[for="html-export"] {
         }
 
         tbody {
-            tr td {
-                width: 50% !important;
+            tr td:first-child {
+                width: auto;
                 word-break: break-all;
             }
         }
@@ -517,10 +515,6 @@ body[for="html-export"] {
 
     ol {
         list-style: decimal !important;
-    }
-
-    .task-list-item-checkbox {
-        margin-left: -21px;
     }
 
     li {
