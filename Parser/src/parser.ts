@@ -100,6 +100,7 @@
             private static readonly RE_P_FIGURE = /<p>(<figure>(?:[\s\S]*?)<\/figure>)<\/p>/g;
             private static readonly RE_TABLE_CAPTION = /<p[^>]*><span data-table-caption="([^"]*)"><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
             private static readonly RE_BLOCKQUOTE_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)!\[([^\]]+)\](?:<br[\t ]*\/?>[ \t]*\n?)?/g;
+            private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
 
             async process(html: string): Promise<string> {
 
@@ -107,6 +108,7 @@
                 html = this.injectTableCaptions(html);
                 html = this.injectImageCaptions(html);
                 html = this.injectBlockquoteMarks(html);
+                html = this.injectHeaderList(html);
 
                 return html;
             }
@@ -139,6 +141,14 @@
                     const escaped = mark.replace(/"/g, '&quot;');
                     const newBqTag = bqOpenTag.replace(/^<blockquote/, `<blockquote data-mark="${escaped}"`);
                     return `${newBqTag}${before}`;
+                });
+            }
+
+            private injectHeaderList(html: string): string {
+                // 将连续的 h5/h6 段（含其后续内容）合并包裹为 <div class="header-list">
+                HtmlProcessor.RE_HEADER_LIST_RUN.lastIndex = 0;
+                return html.replace(HtmlProcessor.RE_HEADER_LIST_RUN, (match) => {
+                    return `<div class="header-list">${match}</div>`;
                 });
             }
         }
