@@ -3,6 +3,7 @@
     // - Do not add new lines to markdown, as this will break the scroll synchronization in the preview.
     // - Inserting HTML code may cause parsing errors in adjacent Markdown line.
     // - HTML comments are stripped after onWillParseMarkdown and cannot be passed to onDidParseMarkdown.
+    // - VSCode Preview may inject the data-table-caption attribute into HTML tags. Regex matching should be permissive regarding attributes.
 
     /**
      * Hook to modify the Markdown code before it is parsed.
@@ -98,12 +99,14 @@
             private static readonly RE_IMG_CAPTION = /<img([^>]*)\sdata-caption="([^"]*)"([^>]*)>/g;
             private static readonly RE_P_FIGURE = /<p>(<figure>(?:[\s\S]*?)<\/figure>)<\/p>/g;
             private static readonly RE_TABLE_CAPTION = /<p[^>]*><span data-table-caption="([^"]*)"><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
+            private static readonly RE_BLOCKQUOTE_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)!\[([^\]]+)\](?:<br[\t ]*\/?>[ \t]*\n?)?/g;
 
             async process(html: string): Promise<string> {
 
                 // reverse the order of injection to ensure captions are correctly nested
                 html = this.injectTableCaptions(html);
                 html = this.injectImageCaptions(html);
+                html = this.injectBlockquoteMarks(html);
 
                 return html;
             }
@@ -127,6 +130,16 @@
                     return table.replace(/^(<table[^>]*>)/, `$1<caption>${caption}</caption>`);
                 });
                 return html;
+            }
+
+            private injectBlockquoteMarks(html: string): string {
+                // 将 blockquote 首行的 ![Mark] 提升为 data-mark attribute
+                HtmlProcessor.RE_BLOCKQUOTE_MARK.lastIndex = 0;
+                return html.replace(HtmlProcessor.RE_BLOCKQUOTE_MARK, (_, bqOpenTag, before, mark) => {
+                    const escaped = mark.replace(/"/g, '&quot;');
+                    const newBqTag = bqOpenTag.replace(/^<blockquote/, `<blockquote data-mark="${escaped}"`);
+                    return `${newBqTag}${before}`;
+                });
             }
         }
 
