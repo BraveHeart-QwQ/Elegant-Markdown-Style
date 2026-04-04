@@ -4,6 +4,8 @@
     // - Inserting HTML code may cause parsing errors in adjacent Markdown line.
     // - HTML comments are stripped after onWillParseMarkdown and cannot be passed to onDidParseMarkdown.
     // - VSCode Preview may inject the data-source-line attribute into HTML tags. Regex matching should be permissive regarding attributes.
+    // - HTML tags in Markdown may be removed by the sanitizer.
+    // - Data Attribute should start with "data-" to avoid conflicts with standard attributes and ensure they are preserved in the output.
 
     /**
      * Hook to modify the Markdown code before it is parsed.
@@ -152,12 +154,12 @@
                         }
                     }
                     let result = table;
-                    if (tableAttrs.length > 0) {
-                        const attrsStr = tableAttrs.map(([k, v]) => v === '' ? ` ${k}` : ` ${k}="${v}"`).join('');
-                        result = result.replace(/^(<table)([^>]*>)/, `$1${attrsStr}$2`);
-                    }
                     if (title !== null) {
                         result = result.replace(/^(<table[^>]*>)/, `$1<caption>${title}</caption>`);
+                    }
+                    if (tableAttrs.length > 0) {
+                        const attrsStr = tableAttrs.map(([k, v]) => v === '' ? ` ${k}` : ` ${k}="${v}"`).join('');
+                        result = `<div class=table ${attrsStr}>\n${result}\n</div>`;
                     }
                     return result;
                 });
