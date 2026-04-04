@@ -90,7 +90,7 @@ body[for="html-export"] {
 
     h2 {
         border-bottom: 0.1rem solid rgb(200, 200, 200) !important;
-        counter-reset: header_three 0 fig_num 0 header_four 0;
+        counter-reset: header_three 0 fig_num 0 header_four 0 table_num 0;
         counter-increment: header_two;
         display: block;
         font-family: var(--h2-font-family);
@@ -572,7 +572,7 @@ body[for="html-export"] {
         font-family: var(--fig-font-family);
     }
 
-    figcaption, fig {
+    table > caption, figcaption, fig {
         text-align: center;
         font-family: var(--fig-font-family);
         font-size: calc(var(--fig-fontsize) * 1px) !important;
@@ -580,6 +580,7 @@ body[for="html-export"] {
         display: block;
         max-width: 500px;
         margin: 0 auto; // center
+        text-align: center;
 
         .katex {
             font-size: calc((var(--fig-fontsize) + 2) * 1px);
@@ -592,12 +593,23 @@ body[for="html-export"] {
         }
     }
 
+    table > caption {
+        display: table-caption;
+    }
+
     figcaption::before, fig::before {
         counter-increment: fig_num;
         content: "Fig " counter(header_two) "-" counter(fig_num) ".";
         word-spacing: 0px !important;
         margin-right: 10px;
         // font-weight: 900;
+    }
+
+    table > caption::before {
+        counter-increment: table_num;
+        content: "Table " counter(header_two) "-" counter(table_num) ".";
+        word-spacing: 0px !important;
+        margin-right: 10px;
     }
 
     code {
