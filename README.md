@@ -15,14 +15,14 @@ p.s. As a developer (and user), I personally use notes mixed with Chinese and En
 ## Install
 
 ### Install Fonts
-Search "font-family" in [Thin-Style.less](CSS/Thin-Style.less) and download it from the Internet by yourself. Some of these fonts may be found on Github or [Google Fonts](https://fonts.google.com/).
+Search "font-family" in [Thin-Style.less](CSS/Thin-Style-MacOS.less) and download it from the Internet by yourself. Some of these fonts may be found on Github or [Google Fonts](https://fonts.google.com/).
 
 ### Install Style
 Please make sure you have installed **Markdown-Preview-Enhanced Plugin** on vscode. Then follow below steps:
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> on mac)
 - Enter "Customize CSS" and select the first option, it would open a file called `style.less`
 - Delete **everything** in `style.less`
-- Copy **everything** in [Thin-Style-Windows.less](CSS/Thin-Style-Windows.less) (or [Thin-Style.less](CSS/Thin-Style.less) on macOS)
+- Copy **everything** in [Thin-Style-Windows.less](CSS/Thin-Style-Windows.less) (or [Thin-Style.less](CSS/Thin-Style-MacOS.less) on macOS)
 - Paste into `style.less`
 - Save file
 
