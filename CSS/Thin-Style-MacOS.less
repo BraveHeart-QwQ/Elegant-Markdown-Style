@@ -18,11 +18,11 @@ body[for="html-export"] {
     --math-font-family: 'Hmath', var(--math-default-font-family);
     // --math-font-family: 'LXGW WenKai Mono', var(--math-default-font-family);
 
-    --p-fontsize: 17;
+    --p-fontsize: 16;
     --table-fontsize: 15;
     --fig-fontsize: 14;
     --blockquote-fontsize: 16;
-    --math-fontsize: 19;
+    --math-fontsize: 18;
 
     --resource-dir: 'E:\\Pictures\\Markdown'; // set it yourself
 
@@ -223,10 +223,21 @@ body[for="html-export"] {
         display: block;
         padding-left: 40px;
 
-        h6 {
+        h5 {
             color: rgb(23, 23, 23);
             display: list-item;
             list-style-type: disc;
+            list-style-position: outside;
+            margin: 16px 0px 0px 0px;
+            font-weight: 400;
+            padding: 0px !important;
+            border: none;
+        }
+
+        h6 {
+            color: rgb(23, 23, 23);
+            display: list-item;
+            list-style-type: decimal;
             list-style-position: outside;
             margin: 16px 0px 0px 0px;
             font-weight: 400;
@@ -253,13 +264,6 @@ body[for="html-export"] {
         ul {
             list-style-type: circle;
         }
-    }
-
-    h1 a,
-    h2 a,
-    h3 a,
-    h4 a {
-        font-size: 18px;
     }
 
     a {
@@ -565,16 +569,19 @@ body[for="html-export"] {
     }
 
     .img {
+        text-align: center;
         margin: 24px 0px 24px 0px;
         font-family: var(--fig-font-family);
     }
 
-    fig {
+    figcaption, fig {
+        text-align: center;
         font-family: var(--fig-font-family);
         font-size: calc(var(--fig-fontsize) * 1px) !important;
         font-weight: 900;
         display: block;
         max-width: 500px;
+        margin: 0 auto; // center
 
         .katex {
             font-size: calc((var(--fig-fontsize) + 2) * 1px);
@@ -587,7 +594,7 @@ body[for="html-export"] {
         }
     }
 
-    fig:before {
+    figcaption::before, fig::before {
         counter-increment: fig_num;
         content: "Fig " counter(header_two) "-" counter(fig_num) ".";
         word-spacing: 0px !important;
@@ -943,13 +950,11 @@ body[for="html-export"] {
         .op-symbol,
         .mop .op-symbol,
         .mop .mrel .mord .mrel,
-        .mrel {
-            /* 特殊符号 */
+        .mrel { /* 特殊符号 */
             font-family: var(--math-default-font-family);
         }
 
-        .frac-line {
-            /* 分数分隔线 */
+        .frac-line { /* 分数分隔线 */
             border-bottom-width: 0.08em !important;
         }
 
