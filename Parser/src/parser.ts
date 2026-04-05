@@ -1,4 +1,11 @@
 ({
+    //===----------------------------------------------------------------------===//
+    //
+    // @author	: BraveHeart-QwQ
+    // @desc	: https://github.com/BraveHeart-QwQ/Elegant-Markdown-Style
+    //
+    //===----------------------------------------------------------------------===//
+
     // NOTE: 
     // - Do not add new lines to markdown, as this will break the scroll synchronization in the preview.
     // - Inserting HTML code may cause parsing errors in adjacent Markdown line.
@@ -136,7 +143,7 @@
      */
     onDidParseMarkdown: async function (html: string): Promise<string> {
         class HtmlProcessor {
-            private static readonly RE_IMG_CAPTION = /<img([^>]*)\simage-title="([^"]*)"([^>]*)>/g;
+            private static readonly RE_IMG_ANY = /<img([^>]*)>/g;
             private static readonly RE_P_FIGURE = /<p>(<div class=img>(?:[\s\S]*?)<\/div>)<\/p>/g;
             private static readonly RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
             private static readonly RE_CALLOUT_MARK = /(<blockquote[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
@@ -162,12 +169,18 @@
             }
 
             private injectImageCaptions(html: string): string {
-                // 将带 image-title 的 <img> 包装为 <div class=img><div>
-                HtmlProcessor.RE_IMG_CAPTION.lastIndex = 0;
-                html = html.replace(HtmlProcessor.RE_IMG_CAPTION, (_, before, title, after) => {
-                    return `<div class=img><img${before}${after}><figcaption>${title}</figcaption></div>`;
+                // 将所有 <img> 包装为 <div class=img>，有 image-title 的额外添加 <figcaption>
+                HtmlProcessor.RE_IMG_ANY.lastIndex = 0;
+                html = html.replace(HtmlProcessor.RE_IMG_ANY, (_, attrs: string) => {
+                    const m = / image-title="([^"]*)"/.exec(attrs);
+                    if (m) {
+                        const title = m[1]!;
+                        const cleanAttrs = attrs.replace(/ image-title="[^"]*"/, '');
+                        return `<div class=img><img${cleanAttrs}><figcaption>${title}</figcaption></div>`;
+                    }
+                    return `<div class=img><img${attrs}></div>`;
                 });
-                // 解除 <p><figure>...</figure></p> 的多余包装
+                // 解除 <p><div class=img>...</div></p> 的多余包装
                 HtmlProcessor.RE_P_FIGURE.lastIndex = 0;
                 html = html.replace(HtmlProcessor.RE_P_FIGURE, '$1');
                 return html;
