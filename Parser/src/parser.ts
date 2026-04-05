@@ -274,18 +274,21 @@
                     if (items.length === 0) return match;
 
                     // 构建表格
+                    const hasBody = items.some(item => item.body !== '');
                     let thead: string;
                     let rows: string;
                     if (isOrdered) {
-                        thead = '<thead><tr><th>a</th><th>b</th><th>c</th></tr></thead>';
-                        rows = items.map((item, i) =>
-                            `<tr><td>${i + 1}</td><td>${item.title}</td><td>${item.body}</td></tr>`
-                        ).join('\n');
+                        thead = `<thead><tr><th>a</th><th>b</th>${hasBody ? '<th>c</th>' : ''}</tr></thead>`;
+                        rows = items.map((item, i) => {
+                            const cells = `<td>${i + 1}</td><td>${item.title}</td>${hasBody ? `<td>${item.body}</td>` : ''}`;
+                            return `<tr>${cells}</tr>`;
+                        }).join('\n');
                     } else {
-                        thead = '<thead><tr><th>a</th><th>b</th></tr></thead>';
-                        rows = items.map(item =>
-                            `<tr><td>${item.title}</td><td>${item.body}</td></tr>`
-                        ).join('\n');
+                        thead = `<thead><tr><th>a</th>${hasBody ? '<th>b</th>' : ''}</tr></thead>`;
+                        rows = items.map(item => {
+                            const cells = `<td>${item.title}</td>${hasBody ? `<td>${item.body}</td>` : ''}`;
+                            return `<tr>${cells}</tr>`;
+                        }).join('\n');
                     }
 
                     const table = `<table>${thead}\n<tbody>\n${rows}\n</tbody></table>`;
