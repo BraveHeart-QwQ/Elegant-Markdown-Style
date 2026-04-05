@@ -713,8 +713,15 @@ body[for="html-export"] {
             margin: 0 0 10px 0 !important;
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 0px;
             line-height: 1.2;
+
+            svg {
+                fill: currentColor;
+                position: relative;
+                top: 0px;
+                flex-shrink: 0;
+            }
 
             &::before {
                 font-style: normal;
@@ -776,7 +783,7 @@ body[for="html-export"] {
 
         .callout-title {
             color: #2E4F63;
-            &::before { content: "ℹ"; }
+            // &::before {content: "ℹ"; }
         }
     }
 
@@ -791,10 +798,10 @@ body[for="html-export"] {
 
         .callout-title {
             color: #2C4D2C;
-            &::before {
-                content: "✦";
-                font-size: calc((var(--p-fontsize) + 4) * 1px);
-            }
+            // &::before {
+            //     content: "✦";
+            //     font-size: calc((var(--p-fontsize) + 4) * 1px);
+            // }
         }
     }
 
@@ -807,10 +814,10 @@ body[for="html-export"] {
             -6px 12px 10px -8px rgba(90, 61, 112, 0.18),
             6px 12px 10px -8px rgba(90, 61, 112, 0.18);
 
-        .callout-title {
-            color: #4A2E60;
-            &::before { content: "★"; }
-        }
+        // .callout-title {
+        //     color: #4A2E60;
+        //     &::before { content: "★"; }
+        // }
     }
 
     blockquote[data-callout="WARNING"] {
@@ -822,10 +829,10 @@ body[for="html-export"] {
             -6px 12px 10px -8px rgba(106, 78, 46, 0.18),
             6px 12px 10px -8px rgba(106, 78, 46, 0.18);
 
-        .callout-title {
-            color: #5A3E20;
-            &::before { content: "⚠"; }
-        }
+        // .callout-title {
+        //     color: #5A3E20;
+        //     &::before { content: "⚠"; }
+        // }
     }
 
     blockquote[data-callout="CAUTION"] {
@@ -837,10 +844,10 @@ body[for="html-export"] {
             -6px 12px 10px -8px rgba(106, 53, 53, 0.18),
             6px 12px 10px -8px rgba(106, 53, 53, 0.18);
 
-        .callout-title {
-            color: #5A2424;
-            &::before { content: "⊗"; }
-        }
+        // .callout-title {
+        //     color: #5A2424;
+        //     &::before { content: "⊗"; }
+        // }
     }
 
     .katex-display {
