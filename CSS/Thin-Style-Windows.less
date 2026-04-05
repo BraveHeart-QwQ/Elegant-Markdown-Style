@@ -243,22 +243,10 @@ body[for="html-export"] {
             font-weight: 400;
         }
 
-        blockquote:nth-of-type(odd),
-        .warning:nth-of-type(odd) {
-            border-radius: 10px 10px 10px 10px;
+        blockquote {
             margin-top: 16px;
             margin-bottom: 16px;
-            margin-left: 0 !important;
-            padding: 20px 30px 20px 30px;
-        }
-
-        blockquote:nth-of-type(even),
-        .warning:nth-of-type(even) {
-            border-radius: 10px 10px 10px 10px;
-            margin-top: 16px;
-            margin-bottom: 16px;
-            margin-right: 0 !important;
-            padding: 20px 30px 20px 30px;
+            max-width: 100%;
         }
 
         ul {
@@ -425,51 +413,6 @@ body[for="html-export"] {
 
     // TODO 移除
 
-    htable {
-        table-layout: fixed;
-        thead {
-            border-width: 0.08rem !important;
-            display: table-row-group;
-            width: 100%;
-            height: 40px;
-            text-align: left;
-            font-size: calc(var(--table-fontsize) * 1px);
-            font-family: var(--default-font-family);
-            font-weight: bolder;
-
-            .katex {
-                font-size: calc((var(--table-fontsize) + 2) * 1px);
-            }
-
-            span[class="mord cjk_fallback"] {
-                font-size: calc(var(--table-fontsize) * 1px);
-            }
-        }
-
-        tbody {
-            tr td {
-                width: 50% !important;
-                word-break: break-all;
-            }
-        }
-    }
-
-    dtable {
-        table tr td:first-child {
-            width: 50%;
-        }
-    }
-
-    ttable {
-        table tr td {
-            width: 33%;
-        }
-
-        table tr td:first-child {
-            width: 33% !important;
-        }
-    }
-
     step-table {
         table tr td {
             width: 40%;
@@ -542,20 +485,10 @@ body[for="html-export"] {
             height: 16px !important;
         }
 
-        blockquote:nth-of-type(odd),
-        .warning:nth-of-type(odd) {
-            border-radius: 10px 10px 10px 10px;
+        blockquote{
             margin-top: 16px;
             margin-bottom: 16px;
-            margin-left: 0 !important;
-        }
-
-        blockquote:nth-of-type(even),
-        .warning:nth-of-type(even) {
-            border-radius: 10px 10px 10px 10px;
-            margin-top: 16px;
-            margin-bottom: 16px;
-            margin-right: 0 !important;
+            max-width: 100%;
         }
     }
 
@@ -740,49 +673,14 @@ body[for="html-export"] {
         margin-right: 0px !important;
     }
 
-    ref {
-        display: block;
-        font-style: italic;
-        padding: 0 0 0 0;
-        margin: 42px 56px 16px 56px;
-        border-left: none;
-        background-color: rgba(0, 0, 0, 0);
-        color: inherit;
-    }
-
-    ref::before {
-        content: "\"";
-        color: rgba(44, 44, 44, 0.6);
-        position: absolute;
-        left: 50px;
-        margin-top: 7px;
-        font-size: 50px;
-        font-family: 'Vintama Shadow';
-        font-style: normal;
-        // z-index: -1;
-    }
-
-    ref refsrc a {
-        display: block;
+    blockquote {
         border: none;
-        margin-top: 16px;
-        text-align: right;
-    }
-
-    ref refsrc a::before {
-        content: "-- ";
-        font-family: var(--code-font-family);
-    }
-
-    blockquote,
-    .warning {
-        border-width: 2px 2px 2px 2px;
-        border-style: solid;
+        border-radius: 3px;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
-        padding: 20px 30px 20px 30px;
-        margin-top: 28px;
-        margin-bottom: 34px;
+        padding: 24px 32px 24px 32px;
+        margin: 32px auto 32px auto;
+        max-width: 88%;
         z-index: 1 !important;
 
         p {
@@ -807,70 +705,24 @@ body[for="html-export"] {
         }
 
         &:nth-of-type(odd) {
-            border-radius: 0px 10px 10px 0px;
-            padding-left: 50px;
-            margin-left: -50px;
-            margin-right: 33%;
+            transform: rotate(-0.6deg);
+            transform-origin: center;
         }
 
         &:nth-of-type(even) {
-            border-radius: 10px 0px 0px 10px;
-            padding-left: 40px;
-            padding-right: 50px;
-            margin-left: 33%;
-            margin-right: -50px;
-        }
-    }
-
-    .warning {
-        color: rgb(191, 54, 12);
-        box-shadow: rgba(103, 12, 26, 0.2) 4px 8px 4px -1px, rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
-        background-color: rgba(254, 225, 229, 0.3);
-        border-color: rgb(232, 171, 149, 0.385);
-        opacity: 0.999999;
-
-        strong {
-            text-decoration: underline
-        }
-
-        &:nth-of-type(odd) {
-            p:first-of-type {
-                &::before {
-                    // content: "WARNING";
-                    font-size: 50px;
-                    font-family: 'Vintama Shadow';
-                    color: rgba(148, 28, 44, 0.08);
-                    left: calc(67% - 354px);
-                    margin-top: 7px;
-                    position: absolute;
-                    z-index: -1 !important;
-                }
-            }
-        }
-
-        &:nth-of-type(even) {
-            p:first-of-type {
-                &::before {
-                    // content: "警告";
-                    font-size: 50px;
-                    font-family: 'Vintama Shadow';
-                    color: rgba(148, 28, 44, 0.08);
-                    right: 0px;
-                    margin-top: 5px;
-                    font-weight: bolder;
-                    position: absolute;
-                    letter-spacing: 4px;
-                    z-index: -1 !important;
-                }
-            }
+            transform: rotate(0.4deg);
+            transform-origin: center;
         }
     }
 
     blockquote {
         color: rgb(1, 87, 155);
-        box-shadow: rgba(10, 49, 93, 0.2) 4px 8px 4px -1px, rgba(255, 255, 255, 0.5) 0px 1px 0px inset;
-        background-color: rgba(225, 245, 254, 0.3);
-        border-color: rgba(28, 84, 148, 0.385);
+        box-shadow:
+            0px 2px 5px rgba(10, 49, 93, 0.12),
+            0px 6px 16px rgba(10, 49, 93, 0.14),
+            0px 14px 36px rgba(0, 0, 0, 0.08),
+            inset 0px 1px 0px rgba(255, 255, 255, 0.65);
+        background-color: rgba(225, 245, 255, 0.95);
         opacity: 0.999999;
 
         &:nth-of-type(odd) {
