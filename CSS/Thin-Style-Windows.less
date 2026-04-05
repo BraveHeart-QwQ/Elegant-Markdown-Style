@@ -485,7 +485,7 @@ body[for="html-export"] {
             height: 16px !important;
         }
 
-        blockquote{
+        blockquote {
             margin-top: 16px;
             margin-bottom: 16px;
             max-width: 100%;
@@ -675,11 +675,11 @@ body[for="html-export"] {
 
     blockquote {
         border: none;
-        border-radius: 3px;
+        border-radius: 2px;
         display: block;
         font-size: calc(var(--blockquote-fontsize) * 1px);
         padding: 24px 32px 24px 32px;
-        margin: 32px auto 32px auto;
+        margin: 36px auto 36px auto;
         max-width: 88%;
         z-index: 1 !important;
 
@@ -727,14 +727,39 @@ body[for="html-export"] {
             }
         }
 
-        &:nth-of-type(odd) {
+        &:nth-of-type(5n+1) {
             transform: rotate(-0.6deg);
-            transform-origin: center;
+            transform-origin: top;
+            margin-left: 12%;
+            margin-right: 8%;
         }
 
-        &:nth-of-type(even) {
-            transform: rotate(0.4deg);
-            transform-origin: center;
+        &:nth-of-type(5n+2) {
+            transform: rotate(0.5deg);
+            transform-origin: top;
+            margin-left: 6%;
+            margin-right: 14%;
+        }
+
+        &:nth-of-type(5n+3) {
+            transform: rotate(-0.9deg);
+            transform-origin: top;
+            margin-left: 16%;
+            margin-right: 4%;
+        }
+
+        &:nth-of-type(5n+4) {
+            transform: rotate(0.3deg);
+            transform-origin: top;
+            margin-left: 5%;
+            margin-right: 15%;
+        }
+
+        &:nth-of-type(5n+5) {
+            transform: rotate(-0.4deg);
+            transform-origin: top;
+            margin-left: 18%;
+            margin-right: 2%;
         }
     }
 
@@ -744,9 +769,10 @@ body[for="html-export"] {
         color: #3D5F72;
         background-color: rgba(183, 205, 218, 0.25);
         box-shadow:
-            0px 2px 5px rgba(61, 95, 114, 0.12),
-            0px 6px 16px rgba(61, 95, 114, 0.14),
-            0px 14px 36px rgba(0, 0, 0, 0.07);
+            0px 1px 3px 0px rgba(61, 95, 114, 0.06),
+            0px 4px 6px -1px rgba(61, 95, 114, 0.10),
+            -6px 12px 10px -8px rgba(61, 95, 114, 0.18),
+            6px 12px 10px -8px rgba(61, 95, 114, 0.18);
 
         .callout-title {
             color: #2E4F63;
@@ -758,9 +784,10 @@ body[for="html-export"] {
         color: #3D5F3D;
         background-color: rgba(170, 200, 170, 0.25);
         box-shadow:
-            0px 2px 5px rgba(61, 95, 61, 0.12),
-            0px 6px 16px rgba(61, 95, 61, 0.14),
-            0px 14px 36px rgba(0, 0, 0, 0.07);
+            0px 1px 3px 0px rgba(61, 95, 61, 0.06),
+            0px 4px 6px -1px rgba(61, 95, 61, 0.10),
+            -6px 12px 10px -8px rgba(61, 95, 61, 0.18),
+            6px 12px 10px -8px rgba(61, 95, 61, 0.18);
 
         .callout-title {
             color: #2C4D2C;
@@ -775,9 +802,10 @@ body[for="html-export"] {
         color: #5A3D70;
         background-color: rgba(200, 185, 215, 0.25);
         box-shadow:
-            0px 2px 5px rgba(90, 61, 112, 0.12),
-            0px 6px 16px rgba(90, 61, 112, 0.14),
-            0px 14px 36px rgba(0, 0, 0, 0.07);
+            0px 1px 3px 0px rgba(90, 61, 112, 0.06),
+            0px 4px 6px -1px rgba(90, 61, 112, 0.10),
+            -6px 12px 10px -8px rgba(90, 61, 112, 0.18),
+            6px 12px 10px -8px rgba(90, 61, 112, 0.18);
 
         .callout-title {
             color: #4A2E60;
@@ -789,9 +817,10 @@ body[for="html-export"] {
         color: #6A4E2E;
         background-color: rgba(210, 190, 160, 0.25);
         box-shadow:
-            0px 2px 5px rgba(106, 78, 46, 0.12),
-            0px 6px 16px rgba(106, 78, 46, 0.14),
-            0px 14px 36px rgba(0, 0, 0, 0.07);
+            0px 1px 3px 0px rgba(106, 78, 46, 0.06),
+            0px 4px 6px -1px rgba(106, 78, 46, 0.10),
+            -6px 12px 10px -8px rgba(106, 78, 46, 0.18),
+            6px 12px 10px -8px rgba(106, 78, 46, 0.18);
 
         .callout-title {
             color: #5A3E20;
@@ -803,9 +832,10 @@ body[for="html-export"] {
         color: #6A3535;
         background-color: rgba(210, 175, 170, 0.25);
         box-shadow:
-            0px 2px 5px rgba(106, 53, 53, 0.12),
-            0px 6px 16px rgba(106, 53, 53, 0.14),
-            0px 14px 36px rgba(0, 0, 0, 0.07);
+            0px 1px 3px 0px rgba(106, 53, 53, 0.06),
+            0px 4px 6px -1px rgba(106, 53, 53, 0.10),
+            -6px 12px 10px -8px rgba(106, 53, 53, 0.18),
+            6px 12px 10px -8px rgba(106, 53, 53, 0.18);
 
         .callout-title {
             color: #5A2424;
