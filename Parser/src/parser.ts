@@ -119,8 +119,8 @@
             private static readonly RE_IMG_CAPTION = /<img([^>]*)\simage-title="([^"]*)"([^>]*)>/g;
             private static readonly RE_P_FIGURE = /<p>(<div class=img>(?:[\s\S]*?)<\/div>)<\/p>/g;
             private static readonly RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
-            private static readonly RE_CALLOUT_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
-            private static readonly RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)([\s\S]*?<p[^>]*>)/g;
+            private static readonly RE_CALLOUT_MARK = /(<blockquote[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
+            private static readonly RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)/g;
             private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
 
             // Copy from github
