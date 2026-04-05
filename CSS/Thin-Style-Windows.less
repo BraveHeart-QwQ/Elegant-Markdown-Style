@@ -328,7 +328,7 @@ body[for="html-export"] {
 
         thead {
             display: none;
-            border: 0.07rem solid rgb(210, 210, 210) !important;
+            border: 0.1rem solid rgb(210, 210, 210) !important;
 
             th {
                 border-top: none;
@@ -412,6 +412,26 @@ body[for="html-export"] {
         }
     }
 
+    .table[data-layout="step"] {
+        table tr td {
+            width: 48%;
+        }
+
+        table tr th:first-child {
+            width: 3% !important;
+            font-weight: bolder;
+            text-align: center;
+            border-right: 0.1rem solid rgb(210, 215, 223) !important;
+        }
+
+        table tr td:first-child {
+            width: 3% !important;
+            font-weight: bolder;
+            text-align: center;
+            border-right: 0.1rem solid rgb(210, 215, 223) !important;
+        }
+    }
+
     .table[data-twidth="narrow"] {
         table {
             width: 70% !important;
@@ -441,24 +461,6 @@ body[for="html-export"] {
             thead {
                 text-align: right;
             }
-        }
-    }
-
-    // TODO 移除
-
-    step-table {
-        table tr td {
-            width: 40%;
-        }
-
-        table tr th:first-child {
-            width: 3% !important;
-            border-right: 0.07rem solid rgb(210, 215, 223) !important;
-        }
-
-        table tr td:first-child {
-            width: 3% !important;
-            border-right: 0.07rem solid rgb(210, 215, 223) !important;
         }
     }
 
@@ -926,7 +928,7 @@ body[for="html-export"] {
         .mathrm,
         .mop {
             font-family: 'LXGW WenKai', var(--math-default-font-family);
-            font-weight: 600; // !win
+            font-weight: 600; /* !win */
 
             .mathnormal {
                 font-family: var(--math-font-family);

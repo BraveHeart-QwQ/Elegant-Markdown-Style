@@ -408,6 +408,26 @@ body[for="html-export"] {
         }
     }
 
+    .table[data-layout="step"] {
+        table tr td {
+            width: 48%;
+        }
+
+        table tr th:first-child {
+            width: 3% !important;
+            font-weight: bolder;
+            text-align: center;
+            border-right: 1px solid rgb(210, 215, 223)!important; // !mac
+        }
+
+        table tr td:first-child {
+            width: 3% !important;
+            font-weight: bolder;
+            text-align: center;
+            border-right: 1px solid rgb(210, 215, 223) !important; // !mac
+        }
+    }
+
     .table[data-twidth="narrow"] {
         table {
             width: 70% !important;
@@ -437,24 +457,6 @@ body[for="html-export"] {
             thead {
                 text-align: right;
             }
-        }
-    }
-
-    // TODO 移除
-
-    step-table {
-        table tr td {
-            width: 40%;
-        }
-
-        table tr th:first-child {
-            width: 3% !important;
-            border-right: 0.07rem solid rgb(210, 215, 223) !important;
-        }
-
-        table tr td:first-child {
-            width: 3% !important;
-            border-right: 0.07rem solid rgb(210, 215, 223) !important;
         }
     }
 
