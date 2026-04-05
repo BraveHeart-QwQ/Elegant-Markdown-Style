@@ -37,8 +37,28 @@
                 result = this.injectCalloutDirectives(result);
                 result = this.injectImageCaptions(result);
                 result = this.injectTableCaptions(result);
+                result = this.fixInlineDelimiters(result);
 
                 return this.restore(result);
+            }
+
+            private fixInlineDelimiters(markdown: string): string {
+                // When ** or == delimiters border non-ASCII characters (CJK / fullwidth
+                // punctuation etc.), many parsers fail the flanking-delimiter check.
+                // Convert such spans to their HTML equivalents to ensure correct output.
+                markdown = markdown.replace(/\*\*([^*\n]+)\*\*/g, (match, content) => {
+                    if (/^[^\x00-\x7F]|[^\x00-\x7F]$/.test(content)) {
+                        return `<strong>${content}</strong>`;
+                    }
+                    return match;
+                });
+                markdown = markdown.replace(/==([^=\n]+)==/g, (match, content) => {
+                    if (/^[^\x00-\x7F]|[^\x00-\x7F]$/.test(content)) {
+                        return `<mark>${content}</mark>`;
+                    }
+                    return match;
+                });
+                return markdown;
             }
 
             private injectCalloutDirectives(markdown: string): string {
