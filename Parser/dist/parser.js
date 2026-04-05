@@ -27,6 +27,8 @@
             static RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
             static RE_LIST_DIRECTIVE = /^([ \t]*)\[list:([^\]\n]+)\][ \t]*\n/gm; // [list: style="table"; ...]
             static RE_CALLOUT_DIRECTIVE = /^([ \t]*(?:>[ \t]*)+)\[!([^\]\n]+)\]/gm; // > [!Mark]
+            static RE_DETAILS_OPEN = /^:::[ \t]+details([ \t]+[^\n]+?)?[ \t]*$/gm; // ::: details Title
+            static RE_DETAILS_CLOSE = /^:::[ \t]*$/gm; // :::
             // 恢复占位符
             static RE_RESTORE_CODE = /\x00BLOCK_(\d+)\x00/g; // \x00BLOCK_0\x00
             /*====-------------- Members --------------====*/
@@ -34,12 +36,32 @@
             /*====-------------- Process --------------====*/
             async process(markdown) {
                 let result = this.protect(markdown);
+                result = this.injectDetailsDirectives(result);
                 result = this.injectCalloutDirectives(result);
                 result = this.injectImageCaptions(result);
                 result = this.injectTableCaptions(result);
                 result = this.injectListDirectives(result);
                 result = this.fixInlineDelimiters(result);
                 return this.restore(result);
+            }
+            injectDetailsDirectives(markdown) {
+                MarkdownProcessor.RE_DETAILS_OPEN.lastIndex = 0;
+                MarkdownProcessor.RE_DETAILS_CLOSE.lastIndex = 0;
+                markdown = markdown.replace(MarkdownProcessor.RE_DETAILS_OPEN, (_, titlePart) => {
+                    let raw = (titlePart ?? '').trim();
+                    let expanded = false;
+                    if (/^open(?:\s|$)/i.test(raw)) {
+                        expanded = true;
+                        raw = raw.replace(/^open\s*/i, '');
+                    }
+                    const escaped = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                    const expandedAttr = expanded ? ' data-details-expanded' : '';
+                    return `<span data-details-open="${escaped}"${expandedAttr}></span>`;
+                });
+                markdown = markdown.replace(MarkdownProcessor.RE_DETAILS_CLOSE, () => {
+                    return `<span data-details-close=""></span>`;
+                });
+                return markdown;
             }
             fixInlineDelimiters(markdown) {
                 // When ** or == delimiters border non-ASCII characters (CJK / fullwidth
@@ -54,6 +76,12 @@
                 markdown = markdown.replace(/==([^=\n]+)==/g, (match, content) => {
                     if (/^[^\x00-\x7F]|[^\x00-\x7F]$/.test(content)) {
                         return `<mark>${content}</mark>`;
+                    }
+                    return match;
+                });
+                markdown = markdown.replace(/~~([^=\n]+)~~/g, (match, content) => {
+                    if (/^[^\x00-\x7F]|[^\x00-\x7F]$/.test(content)) {
+                        return `<s>${content}</s>`;
                     }
                     return match;
                 });
@@ -153,6 +181,10 @@
             static RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)/g;
             static RE_LIST_TABLE = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<ul[\s\S]*?<\/ul>|<ol[\s\S]*?<\/ol>)/g;
             static RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
+            // Case A: sentinels in separate <p> tags (blank lines around fences)
+            static RE_DETAILS_BLOCK = /<p[^>]*><span data-details-open="([^"]*)"([^>]*)><\/span><\/p>([\s\S]*?)<p[^>]*><span data-details-close=""[^>]*><\/span><\/p>/g;
+            // Case B: everything merged into one <p> with <br> (no blank lines around fences)
+            static RE_DETAILS_BLOCK_INLINE = /<p[^>]*><span data-details-open="([^"]*)"([^>]*)><\/span>(?:<br[\s\S]*?>\n?)((?:(?!<span data-details-close)[\s\S])*?)(?:<br[\s\S]*?>\n?)<span data-details-close=""[^>]*><\/span><\/p>/g;
             // Copy from github
             static BLOCKQUOTE_NOTE_SVG = `<svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`;
             static BLOCKQUOTE_TIP_SVG = `<svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>`;
@@ -166,6 +198,20 @@
                 html = this.injectImageCaptions(html);
                 html = this.injectCalloutBlocks(html);
                 html = this.injectHeaderList(html);
+                html = this.injectDetailsBlocks(html);
+                return html;
+            }
+            injectDetailsBlocks(html) {
+                HtmlProcessor.RE_DETAILS_BLOCK.lastIndex = 0;
+                html = html.replace(HtmlProcessor.RE_DETAILS_BLOCK, (_, title, extraAttrs, content) => {
+                    const open = extraAttrs.includes('data-details-expanded') ? ' open' : '';
+                    return `<details${open}><summary>${title}</summary>${content}</details>`;
+                });
+                HtmlProcessor.RE_DETAILS_BLOCK_INLINE.lastIndex = 0;
+                html = html.replace(HtmlProcessor.RE_DETAILS_BLOCK_INLINE, (_, title, extraAttrs, content) => {
+                    const open = extraAttrs.includes('data-details-expanded') ? ' open' : '';
+                    return `<details${open}><summary>${title}</summary><p>${content}</p></details>`;
+                });
                 return html;
             }
             injectImageCaptions(html) {
