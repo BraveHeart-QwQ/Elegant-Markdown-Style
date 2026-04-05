@@ -27,6 +27,7 @@
             private static readonly RE_INLINE_CODE = /`[^`\n]+`/g; // `code`
             private static readonly RE_IMAGE = /!\[([^\]\n]+)\]\(([^)\n]+)\)(\{[^}]*\})?/g; // ![title](url){attrs}
             private static readonly RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
+            private static readonly RE_LIST_DIRECTIVE = /^([ \t]*)\[list:([^\]\n]+)\][ \t]*\n/gm; // [list: style="table"; ...]
             private static readonly RE_CALLOUT_DIRECTIVE = /^([ \t]*(?:>[ \t]*)+)\[!([^\]\n]+)\]/gm; // > [!Mark]
 
             // 恢复占位符
@@ -44,6 +45,7 @@
                 result = this.injectCalloutDirectives(result);
                 result = this.injectImageCaptions(result);
                 result = this.injectTableCaptions(result);
+                result = this.injectListDirectives(result);
                 result = this.fixInlineDelimiters(result);
 
                 return this.restore(result);
@@ -88,6 +90,22 @@
                     } else {
                         return `![${title}](${url}){image-title="${escaped}"}`;
                     }
+                });
+            }
+
+            private injectListDirectives(markdown: string): string {
+                MarkdownProcessor.RE_LIST_DIRECTIVE.lastIndex = 0;
+                return markdown.replace(MarkdownProcessor.RE_LIST_DIRECTIVE, (_, indent: string, attrs: string) => {
+                    const RE_KV = /([\w-]+)(?:="([^"]*)")? *;?/g;
+                    const parts: string[] = [];
+                    let m: RegExpExecArray | null;
+                    while ((m = RE_KV.exec(attrs)) !== null) {
+                        const key = m[1]!.toLowerCase();
+                        const val = m[2] ?? '';
+                        parts.push(`data-list-${key}="${val}"`);
+                    }
+                    if (parts.length === 0) return '';
+                    return `${indent}<span ${parts.join(' ')}></span>\n`;
                 });
             }
 
@@ -148,6 +166,7 @@
             private static readonly RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
             private static readonly RE_CALLOUT_MARK = /(<blockquote[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
             private static readonly RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)/g;
+            private static readonly RE_LIST_TABLE = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<ul[\s\S]*?<\/ul>|<ol[\s\S]*?<\/ol>)/g;
             private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
 
             // Copy from github
@@ -161,6 +180,7 @@
 
                 // reverse the order of injection to ensure captions are correctly nested
                 html = this.injectTableCaptions(html);
+                html = this.injectListTables(html);
                 html = this.injectImageCaptions(html);
                 html = this.injectCalloutBlocks(html);
                 html = this.injectHeaderList(html);
@@ -213,6 +233,68 @@
                         result = `<div class=table${attrsStr}>\n${result}\n</div>`;
                     }
                     return result;
+                });
+            }
+
+            private injectListTables(html: string): string {
+                HtmlProcessor.RE_LIST_TABLE.lastIndex = 0;
+                return html.replace(HtmlProcessor.RE_LIST_TABLE, (match, spanAttrs: string, list: string) => {
+                    if (!spanAttrs.includes('data-list-style="table"')) return match;
+
+                    const isOrdered = /^<ol/.test(list);
+
+                    // 收集 style 以外的属性
+                    const RE_DATA_ATTR = /\sdata-list-([\w-]+)="([^"]*)"/g;
+                    const wrapperAttrs: Array<[string, string]> = [];
+                    let m: RegExpExecArray | null;
+                    while ((m = RE_DATA_ATTR.exec(spanAttrs)) !== null) {
+                        if (m[1] !== 'style') {
+                            wrapperAttrs.push([m[1]!, m[2]!]);
+                        }
+                    }
+
+                    // 解析每个 <li>
+                    const RE_LI = /<li[^>]*>([\s\S]*?)<\/li>/g;
+                    const items: Array<{ title: string; body: string }> = [];
+                    let li: RegExpExecArray | null;
+                    while ((li = RE_LI.exec(list)) !== null) {
+                        const raw = li[1]!.trim();
+                        const pMatch = /^<p[^>]*>([\s\S]*?)<\/p>/.exec(raw);
+                        if (pMatch) {
+                            const title = pMatch[1]!;
+                            const body = raw.slice(pMatch[0].length).trim()
+                                .replace(/^<p[^>]*>/, '').replace(/<\/p>$/, '')
+                                .replace(/<\/p>\s*<p[^>]*>/g, '<br>');
+                            items.push({ title, body });
+                        } else {
+                            items.push({ title: raw, body: '' });
+                        }
+                    }
+
+                    if (items.length === 0) return match;
+
+                    // 构建表格
+                    let thead: string;
+                    let rows: string;
+                    if (isOrdered) {
+                        thead = '<thead><tr><th>a</th><th>b</th><th>c</th></tr></thead>';
+                        rows = items.map((item, i) =>
+                            `<tr><td>${i + 1}</td><td>${item.title}</td><td>${item.body}</td></tr>`
+                        ).join('\n');
+                    } else {
+                        thead = '<thead><tr><th>a</th><th>b</th></tr></thead>';
+                        rows = items.map(item =>
+                            `<tr><td>${item.title}</td><td>${item.body}</td></tr>`
+                        ).join('\n');
+                    }
+
+                    const table = `<table>${thead}\n<tbody>\n${rows}\n</tbody></table>`;
+                    const hasLayout = wrapperAttrs.some(([k]) => k === 'layout');
+                    if (isOrdered && !hasLayout) {
+                        wrapperAttrs.unshift(['layout', 'step']);
+                    }
+                    const attrsStr = wrapperAttrs.map(([k, v]) => v === '' ? ` data-${k}` : ` data-${k}="${v}"`).join('');
+                    return `<div class=table${attrsStr}>\n${table}\n</div>`;
                 });
             }
 
