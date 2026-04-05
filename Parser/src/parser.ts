@@ -20,6 +20,7 @@
             private static readonly RE_INLINE_CODE = /`[^`\n]+`/g; // `code`
             private static readonly RE_IMAGE = /!\[([^\]\n]+)\]\(([^)\n]+)\)(\{[^}]*\})?/g; // ![title](url){attrs}
             private static readonly RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
+            private static readonly RE_CALLOUT_DIRECTIVE = /^([ \t]*(?:>[ \t]*)+)\[!([^\]\n]+)\]/gm; // > [!Mark]
 
             // 恢复占位符
             private static readonly RE_RESTORE_CODE = /\x00BLOCK_(\d+)\x00/g; // \x00BLOCK_0\x00
@@ -33,10 +34,19 @@
             async process(markdown: string): Promise<string> {
                 let result = this.protect(markdown);
 
+                result = this.injectCalloutDirectives(result);
                 result = this.injectImageCaptions(result);
                 result = this.injectTableCaptions(result);
 
                 return this.restore(result);
+            }
+
+            private injectCalloutDirectives(markdown: string): string {
+                MarkdownProcessor.RE_CALLOUT_DIRECTIVE.lastIndex = 0;
+                return markdown.replace(MarkdownProcessor.RE_CALLOUT_DIRECTIVE, (_, prefix, mark) => {
+                    const escaped = mark.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                    return `${prefix}<span data-co="${escaped}"></span>`;
+                });
             }
 
             private injectImageCaptions(markdown: string): string {
@@ -109,7 +119,7 @@
             private static readonly RE_IMG_CAPTION = /<img([^>]*)\simage-title="([^"]*)"([^>]*)>/g;
             private static readonly RE_P_FIGURE = /<p>(<div class=img>(?:[\s\S]*?)<\/div>)<\/p>/g;
             private static readonly RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
-            private static readonly RE_BLOCKQUOTE_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)!\[([^\]]+)\](?:<br[\t ]*\/?>[ \t]*\n?)?/g;
+            private static readonly RE_CALLOUT_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
             private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
 
             async process(html: string): Promise<string> {
@@ -117,7 +127,7 @@
                 // reverse the order of injection to ensure captions are correctly nested
                 html = this.injectTableCaptions(html);
                 html = this.injectImageCaptions(html);
-                html = this.injectBlockquoteMarks(html);
+                html = this.injectCalloutBlocks(html);
                 html = this.injectHeaderList(html);
 
                 return html;
@@ -165,13 +175,13 @@
                 });
             }
 
-            private injectBlockquoteMarks(html: string): string {
-                // 将 blockquote 首行的 ![Mark] 提升为 data-mark attribute
-                HtmlProcessor.RE_BLOCKQUOTE_MARK.lastIndex = 0;
-                return html.replace(HtmlProcessor.RE_BLOCKQUOTE_MARK, (_, bqOpenTag, before, mark) => {
+            private injectCalloutBlocks(html: string): string {
+                // 将 blockquote 首段的 <span data-co> 提升为 data-callout 并注入 callout-title
+                HtmlProcessor.RE_CALLOUT_MARK.lastIndex = 0;
+                return html.replace(HtmlProcessor.RE_CALLOUT_MARK, (_, bqOpenTag, before, mark) => {
                     const escaped = mark.replace(/"/g, '&quot;');
-                    const newBqTag = bqOpenTag.replace(/^<blockquote/, `<blockquote data-mark="${escaped}"`);
-                    return `${newBqTag}${before}`;
+                    const newBqTag = bqOpenTag.replace(/^<blockquote/, `<blockquote data-callout="${escaped}"`);
+                    return `${newBqTag}<div class="callout-title">${mark}</div>${before}`;
                 });
             }
 
