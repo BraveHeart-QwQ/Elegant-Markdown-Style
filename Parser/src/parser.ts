@@ -29,8 +29,8 @@
             private static readonly RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
             private static readonly RE_LIST_DIRECTIVE = /^([ \t]*)\[list:([^\]\n]+)\][ \t]*\n/gm; // [list: style="table"; ...]
             private static readonly RE_CALLOUT_DIRECTIVE = /^([ \t]*(?:>[ \t]*)+)\[!([^\]\n]+)\]/gm; // > [!Mark]
-            private static readonly RE_DETAILS_OPEN = /^:::[ \t]+details([ \t]+[^\n]+?)?[ \t]*$/gm; // ::: details Title
-            private static readonly RE_DETAILS_CLOSE = /^:::[ \t]*$/gm; // :::
+            private static readonly RE_DETAILS_OPEN = /^([ \t]*):::[ \t]+details([ \t]+[^\n]+?)?[ \t]*$/gm; // ::: details Title
+            private static readonly RE_DETAILS_CLOSE = /^([ \t]*):::[ \t]*$/gm; // :::
 
             // 恢复占位符
             private static readonly RE_RESTORE_CODE = /\x00BLOCK_(\d+)\x00/g; // \x00BLOCK_0\x00
@@ -57,7 +57,7 @@
             private injectDetailsDirectives(markdown: string): string {
                 MarkdownProcessor.RE_DETAILS_OPEN.lastIndex = 0;
                 MarkdownProcessor.RE_DETAILS_CLOSE.lastIndex = 0;
-                markdown = markdown.replace(MarkdownProcessor.RE_DETAILS_OPEN, (_, titlePart: string | undefined) => {
+                markdown = markdown.replace(MarkdownProcessor.RE_DETAILS_OPEN, (_, prefix: String | undefined, titlePart: string | undefined) => {
                     let raw = (titlePart ?? '').trim();
                     let expanded = false;
                     if (/^open(?:\s|$)/i.test(raw)) {
@@ -66,10 +66,10 @@
                     }
                     const escaped = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
                     const expandedAttr = expanded ? ' data-details-expanded' : '';
-                    return `<span data-details-open="${escaped}"${expandedAttr}></span>`;
+                    return `${prefix}<span data-details-open="${escaped}"${expandedAttr}></span>`;
                 });
-                markdown = markdown.replace(MarkdownProcessor.RE_DETAILS_CLOSE, () => {
-                    return `<span data-details-close=""></span>`;
+                markdown = markdown.replace(MarkdownProcessor.RE_DETAILS_CLOSE, (_, prefix) => {
+                    return `${prefix}<span data-details-close=""></span>`;
                 });
                 return markdown;
             }
@@ -197,10 +197,15 @@
             private static readonly RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)/g;
             private static readonly RE_LIST_TABLE = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<ul[\s\S]*?<\/ul>|<ol[\s\S]*?<\/ol>)/g;
             private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
-            // Case A: sentinels in separate <p> tags (blank lines around fences)
-            private static readonly RE_DETAILS_BLOCK = /<p[^>]*><span data-details-open="([^"]*)"([^>]*)><\/span><\/p>([\s\S]*?)<p[^>]*><span data-details-close=""[^>]*><\/span><\/p>/g;
-            // Case B: everything merged into one <p> with <br> (no blank lines around fences)
-            private static readonly RE_DETAILS_BLOCK_INLINE = /<p[^>]*><span data-details-open="([^"]*)"([^>]*)><\/span>(?:<br[\s\S]*?>\n?)((?:(?!<span data-details-close)[\s\S])*?)(?:<br[\s\S]*?>\n?)<span data-details-close=""[^>]*><\/span><\/p>/g;
+            // Open sentinel may be:
+            //   1. alone in <p>                           → <p...><span data-details-open/></p>
+            //   2. inline at start (Case B, all adjacent) → <p...><span data-details-open/><br>…
+            //   3. preceded by content in same <p>        → <p...>STUFF<br><span data-details-open/>
+            //   4. not wrapped in <p> at all
+            //   5. both sentinels in the same <p>         → <p...><span data-details-open/>...<span data-details-close/></p>
+            // Close sentinel: <span data-details-close/> followed by optional </p>
+            private static readonly RE_DETAILS_SAME_P = /<p([^>]*)><span data-details-open="([^"]*)"([^>]*)><\/span>([\s\S]*?)<span data-details-close=""[^>]*><\/span><\/p>/g;
+            private static readonly RE_DETAILS_BLOCK = /(?:<p([^>]*)>([\s\S]*?)<br[^>]*>\n?|(?:<p[^>]*>)?)<span data-details-open="([^"]*)"([^>]*)><\/span>([\s\S]*?)<span data-details-close=""[^>]*><\/span>(?:\s*<\/p>)?/g;
 
             // Copy from github
             private static readonly BLOCKQUOTE_NOTE_SVG = `<svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`;
@@ -223,17 +228,29 @@
             }
 
             private injectDetailsBlocks(html: string): string {
+                // Case 5: both sentinels inside the same <p> — handle first to avoid conflicts
                 HtmlProcessor.RE_DETAILS_BLOCK.lastIndex = 0;
-                html = html.replace(HtmlProcessor.RE_DETAILS_BLOCK, (_, title: string, extraAttrs: string, content: string) => {
+                html = html.replace(HtmlProcessor.RE_DETAILS_BLOCK, (_, pAttrs: string | undefined, preceding: string | undefined, title: string, extraAttrs: string, rawContent: string) => {
                     const open = extraAttrs.includes('data-details-expanded') ? ' open' : '';
+                    // If a preceding paragraph was merged with the open sentinel, close it first
+                    const prefix = preceding
+                        ? `<p${pAttrs ?? ''}>${preceding}</p>\n`
+                        : '';
+                    const content = rawContent
+                        .replace(/^<br[^>]*>\n?/, '')   // strip leading <br> (Case B / preceding)
+                        .replace(/^<\/p>\s*/, '')        // strip leading </p> (Case A / preceding)
+                        .replace(/\s*<p[^>]*>$/, '')     // strip trailing <p...> (Case A)
+                        .replace(/<br[^>]*>\n?$/, '');   // strip trailing <br> (Case B)
+                    return `${prefix}<details${open}><summary>${title}</summary>${content}</details>`;
+                });
+                HtmlProcessor.RE_DETAILS_SAME_P.lastIndex = 0;
+                return html.replace(HtmlProcessor.RE_DETAILS_SAME_P, (_, _pAttrs: string, title: string, extraAttrs: string, rawContent: string) => {
+                    const open = extraAttrs.includes('data-details-expanded') ? ' open' : '';
+                    const content = rawContent
+                        .replace(/^<br[^>]*>\n?/, '')   // strip leading <br>
+                        .replace(/<br[^>]*>\n?$/, '');  // strip trailing <br>
                     return `<details${open}><summary>${title}</summary>${content}</details>`;
                 });
-                HtmlProcessor.RE_DETAILS_BLOCK_INLINE.lastIndex = 0;
-                html = html.replace(HtmlProcessor.RE_DETAILS_BLOCK_INLINE, (_, title: string, extraAttrs: string, content: string) => {
-                    const open = extraAttrs.includes('data-details-expanded') ? ' open' : '';
-                    return `<details${open}><summary>${title}</summary><p>${content}</p></details>`;
-                });
-                return html;
             }
 
             private injectImageCaptions(html: string): string {
