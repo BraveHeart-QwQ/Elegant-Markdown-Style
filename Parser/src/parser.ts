@@ -120,6 +120,7 @@
             private static readonly RE_P_FIGURE = /<p>(<div class=img>(?:[\s\S]*?)<\/div>)<\/p>/g;
             private static readonly RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
             private static readonly RE_CALLOUT_MARK = /(<blockquote[^>]*>)([\s\S]*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
+            private static readonly RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)([\s\S]*?<p[^>]*>)/g;
             private static readonly RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
 
             async process(html: string): Promise<string> {
@@ -178,11 +179,18 @@
             private injectCalloutBlocks(html: string): string {
                 // 将 blockquote 首段的 <span data-co> 提升为 data-callout 并注入 callout-title
                 HtmlProcessor.RE_CALLOUT_MARK.lastIndex = 0;
-                return html.replace(HtmlProcessor.RE_CALLOUT_MARK, (_, bqOpenTag, before, mark) => {
+                html = html.replace(HtmlProcessor.RE_CALLOUT_MARK, (_, bqOpenTag, before, mark) => {
                     const escaped = mark.replace(/"/g, '&quot;');
                     const newBqTag = bqOpenTag.replace(/^<blockquote/, `<blockquote data-callout="${escaped}"`);
                     return `${newBqTag}<div class="callout-title">${mark}</div>${before}`;
                 });
+                // 对未指定样式的 blockquote，自动注入 NOTE
+                HtmlProcessor.RE_PLAIN_BLOCKQUOTE.lastIndex = 0;
+                html = html.replace(HtmlProcessor.RE_PLAIN_BLOCKQUOTE, (_, bqOpenTag, before) => {
+                    const newBqTag = bqOpenTag.replace(/^<blockquote/, `<blockquote data-callout="NOTE"`);
+                    return `${newBqTag}<div class="callout-title">NOTE</div>${before}`;
+                });
+                return html;
             }
 
             private injectHeaderList(html: string): string {
