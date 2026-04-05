@@ -19,7 +19,7 @@
             private static readonly RE_BLOCK_CODE = /^(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n\1[ \t]*$/gm; // ```code```
             private static readonly RE_INLINE_CODE = /`[^`\n]+`/g; // `code`
             private static readonly RE_IMAGE = /!\[([^\]\n]+)\]\(([^)\n]+)\)(\{[^}]*\})?/g; // ![title](url){attrs}
-            private static readonly RE_TABLE_DIRECTIVE = /^\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
+            private static readonly RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
 
             // 恢复占位符
             private static readonly RE_RESTORE_CODE = /\x00BLOCK_(\d+)\x00/g; // \x00BLOCK_0\x00
@@ -56,7 +56,7 @@
 
             private injectTableCaptions(markdown: string): string {
                 MarkdownProcessor.RE_TABLE_DIRECTIVE.lastIndex = 0;
-                return markdown.replace(MarkdownProcessor.RE_TABLE_DIRECTIVE, (_, attrs: string) => {
+                return markdown.replace(MarkdownProcessor.RE_TABLE_DIRECTIVE, (_, indent: string, attrs: string) => {
                     const RE_KV = /([\w-]+)(?:="([^"]*)")? *;?/g;
                     const parts: string[] = [];
                     let m: RegExpExecArray | null;
@@ -66,7 +66,7 @@
                         parts.push(`data-table-${key}="${val}"`);
                     }
                     if (parts.length === 0) return '';
-                    return `<span ${parts.join(' ')}></span>\n`;
+                    return `${indent}<span ${parts.join(' ')}></span>\n`;
                 });
             }
 
