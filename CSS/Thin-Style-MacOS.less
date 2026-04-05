@@ -397,6 +397,28 @@ body[for="html-export"] {
         }
     }
 
+    // layout="auto"  → auto table layout, no fixed first-column width
+    // layout="half"  → first column 50%
+    // (default)      → first column 33%  (see tbody tr td:first-child above)
+    .table[data-layout="auto"] {
+        table {
+            table-layout: auto;
+
+            tbody tr td:first-child {
+                width: auto;
+                word-break: normal;
+            }
+        }
+    }
+
+    .table[data-layout="half"] {
+        table {
+            tbody tr td:first-child {
+                width: 50%;
+            }
+        }
+    }
+
     htable {
         table-layout: fixed;
         thead {
@@ -425,15 +447,6 @@ body[for="html-export"] {
         }
     }
 
-    .onetotwo-column {
-
-        td:first-child,
-        th:first-child {
-            width: 33% !important;
-            word-break: break-all;
-        }
-    }
-
     dtable {
         table tr td:first-child {
             width: 50%;
@@ -447,37 +460,6 @@ body[for="html-export"] {
 
         table tr td:first-child {
             width: 33% !important;
-        }
-    }
-
-    ctable {
-        thead {
-            border-width: 0.08rem !important;
-            display: table-row-group;
-            width: 100% !important;
-            height: 40px;
-            text-align: left;
-            font-size: calc(var(--table-fontsize) * 1px);
-            font-family: var(--default-font-family);
-
-            th {
-                font-weight: normal !important;
-            }
-
-            .katex {
-                font-size: calc((var(--table-fontsize) + 2) * 1px);
-            }
-
-            span[class="mord cjk_fallback"] {
-                font-size: calc(var(--table-fontsize) * 1px);
-            }
-        }
-
-        tbody {
-            tr td:first-child {
-                width: auto !important;
-                word-break: break-all;
-            }
         }
     }
 
@@ -590,7 +572,6 @@ body[for="html-export"] {
     }
 
     table > caption, figcaption, fig {
-        text-align: center;
         font-family: var(--fig-font-family);
         font-size: calc(var(--fig-fontsize) * 1px) !important;
         font-weight: 900;

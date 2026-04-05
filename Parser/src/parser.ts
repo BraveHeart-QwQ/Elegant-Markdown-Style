@@ -158,8 +158,8 @@
                         result = result.replace(/^(<table[^>]*>)/, `$1<caption>${title}</caption>`);
                     }
                     if (tableAttrs.length > 0) {
-                        const attrsStr = tableAttrs.map(([k, v]) => v === '' ? ` ${k}` : ` ${k}="${v}"`).join('');
-                        result = `<div class=table ${attrsStr}>\n${result}\n</div>`;
+                        const attrsStr = tableAttrs.map(([k, v]) => v === '' ? ` data-${k}` : ` data-${k}="${v}"`).join('');
+                        result = `<div class=table${attrsStr}>\n${result}\n</div>`;
                     }
                     return result;
                 });
