@@ -25,6 +25,8 @@
             // 产生式
             private static readonly RE_BLOCK_CODE = /^(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n\1[ \t]*$/gm; // ```code```
             private static readonly RE_INLINE_CODE = /`[^`\n]+`/g; // `code`
+            private static readonly RE_BLOCK_MATH = /\$\$[\s\S]+?\$\$/g; // $$math$$
+            private static readonly RE_INLINE_MATH = /\$(?!\s)(?:\\.|[^$\n\\])+?(?<!\s)\$/g; // $math$
             private static readonly RE_IMAGE = /!\[([^\]\n]+)\]\(([^)\n]+)\)(\{[^}]*\})?/g; // ![title](url){attrs}
             private static readonly RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
             private static readonly RE_LIST_DIRECTIVE = /^([ \t]*)\[list:([^\]\n]+)\][ \t]*\n/gm; // [list: style="table"; ...]
@@ -158,15 +160,25 @@
 
             private protect(markdown: string): string {
                 this.blocks = [];
-                // 先保护围栏代码块（多行），再保护行内代码
+                // 先保护围栏代码块（多行），再保护行内代码；同样先块级公式再行内公式
                 MarkdownProcessor.RE_BLOCK_CODE.lastIndex = 0;
                 MarkdownProcessor.RE_INLINE_CODE.lastIndex = 0;
+                MarkdownProcessor.RE_BLOCK_MATH.lastIndex = 0;
+                MarkdownProcessor.RE_INLINE_MATH.lastIndex = 0;
                 return markdown
                     .replace(MarkdownProcessor.RE_BLOCK_CODE, (match) => {
                         this.blocks.push(match);
                         return `\x00BLOCK_${this.blocks.length - 1}\x00`;
                     })
+                    .replace(MarkdownProcessor.RE_BLOCK_MATH, (match) => {
+                        this.blocks.push(match);
+                        return `\x00BLOCK_${this.blocks.length - 1}\x00`;
+                    })
                     .replace(MarkdownProcessor.RE_INLINE_CODE, (match) => {
+                        this.blocks.push(match);
+                        return `\x00BLOCK_${this.blocks.length - 1}\x00`;
+                    })
+                    .replace(MarkdownProcessor.RE_INLINE_MATH, (match) => {
                         this.blocks.push(match);
                         return `\x00BLOCK_${this.blocks.length - 1}\x00`;
                     });
