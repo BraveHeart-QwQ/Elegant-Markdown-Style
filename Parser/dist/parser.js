@@ -23,6 +23,8 @@
             // 产生式
             static RE_BLOCK_CODE = /^(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n\1[ \t]*$/gm; // ```code```
             static RE_INLINE_CODE = /`[^`\n]+`/g; // `code`
+            static RE_BLOCK_MATH = /\$\$[\s\S]+?\$\$/g; // $$math$$
+            static RE_INLINE_MATH = /\$(?!\s)(?:\\.|[^$\n\\])+?(?<!\s)\$/g; // $math$
             static RE_IMAGE = /!\[([^\]\n]+)\]\(([^)\n]+)\)(\{[^}]*\})?/g; // ![title](url){attrs}
             static RE_TABLE_DIRECTIVE = /^([ \t]*)\[table:([^\]\n]+)\][ \t]*\n/gm; // [table: title="..."; align="..."; disabled; ...]
             static RE_LIST_DIRECTIVE = /^([ \t]*)\[list:([^\]\n]+)\][ \t]*\n/gm; // [list: style="table"; ...]
@@ -145,15 +147,25 @@
             /* Protect */
             protect(markdown) {
                 this.blocks = [];
-                // 先保护围栏代码块（多行），再保护行内代码
+                // 先保护围栏代码块（多行），再保护行内代码；同样先块级公式再行内公式
                 MarkdownProcessor.RE_BLOCK_CODE.lastIndex = 0;
                 MarkdownProcessor.RE_INLINE_CODE.lastIndex = 0;
+                MarkdownProcessor.RE_BLOCK_MATH.lastIndex = 0;
+                MarkdownProcessor.RE_INLINE_MATH.lastIndex = 0;
                 return markdown
                     .replace(MarkdownProcessor.RE_BLOCK_CODE, (match) => {
                     this.blocks.push(match);
                     return `\x00BLOCK_${this.blocks.length - 1}\x00`;
                 })
+                    .replace(MarkdownProcessor.RE_BLOCK_MATH, (match) => {
+                    this.blocks.push(match);
+                    return `\x00BLOCK_${this.blocks.length - 1}\x00`;
+                })
                     .replace(MarkdownProcessor.RE_INLINE_CODE, (match) => {
+                    this.blocks.push(match);
+                    return `\x00BLOCK_${this.blocks.length - 1}\x00`;
+                })
+                    .replace(MarkdownProcessor.RE_INLINE_MATH, (match) => {
                     this.blocks.push(match);
                     return `\x00BLOCK_${this.blocks.length - 1}\x00`;
                 });
