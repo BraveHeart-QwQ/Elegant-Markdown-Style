@@ -188,10 +188,10 @@
         class HtmlProcessor {
             static RE_IMG_ANY = /<img([^>]*)>/g;
             static RE_P_FIGURE = /<p>(<div class=img>(?:[\s\S]*?)<\/div>)<\/p>/g;
-            static RE_TABLE_SPAN = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
+            static RE_TABLE_SPAN = /<p([^>]*)>([\s\S]*?)<span([^>]*)><\/span><\/p>\s*\n?(<table[\s\S]*?<\/table>)/g;
             static RE_CALLOUT_MARK = /(<blockquote[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)<span data-co="([^"]+)"><\/span>(?:<br[\t ]*\/?>[ \t]*\n?)?/g;
             static RE_PLAIN_BLOCKQUOTE = /(<blockquote(?![^>]*data-callout)[^>]*>)((?:(?!<\/blockquote>)[\s\S])*?<p[^>]*>)/g;
-            static RE_LIST_TABLE = /<p[^>]*><span([^>]*)><\/span><\/p>\s*\n?(<ul[\s\S]*?<\/ul>|<ol[\s\S]*?<\/ol>)/g;
+            static RE_LIST_TABLE = /<p([^>]*)>([\s\S]*?)<span([^>]*)><\/span><\/p>\s*\n?(<ul[\s\S]*?<\/ul>|<ol[\s\S]*?<\/ol>)/g;
             static RE_HEADER_LIST_RUN = /(<h[56][^>]*>[\s\S]*?)(?=<h[1-4][^>]*>|$)/g;
             // Open sentinel may be:
             //   1. alone in <p>                           → <p...><span data-details-open/></p>
@@ -263,7 +263,7 @@
             injectTableCaptions(html) {
                 // 从 <span data-table-*> 读取属性注入到后续 <table>
                 HtmlProcessor.RE_TABLE_SPAN.lastIndex = 0;
-                return html.replace(HtmlProcessor.RE_TABLE_SPAN, (match, spanAttrs, table) => {
+                return html.replace(HtmlProcessor.RE_TABLE_SPAN, (match, pAttrs, preceding, spanAttrs, table) => {
                     if (!spanAttrs.includes('data-table-'))
                         return match;
                     const RE_DATA_ATTR = /\sdata-table-([\w-]+)="([^"]*)"/g;
@@ -288,12 +288,14 @@
                         const attrsStr = tableAttrs.map(([k, v]) => v === '' ? ` data-${k}` : ` data-${k}="${v}"`).join('');
                         result = `<div class=table${attrsStr}>\n${result}\n</div>`;
                     }
-                    return result;
+                    const trimmedPreceding = preceding.replace(/<br[^>]*>\s*$/, '').trim();
+                    const prefix = trimmedPreceding ? `<p${pAttrs}>${trimmedPreceding}</p>\n` : '';
+                    return `${prefix}${result}`;
                 });
             }
             injectListTables(html) {
                 HtmlProcessor.RE_LIST_TABLE.lastIndex = 0;
-                return html.replace(HtmlProcessor.RE_LIST_TABLE, (match, spanAttrs, list) => {
+                return html.replace(HtmlProcessor.RE_LIST_TABLE, (match, pAttrs, preceding, spanAttrs, list) => {
                     if (!spanAttrs.includes('data-list-style="table"'))
                         return match;
                     const isOrdered = /^<ol/.test(list);
@@ -350,7 +352,9 @@
                         wrapperAttrs.unshift(['layout', 'step']);
                     }
                     const attrsStr = wrapperAttrs.map(([k, v]) => v === '' ? ` data-${k}` : ` data-${k}="${v}"`).join('');
-                    return `<div class=table${attrsStr}>\n${table}\n</div>`;
+                    const trimmedPreceding = preceding.replace(/<br[^>]*>\s*$/, '').trim();
+                    const prefix = trimmedPreceding ? `<p${pAttrs}>${trimmedPreceding}</p>\n` : '';
+                    return `${prefix}<div class=table${attrsStr}>\n${table}\n</div>`;
                 });
             }
             static CALLOUT_SVG_MAP = {
