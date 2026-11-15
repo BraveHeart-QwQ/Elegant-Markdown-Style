@@ -545,6 +545,12 @@ body[for="html-export"] {
         font-family: var(--fig-font-family);
     }
 
+    // 让显式设置为行内显示的图片容器参与同行排列
+    .img:has(> img[style*="display:inline"]) {
+        display: inline;
+        margin: 0;
+    }
+
     table > caption, figcaption, fig {
         font-family: var(--fig-font-family);
         font-size: calc(var(--fig-fontsize) * 1px) !important;
